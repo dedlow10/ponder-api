@@ -1,4 +1,4 @@
-var currentMod = require("functions/register");
+var currentMod = require("functions/createdecision");
 
 // console.log(connection);
 exports.handler = async (event, context, callback) => {

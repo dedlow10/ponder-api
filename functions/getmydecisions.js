@@ -11,7 +11,6 @@ module.exports = {
             function(err) {
                 callback(err);
             });
-            
         });
    
         await pm;

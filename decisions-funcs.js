@@ -1,12 +1,12 @@
 var da = require("data-access");
 
 module.exports = {
-    create: function(question, createdBy, createdOn, isPublic, daysToPost, callback, errorCallback) {
+    create: function(decision, callback, errorCallback) {
 
         var connection = da.getConnection();
         var sql = 
-        "INSERT INTO Decisions (Question, CreatedBy, CreatedOn, IsPublic, DaysToPost)" +
-        "VALUES ('" + question + "', " + createdBy + ", '" + createdOn + "', " + isPublic + ", " + daysToPost + ")";
+        "INSERT INTO Decisions (Title, Description, CreatedBy, CreatedOn, IsPublic, DaysToPost, NumberOfOptions, OptionsJson)" +
+        "VALUES ('" + decision.Title + "', '" + decision.Description + "', " + decision.CreatedBy + ", '" + decision.CreatedOn + "', " + decision.IsPublic + ", " + decision.DaysToPost + ", " + decision.NumberOfOptions + ", '" + decision.OptionsJson + "')";
         
         console.log(sql);
         
