@@ -1,4 +1,4 @@
-var currentMod = require("functions/getvotesfordecision");
+var currentMod = require("functions/acceptInvitation");
 
 // console.log(connection);
 exports.handler = async (event, context, callback) => {

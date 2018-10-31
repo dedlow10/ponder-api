@@ -1,19 +1,15 @@
-var votesFuncs = require("../votes-funcs");
+var friendsFuncs = require("../friends-funcs");
 
 module.exports = {
     handler: async function(event, context, callback) {
         if (event["is-ping"]) context.succeed(true);
+        var friendId = event.context.friendId;
         var userId = event.context["authorizer-principal-id"];
         var pm = new Promise((resolve, reject) => {
-        var decisionVote = {
-            DecisionId: event.params.path.id,
-            UserId: userId,
-            VotedOn: new Date().toISOString(),
-            VotedFor: event.params.path.optionNum,
-        }
-        votesFuncs.vote(decisionVote,
+
+        friendsFuncs.deleteFriend(userId, friendId,
             function(result) {
-                context.succeed(result);
+                context.succeed(true);
             },
             function(error) {
                 callback(error);
