@@ -13,6 +13,20 @@ module.exports = {
             connection.end(function (err) { callback(newId);});
         });
     },
+    registerDeviceToken: function(userId, token, callback, errorCallback) {
+        var connection = da.getConnection();
+        var sql = 
+        "UPDATE Users SET DeviceToken=? WHERE userId=" + userId;
+
+        connection.query(sql, [token], function (err, results) {
+            if (err) {
+                connection.end(function () { errorCallback(err);}); 
+            }
+            else {
+                connection.end(function (err) { callback(true);}); 
+            }
+        });
+    },
     findByEmail: function(email, callback) {
         var connection = da.getConnection();
         var sql = 
