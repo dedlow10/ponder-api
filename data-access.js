@@ -7,6 +7,7 @@ module.exports = {
             user: "dedlow",
             password: "Soccer1985",
             database: "DecisionMaker",
+            multipleStatements: true,
             typeCast: function castField( field, useDefaultTypeCasting ) {
 
                 // We only want to cast bit fields that have a single-bit in them. If the field
