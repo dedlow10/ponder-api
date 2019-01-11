@@ -1,11 +1,11 @@
 var da = require("data-access");
 
 module.exports = {
-    register: function(email, firstName, lastName, passwordHash, callback) {
+    register: function(email, firstName, lastName, screenName, passwordHash, callback) {
         var connection = da.getConnection();
         var sql = 
-        "INSERT INTO Users (Email, FirstName, LastName, PasswordHash)" +
-        "VALUES ('" + email + "', '" + firstName + "', '" + lastName + "', '" + passwordHash + "')";
+        "INSERT INTO Users (Email, FirstName, LastName, ScreenName, PasswordHash)" +
+        "VALUES ('" + email + "', '" + firstName + "', '" + lastName + "', '" + screenName + "', '" + passwordHash + "')";
 
         connection.query(sql, function (err, results) {
             if (err) throw err;

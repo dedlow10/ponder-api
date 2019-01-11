@@ -20,6 +20,21 @@ module.exports = {
             }
         });
     },
+    countVotesByUserId: function(userId, callback, errorCallback) {
+
+        var connection = da.getConnection();
+        var sql = 
+        "SELECT count(*) FROM DecisionVotes WHERE UserId=" + userId;
+        
+        connection.query(sql, function (err, results) {
+            if (err) {
+                connection.end(function () { errorCallback(err);}); 
+            }
+            else {
+                connection.end(function (err) { callback(results[0]["count(*)"]);}); 
+            }
+        });
+    },
     getVotes: function(decisionId, callback, errorCallback) {
 
         var connection = da.getConnection();
