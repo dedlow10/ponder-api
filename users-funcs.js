@@ -54,5 +54,14 @@ module.exports = {
             if (err) throw err;
             callback(true);
         });
+    },
+    updateUser: function(user, callback) {
+        var connection = da.getConnection();
+        var sql = 
+        "UPDATE Users SET ProfilePhotoId=? Where UserId=?";
+        connection.query(sql, [user.ProfilePhotoId, user.Id], function(err, result, fields) {
+            if (err) throw err;
+            callback(true);
+        });
     }
 };

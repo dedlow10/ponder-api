@@ -54,7 +54,7 @@ module.exports = {
     getTopDecisions: function(currentUserId, callback, errorCallback) {
         var connection = da.getConnection();
         var sql = 
-        "SELECT d.*, u.ScreenName as CreatedByUserScreenName, (select count(*) from DecisionVotes dv where d.DecisionId = dv.DecisionId ) as Votes, ((SELECT Count(*) FROM DecisionVotes dv WHERE dv.DecisionId = d.DecisionId AND dv.UserId = " + currentUserId + ") = 0 && CreatedBy != " + currentUserId + ") as CanVote FROM Decisions d JOIN Users u ON d.CreatedBy = u.UserId WHERE d.IsPublic = 1 ORDER BY Votes desc, CreatedOn desc";
+        "SELECT d.*, u.ScreenName as CreatedByUserScreenName, u.ProfilePhotoId, (select count(*) from DecisionVotes dv where d.DecisionId = dv.DecisionId ) as Votes, ((SELECT Count(*) FROM DecisionVotes dv WHERE dv.DecisionId = d.DecisionId AND dv.UserId = " + currentUserId + ") = 0 && CreatedBy != " + currentUserId + ") as CanVote FROM Decisions d JOIN Users u ON d.CreatedBy = u.UserId WHERE d.IsPublic = 1 ORDER BY Votes desc, CreatedOn desc";
         
         connection.query(sql, function (err, results) {
             if (err) {
@@ -68,7 +68,7 @@ module.exports = {
     getFriendsDecisions: function(userId, callback, errorCallback) {
         var connection = da.getConnection();
         var sql = 
-        "SELECT d.*, u.ScreenName as CreatedByUserScreenName, (SELECT Count(*) FROM DecisionVotes dv where d.DecisionId = dv.DecisionId) as Votes, ((SELECT Count(*) FROM DecisionVotes dv WHERE dv.DecisionId = d.DecisionId AND dv.UserId=?) = 0) as CanVote FROM Decisions d JOIN Users u ON d.CreatedBy = u.UserId WHERE d.CreatedBy IN (SELECT InvitedByUserId FROM Friends WHERE InvitedUserId=? AND AcceptedOn IS NOT NULL UNION Select InvitedUserId FROM Friends WHERE InvitedByUserId=?) ORDER BY CreatedOn desc";
+        "SELECT d.*, u.ScreenName as CreatedByUserScreenName, u.ProfilePhotoId, (SELECT Count(*) FROM DecisionVotes dv where d.DecisionId = dv.DecisionId) as Votes, ((SELECT Count(*) FROM DecisionVotes dv WHERE dv.DecisionId = d.DecisionId AND dv.UserId=?) = 0) as CanVote FROM Decisions d JOIN Users u ON d.CreatedBy = u.UserId WHERE d.CreatedBy IN (SELECT InvitedByUserId FROM Friends WHERE InvitedUserId=? AND AcceptedOn IS NOT NULL UNION Select InvitedUserId FROM Friends WHERE InvitedByUserId=?) ORDER BY CreatedOn desc";
         connection.query(sql, [userId, userId, userId], function (err, results) {
             if (err) {
                 connection.end(function () { errorCallback(err);}); 
@@ -81,7 +81,7 @@ module.exports = {
     findDecisionById: function(id, callback, errorCallback) {
         var connection = da.getConnection();
         var sql = 
-        "SELECT * FROM Decisions WHERE DecisionId=" + id;
+        "SELECT d.*, u.ScreenName as CreatedByUserScreenName, u.ProfilePhotoId, (SELECT Count(*) FROM DecisionVotes dv where d.DecisionId = dv.DecisionId) as Votes FROM Decisions d JOIN Users u ON d.CreatedBy = u.UserId WHERE DecisionId=" + id;
         
         connection.query(sql, function (err, results) {
             if (err) {
