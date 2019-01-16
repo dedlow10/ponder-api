@@ -1,0 +1,58 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: An AWS Serverless Specification template describing your function.
+
+Resources:
+  AcceptInvitationCF:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: functions/acceptinvitation.handler
+      Runtime: nodejs8.10
+      CodeUri: s3://ponder-code/ponder-latest.zip
+      Description: ''
+      MemorySize: 128
+      Timeout: 3
+      Role: 'arn:aws:iam::478373966066:role/LambdaServiceRole'
+      Events:
+        Schedule1:
+          Type: Schedule
+          Properties:
+            Schedule: rate(15 minutes)
+        #Api1:
+          #Type: Api
+          #Properties:
+            #Path: /friends/invitations
+            #Method: POST
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-0594f0e78619424b3
+        SubnetIds:
+          - subnet-c89e10e6
+          - subnet-e54b0eea
+
+  AddFriendCF:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: functions/addfriend.handler
+      Runtime: nodejs8.10
+      CodeUri: s3://ponder-code/ponder-latest.zip
+      Description: ''
+      MemorySize: 128
+      Timeout: 3
+      Role: 'arn:aws:iam::478373966066:role/LambdaServiceRole'
+      Events:
+        Schedule1:
+          Type: Schedule
+          Properties:
+            Schedule: rate(15 minutes)
+        #Api1:
+          #Type: Api
+          #Properties:
+            #Path: /friends
+            #Method: POST
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-0594f0e78619424b3
+        SubnetIds:
+          - subnet-c89e10e6
+          - subnet-e54b0eea
