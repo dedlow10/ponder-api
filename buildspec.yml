@@ -13,10 +13,5 @@ phases:
     commands:
       - echo Build completed on `date`
 artifacts:
-  secondary-artifacts:
-    artifact1:
-      files:
-        - '**/*'
-    artifact2:
-      files:
-      - ponder.yml
+  files:
+    - '**/*'
