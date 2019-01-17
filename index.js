@@ -1,4 +1,4 @@
-var currentMod = require("functions/acceptInvitation");
+var currentMod = require("functions/updateuser");
 
 // console.log(connection);
 exports.handler = async (event, context, callback) => {
