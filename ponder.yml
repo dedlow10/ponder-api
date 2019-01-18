@@ -57,6 +57,23 @@ Resources:
           - subnet-c89e10e6
           - subnet-e54b0eea
 
+  AuthorizeUser:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: authorizers/authorizeruser
+      Runtime: nodejs8.10
+      CodeUri: .
+      Description: ''
+      MemorySize: 128
+      Timeout: 3
+      Role: 'arn:aws:iam::478373966066:role/LambdaServiceRole'
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /MyResource
+            Method: ANY
+
   CountMyDecisionVotesCF:
     Type: 'AWS::Serverless::Function'
     Properties:
