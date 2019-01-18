@@ -60,9 +60,9 @@ Resources:
   CountMyDecisionVotesCF:
     Type: 'AWS::Serverless::Function'
     Properties:
-      Handler: index.handler
+      Handler: functions/countmydecisionvotes
       Runtime: nodejs8.10
-      CodeUri: .
+      CodeUri: s3://ponder-code/ponder-latest.zip
       Description: ''
       MemorySize: 128
       Timeout: 3
