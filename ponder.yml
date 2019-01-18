@@ -68,11 +68,11 @@ Resources:
       Timeout: 3
       Role: 'arn:aws:iam::478373966066:role/LambdaServiceRole'
       Events:
-        #Api1:
-          #Type: Api
-          #Properties:
-            #Path: /votes/me/count
-            #Method: GET
+        Api1:
+          Type: Api
+          Properties:
+            Path: /votes/me/count
+            Method: GET
       VpcConfig:
         SecurityGroupIds:
           - sg-0594f0e78619424b3
