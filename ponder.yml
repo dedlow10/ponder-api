@@ -62,7 +62,7 @@ Resources:
     Properties:
       Handler: authorizers/authorizeruser
       Runtime: nodejs8.10
-      CodeUri: .
+      CodeUri: s3://ponder-code/ponder-latest.zip
       Description: ''
       MemorySize: 128
       Timeout: 3
