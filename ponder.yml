@@ -6,6 +6,7 @@ Resources:
   AcceptInvitation:
     Type: 'AWS::Serverless::Function'
     Properties:
+      FunctionName: Ponder-AcceptInvitation
       Handler: functions/acceptinvitation.handler
       Runtime: nodejs8.10
       CodeUri: s3://ponder-code/ponder-latest.zip
@@ -28,6 +29,7 @@ Resources:
   AddFriend:
     Type: 'AWS::Serverless::Function'
     Properties:
+      FunctionName: Ponder-AddFriend
       Handler: functions/addfriend.handler
       Runtime: nodejs8.10
       CodeUri: s3://ponder-code/ponder-latest.zip
@@ -50,6 +52,7 @@ Resources:
   AuthorizeUser:
     Type: 'AWS::Serverless::Function'
     Properties:
+      FunctionName: Ponder-AuthorizeUser
       Handler: index.handler
       Runtime: nodejs8.10
       CodeUri: s3://ponder-code/ponder-latest.zip
@@ -61,6 +64,7 @@ Resources:
   CountMyDecisionVotes:
     Type: 'AWS::Serverless::Function'
     Properties:
+      FunctionName: Ponder-CountMyDecisionVotes
       Handler: functions/countmydecisionvotes.handler
       Runtime: nodejs8.10
       CodeUri: s3://ponder-code/ponder-latest.zip
@@ -78,6 +82,7 @@ Resources:
   CountMyDecisions:
     Type: 'AWS::Serverless::Function'
     Properties:
+      FunctionName: Ponder-CountMyDecisions
       Handler: functions/countmydecisions.handler
       Runtime: nodejs8.10
       CodeUri: s3://ponder-code/ponder-latest.zip
@@ -95,6 +100,7 @@ Resources:
   CreateDecision:
     Type: 'AWS::Serverless::Function'
     Properties:
+      FunctionName: Ponder-CreateDecision
       Handler: functions/createdecision.handler
       Runtime: nodejs8.10
       CodeUri: s3://ponder-code/ponder-latest.zip
@@ -117,6 +123,7 @@ Resources:
   DeleteDecision:
     Type: 'AWS::Serverless::Function'
     Properties:
+      FunctionName: Ponder-DeleteDecision
       Handler: functions/deletedecision.handler
       Runtime: nodejs8.10
       CodeUri: s3://ponder-code/ponder-latest.zip
@@ -134,6 +141,7 @@ Resources:
   DeleteFriend:
     Type: 'AWS::Serverless::Function'
     Properties:
+      FunctionName: Ponder-DeleteFriend
       Handler: functions/deletefriend.handler
       Runtime: nodejs8.10
       CodeUri: s3://ponder-code/ponder-latest.zip
@@ -151,6 +159,7 @@ Resources:
   FindUsers:
     Type: 'AWS::Serverless::Function'
     Properties:
+      FunctionName: Ponder-FindUsers
       Handler: functions/findusers.handler
       Runtime: nodejs8.10
       CodeUri: s3://ponder-code/ponder-latest.zip
@@ -173,6 +182,7 @@ Resources:
   GetDecisionById:
     Type: 'AWS::Serverless::Function'
     Properties:
+      FunctionName: Ponder-GetDecisionById
       Handler: functions/getdecisionbyid.handler
       Runtime: nodejs8.10
       CodeUri: s3://ponder-code/ponder-latest.zip
@@ -190,6 +200,7 @@ Resources:
   GetFriendInvitations:
     Type: 'AWS::Serverless::Function'
     Properties:
+      FunctionName: Ponder-GetFriendInvitations
       Handler: functions/getfriendinvitations.handler
       Runtime: nodejs8.10
       CodeUri: s3://ponder-code/ponder-latest.zip
@@ -212,6 +223,7 @@ Resources:
   GetFriends:
     Type: 'AWS::Serverless::Function'
     Properties:
+      FunctionName: Ponder-GetFriends
       Handler: functions/getfriends.handler
       Runtime: nodejs8.10
       CodeUri: s3://ponder-code/ponder-latest.zip
@@ -234,6 +246,7 @@ Resources:
   GetFriendsDecisions:
     Type: 'AWS::Serverless::Function'
     Properties:
+      FunctionName: Ponder-GetFriendsDecisions
       Handler: functions/getfriendsdecisions.handler
       Runtime: nodejs8.10
       CodeUri: s3://ponder-code/ponder-latest.zip
@@ -256,6 +269,7 @@ Resources:
   GetMyDecisions:
     Type: 'AWS::Serverless::Function'
     Properties:
+      FunctionName: Ponder-GetMyDecisions
       Handler: functions/getmydecisions.handler
       Runtime: nodejs8.10
       CodeUri: s3://ponder-code/ponder-latest.zip
@@ -278,6 +292,7 @@ Resources:
   GetTopDecisions:
     Type: 'AWS::Serverless::Function'
     Properties:
+      FunctionName: Ponder-GetTopDecisions
       Handler: functions/gettopdecisions.handler
       Runtime: nodejs8.10
       CodeUri: s3://ponder-code/ponder-latest.zip
@@ -300,6 +315,7 @@ Resources:
   GetVotesForDecision:
     Type: 'AWS::Serverless::Function'
     Properties:
+      FunctionName: Ponder-GetVotesForDecision
       Handler: functions/getvotesfordecision.handler
       Runtime: nodejs8.10
       CodeUri: s3://ponder-code/ponder-latest.zip
@@ -322,6 +338,7 @@ Resources:
   LoginUser:
     Type: 'AWS::Serverless::Function'
     Properties:
+      FunctionName: Ponder-LoginUser
       Handler: functions/login.handler
       Runtime: nodejs8.10
       CodeUri: s3://ponder-code/ponder-latest.zip
@@ -344,6 +361,7 @@ Resources:
   RegisterDeviceToken:
     Type: 'AWS::Serverless::Function'
     Properties:
+      FunctionName: Ponder-RegisterDeviceToken
       Handler: functions/registerdevicetoken.handler
       Runtime: nodejs8.10
       CodeUri: s3://ponder-code/ponder-latest.zip
@@ -361,6 +379,7 @@ Resources:
   RegisterUser:
     Type: 'AWS::Serverless::Function'
     Properties:
+      FunctionName: Ponder-RegisterUser
       Handler: functions/register.handler
       Runtime: nodejs8.10
       CodeUri: s3://ponder-code/ponder-latest.zip
@@ -383,6 +402,7 @@ Resources:
   UpdateUser:
     Type: 'AWS::Serverless::Function'
     Properties:
+      FunctionName: Ponder-UpdateUser
       Handler: functions/updateuser.handler
       Runtime: nodejs8.10
       CodeUri: s3://ponder-code/ponder-latest.zip
@@ -400,6 +420,7 @@ Resources:
   VoteDecision:
     Type: 'AWS::Serverless::Function'
     Properties:
+      FunctionName: Ponder-VoteDecision
       Handler: functions/votedecision.handler
       Runtime: nodejs8.10
       CodeUri: s3://ponder-code/ponder-latest.zip
