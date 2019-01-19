@@ -187,6 +187,248 @@ Resources:
           - subnet-c89e10e6
           - subnet-e54b0eea
 
+  GetFriendInvitations:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: functions/getfriendinvitations.handler
+      Runtime: nodejs8.10
+      CodeUri: s3://ponder-code/ponder-latest.zip
+      Description: ''
+      MemorySize: 128
+      Timeout: 3
+      Role: 'arn:aws:iam::478373966066:role/LambdaServiceRole'
+      Events:
+        Schedule1:
+          Type: Schedule
+          Properties:
+            Schedule: rate(15 minutes)
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-0594f0e78619424b3
+        SubnetIds:
+          - subnet-c89e10e6
+          - subnet-e54b0eea
+
+  GetFriends:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: functions/getfriends.handler
+      Runtime: nodejs8.10
+      CodeUri: s3://ponder-code/ponder-latest.zip
+      Description: ''
+      MemorySize: 128
+      Timeout: 3
+      Role: 'arn:aws:iam::478373966066:role/LambdaServiceRole'
+      Events:
+        Schedule1:
+          Type: Schedule
+          Properties:
+            Schedule: rate(15 minutes)
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-0594f0e78619424b3
+        SubnetIds:
+          - subnet-c89e10e6
+          - subnet-e54b0eea
+
+  GetFriendsDecisions:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: functions/getfriendsdecisions.handler
+      Runtime: nodejs8.10
+      CodeUri: s3://ponder-code/ponder-latest.zip
+      Description: ''
+      MemorySize: 128
+      Timeout: 3
+      Role: 'arn:aws:iam::478373966066:role/LambdaServiceRole'
+      Events:
+        Schedule1:
+          Type: Schedule
+          Properties:
+            Schedule: rate(15 minutes)
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-0594f0e78619424b3
+        SubnetIds:
+          - subnet-c89e10e6
+          - subnet-e54b0eea
+
+  GetMyDecisions:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: functions/getmydecisions.handler
+      Runtime: nodejs8.10
+      CodeUri: s3://ponder-code/ponder-latest.zip
+      Description: ''
+      MemorySize: 128
+      Timeout: 3
+      Role: 'arn:aws:iam::478373966066:role/LambdaServiceRole'
+      Events:
+        Schedule1:
+          Type: Schedule
+          Properties:
+            Schedule: rate(15 minutes)
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-0594f0e78619424b3
+        SubnetIds:
+          - subnet-c89e10e6
+          - subnet-e54b0eea
+
+  GetTopDecisions:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: functions/gettopdecisions.handler
+      Runtime: nodejs8.10
+      CodeUri: s3://ponder-code/ponder-latest.zip
+      Description: ''
+      MemorySize: 128
+      Timeout: 3
+      Role: 'arn:aws:iam::478373966066:role/LambdaServiceRole'
+      Events:
+        Schedule1:
+          Type: Schedule
+          Properties:
+            Schedule: rate(15 minutes)
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-0594f0e78619424b3
+        SubnetIds:
+          - subnet-c89e10e6
+          - subnet-e54b0eea
+
+  GetVotesForDecision:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: functions/getvotesfordecision.handler
+      Runtime: nodejs8.10
+      CodeUri: s3://ponder-code/ponder-latest.zip
+      Description: ''
+      MemorySize: 128
+      Timeout: 3
+      Role: 'arn:aws:iam::478373966066:role/LambdaServiceRole'
+      Events:
+        Schedule1:
+          Type: Schedule
+          Properties:
+            Schedule: rate(15 minutes)
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-0594f0e78619424b3
+        SubnetIds:
+          - subnet-61ae223d
+          - subnet-c89e10e6
+
+  LoginUser:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: functions/login.handler
+      Runtime: nodejs8.10
+      CodeUri: s3://ponder-code/ponder-latest.zip
+      Description: ''
+      MemorySize: 128
+      Timeout: 3
+      Role: 'arn:aws:iam::478373966066:role/LambdaServiceRole'
+      Events:
+        Schedule1:
+          Type: Schedule
+          Properties:
+            Schedule: rate(15 minutes)
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-0594f0e78619424b3
+        SubnetIds:
+          - subnet-61ae223d
+          - subnet-c89e10e6
+
+  RegisterDeviceToken:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: functions/registerdevicetoken.handler
+      Runtime: nodejs8.10
+      CodeUri: s3://ponder-code/ponder-latest.zip
+      Description: ''
+      MemorySize: 128
+      Timeout: 3
+      Role: 'arn:aws:iam::478373966066:role/LambdaServiceRole'
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-0594f0e78619424b3
+        SubnetIds:
+          - subnet-c89e10e6
+          - subnet-e54b0eea
+
+  RegisterUser:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: functions/register.handler
+      Runtime: nodejs8.10
+      CodeUri: s3://ponder-code/ponder-latest.zip
+      Description: ''
+      MemorySize: 192
+      Timeout: 3
+      Role: 'arn:aws:iam::478373966066:role/LambdaServiceRole'
+      Events:
+        Schedule1:
+          Type: Schedule
+          Properties:
+            Schedule: rate(15 minutes)
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-0594f0e78619424b3
+        SubnetIds:
+          - subnet-61ae223d
+          - subnet-c89e10e6
+
+  UpdateUser:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: functions/updateuser.handler
+      Runtime: nodejs8.10
+      CodeUri: s3://ponder-code/ponder-latest.zip
+      Description: ''
+      MemorySize: 128
+      Timeout: 3
+      Role: 'arn:aws:iam::478373966066:role/LambdaServiceRole'
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-0594f0e78619424b3
+        SubnetIds:
+          - subnet-c89e10e6
+          - subnet-e54b0eea
+
+  VoteDecision:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: functions/votedecision.handler
+      Runtime: nodejs8.10
+      CodeUri: s3://ponder-code/ponder-latest.zip
+      Description: ''
+      MemorySize: 128
+      Timeout: 3
+      Role: 'arn:aws:iam::478373966066:role/LambdaServiceRole'
+      Events:
+        Schedule1:
+          Type: Schedule
+          Properties:
+            Schedule: rate(15 minutes)
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-0594f0e78619424b3
+        SubnetIds:
+          - subnet-c89e10e6
+          - subnet-e54b0eea
+
+
+
+
+
+
+
+
+
+
+
 
 
 
