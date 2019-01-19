@@ -312,6 +312,29 @@ Resources:
           - subnet-c89e10e6
           - subnet-e54b0eea
 
+  GetUserById:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      FunctionName: Ponder-GetUserById
+      Handler: functions/getuserbyid.handler
+      Runtime: nodejs8.10
+      CodeUri: s3://ponder-code/ponder-latest.zip
+      Description: ''
+      MemorySize: 128
+      Timeout: 3
+      Role: 'arn:aws:iam::478373966066:role/LambdaServiceRole'
+      Events:
+        Schedule1:
+          Type: Schedule
+          Properties:
+            Schedule: rate(15 minutes)
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-0594f0e78619424b3
+        SubnetIds:
+          - subnet-c89e10e6
+          - subnet-e54b0eea
+
   GetVotesForDecision:
     Type: 'AWS::Serverless::Function'
     Properties:

@@ -46,6 +46,15 @@ module.exports = {
             connection.end(function (err) { callback(result);});
         });
     },
+    getById: function(id, callback) {
+        var connection = da.getConnection();
+        var sql = 
+        "SELECT * FROM Users Where UserId = '" + id + "' LIMIT 1";
+        connection.query(sql, function(err, result, fields) {
+            if (err) throw err;
+            connection.end(function (err) { callback(result[0]);});
+        });
+    },
     deleteByEmail: function(email, callback) {
         var connection = da.getConnection();
         var sql = 
