@@ -47,6 +47,17 @@ Resources:
           - subnet-c89e10e6
           - subnet-e54b0eea
 
+  AuthorizeUser:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: index.handler
+      Runtime: nodejs8.10
+      CodeUri: s3://ponder-code/ponder-latest.zip
+      Description: ''
+      MemorySize: 128
+      Timeout: 3
+      Role: 'arn:aws:iam::478373966066:role/LambdaServiceRole'
+
   CountMyDecisionVotes:
     Type: 'AWS::Serverless::Function'
     Properties:
@@ -64,14 +75,119 @@ Resources:
           - subnet-c89e10e6
           - subnet-e54b0eea
 
-  AuthorizeUser:
+  CountMyDecisions:
     Type: 'AWS::Serverless::Function'
     Properties:
-      Handler: index.handler
+      Handler: functions/countmydecisions.handler
       Runtime: nodejs8.10
       CodeUri: s3://ponder-code/ponder-latest.zip
       Description: ''
       MemorySize: 128
       Timeout: 3
       Role: 'arn:aws:iam::478373966066:role/LambdaServiceRole'
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-0594f0e78619424b3
+        SubnetIds:
+          - subnet-c89e10e6
+          - subnet-e54b0eea
+
+  CreateDecision:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: functions/createdecision.handler
+      Runtime: nodejs8.10
+      CodeUri: s3://ponder-code/ponder-latest.zip
+      Description: ''
+      MemorySize: 128
+      Timeout: 3
+      Role: 'arn:aws:iam::478373966066:role/LambdaServiceRole'
+      Events:
+        Schedule1:
+          Type: Schedule
+          Properties:
+            Schedule: rate(15 minutes)
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-0594f0e78619424b3
+        SubnetIds:
+          - subnet-c89e10e6
+          - subnet-e54b0eea
+
+  DeleteDecision:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: functions/deletedecision.handler
+      Runtime: nodejs8.10
+      CodeUri: s3://ponder-code/ponder-latest.zip
+      Description: ''
+      MemorySize: 128
+      Timeout: 3
+      Role: 'arn:aws:iam::478373966066:role/LambdaServiceRole'
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-0594f0e78619424b3
+        SubnetIds:
+          - subnet-c89e10e6
+          - subnet-e54b0eea
+
+  DeleteFriend:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: functions/deletefriend.handler
+      Runtime: nodejs8.10
+      CodeUri: s3://ponder-code/ponder-latest.zip
+      Description: ''
+      MemorySize: 128
+      Timeout: 3
+      Role: 'arn:aws:iam::478373966066:role/LambdaServiceRole'
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-0594f0e78619424b3
+        SubnetIds:
+          - subnet-c89e10e6
+          - subnet-e54b0eea
+
+  FindUsers:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: functions/findusers.handler
+      Runtime: nodejs8.10
+      CodeUri: s3://ponder-code/ponder-latest.zip
+      Description: ''
+      MemorySize: 128
+      Timeout: 3
+      Role: 'arn:aws:iam::478373966066:role/LambdaServiceRole'
+      Events:
+        Schedule1:
+          Type: Schedule
+          Properties:
+            Schedule: rate(15 minutes)
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-0594f0e78619424b3
+        SubnetIds:
+          - subnet-c89e10e6
+          - subnet-e54b0eea
+
+  GetDecisionById:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: functions/getdecisionbyid.handler
+      Runtime: nodejs8.10
+      CodeUri: s3://ponder-code/ponder-latest.zip
+      Description: ''
+      MemorySize: 128
+      Timeout: 3
+      Role: 'arn:aws:iam::478373966066:role/LambdaServiceRole'
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-0594f0e78619424b3
+        SubnetIds:
+          - subnet-c89e10e6
+          - subnet-e54b0eea
+
+
+
+
 
