@@ -53,7 +53,7 @@ Resources:
     Type: 'AWS::Serverless::Function'
     Properties:
       FunctionName: Ponder-AuthorizeUser
-      Handler: authorizers/authorizeruser
+      Handler: authorizers/authorizeruser.handler
       Runtime: nodejs8.10
       CodeUri: s3://ponder-code/ponder-latest.zip
       Description: ''
