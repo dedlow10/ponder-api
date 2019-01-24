@@ -19,7 +19,7 @@ Resources:
           Type: Schedule
           Properties:
             Schedule: rate(15 minutes)
-            Input: '"{ "context" : { "authorizer-principal-id": 1}, "is-ping": true }"'
+            Input: '{ "context" : { "authorizer-principal-id": 1}, "is-ping": true }'
       VpcConfig:
         SecurityGroupIds:
           - sg-0594f0e78619424b3
@@ -43,6 +43,7 @@ Resources:
           Type: Schedule
           Properties:
             Schedule: rate(15 minutes)
+            Input: '{ "context" : { "authorizer-principal-id": 1}, "is-ping": true }'
       VpcConfig:
         SecurityGroupIds:
           - sg-0594f0e78619424b3
@@ -114,6 +115,7 @@ Resources:
           Type: Schedule
           Properties:
             Schedule: rate(15 minutes)
+            Input: '{ "context" : { "authorizer-principal-id": 1}, "is-ping": true }'
       VpcConfig:
         SecurityGroupIds:
           - sg-0594f0e78619424b3
@@ -173,6 +175,7 @@ Resources:
           Type: Schedule
           Properties:
             Schedule: rate(15 minutes)
+            Input: '{ "context" : { "authorizer-principal-id": 1}, "is-ping": true }'
       VpcConfig:
         SecurityGroupIds:
           - sg-0594f0e78619424b3
@@ -214,6 +217,7 @@ Resources:
           Type: Schedule
           Properties:
             Schedule: rate(15 minutes)
+            Input: '{ "context" : { "authorizer-principal-id": 1}, "is-ping": true }'
       VpcConfig:
         SecurityGroupIds:
           - sg-0594f0e78619424b3
@@ -237,6 +241,7 @@ Resources:
           Type: Schedule
           Properties:
             Schedule: rate(15 minutes)
+            Input: '{ "context" : { "authorizer-principal-id": 1}, "is-ping": true }'
       VpcConfig:
         SecurityGroupIds:
           - sg-0594f0e78619424b3
@@ -260,6 +265,7 @@ Resources:
           Type: Schedule
           Properties:
             Schedule: rate(15 minutes)
+            Input: '{ "context" : { "authorizer-principal-id": 1}, "is-ping": true }'
       VpcConfig:
         SecurityGroupIds:
           - sg-0594f0e78619424b3
@@ -283,6 +289,7 @@ Resources:
           Type: Schedule
           Properties:
             Schedule: rate(15 minutes)
+            Input: '{ "context" : { "authorizer-principal-id": 1}, "is-ping": true }'
       VpcConfig:
         SecurityGroupIds:
           - sg-0594f0e78619424b3
@@ -306,6 +313,7 @@ Resources:
           Type: Schedule
           Properties:
             Schedule: rate(15 minutes)
+            Input: '{ "context" : { "authorizer-principal-id": 1}, "is-ping": true }'
       VpcConfig:
         SecurityGroupIds:
           - sg-0594f0e78619424b3
@@ -352,6 +360,7 @@ Resources:
           Type: Schedule
           Properties:
             Schedule: rate(15 minutes)
+            Input: '{ "params" : { "path": { "id": 1 } } }'
       VpcConfig:
         SecurityGroupIds:
           - sg-0594f0e78619424b3
@@ -375,6 +384,7 @@ Resources:
           Type: Schedule
           Properties:
             Schedule: rate(15 minutes)
+            Input: '{ "Email": "dedlow10@gmail.com", "Password": "MyAwesomePassword123" }'
       VpcConfig:
         SecurityGroupIds:
           - sg-0594f0e78619424b3
@@ -416,6 +426,7 @@ Resources:
           Type: Schedule
           Properties:
             Schedule: rate(15 minutes)
+            Input: '{ "context" : { "authorizer-principal-id": 1}, "is-ping": true }'
       VpcConfig:
         SecurityGroupIds:
           - sg-0594f0e78619424b3
@@ -457,6 +468,7 @@ Resources:
           Type: Schedule
           Properties:
             Schedule: rate(15 minutes)
+            Input: '{ "context" : { "authorizer-principal-id": 1}, "is-ping": true }'
       VpcConfig:
         SecurityGroupIds:
           - sg-0594f0e78619424b3
