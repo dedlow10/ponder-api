@@ -19,6 +19,7 @@ Resources:
           Type: Schedule
           Properties:
             Schedule: rate(15 minutes)
+            Input: '"{ "context" : { "authorizer-principal-id": 1}, "is-ping": true }"'
       VpcConfig:
         SecurityGroupIds:
           - sg-0594f0e78619424b3
