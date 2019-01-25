@@ -5,7 +5,7 @@ module.exports = {
         if (event["is-ping"]) context.succeed(true);
         var userId = event.context["authorizer-principal-id"];
         var pm = new Promise((resolve, reject) => {
-            usersFuncs.registerDeviceToken(userId, event.params.path.token, function(results) {
+            usersFuncs.registerDeviceToken(userId, event.params.querystring.token, function(results) {
                 context.succeed(results);
             }, 
             function(err) {
