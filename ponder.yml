@@ -14,12 +14,12 @@ Resources:
       MemorySize: 128
       Timeout: 3
       Role: 'arn:aws:iam::478373966066:role/LambdaServiceRole'
-      
+
   GetTopDecisions:
     Type: 'AWS::Serverless::Function'
     Properties:
-      FunctionName: Ponder-GetTopDecisions
-      Handler: functions/gettopdecisions.handler
+      FunctionName: Ponder-GetMyDecisions
+      Handler: functions/getmydecisions.handler
       Runtime: nodejs8.10
       CodeUri: s3://ponder-code/ponder-latest.zip
       Description: ''
@@ -35,7 +35,7 @@ Resources:
         Api1:
           Type: Api
           Properties:
-            Path: /decisions/top
+            Path: /decisions/my
             Method: GET            
       VpcConfig:
         SecurityGroupIds:
