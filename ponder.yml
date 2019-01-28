@@ -31,12 +31,7 @@ Resources:
           Type: Schedule
           Properties:
             Schedule: rate(15 minutes)
-            Input: '{ "context" : { "authorizer-principal-id": 1}, "is-ping": true }'
-        Api1:
-          Type: Api
-          Properties:
-            Path: /decisions/my
-            Method: GET            
+            Input: '{ "context" : { "authorizer-principal-id": 1}, "is-ping": true }'     
       VpcConfig:
         SecurityGroupIds:
           - sg-0594f0e78619424b3
@@ -61,11 +56,6 @@ Resources:
           Properties:
             Schedule: rate(15 minutes)
             Input: '{ "Email": "dedlow10@gmail.com", "Password": "MyAwesomePassword123" }'
-        Api1:
-          Type: Api
-          Properties:
-            Path: /users/login
-            Method: POST
       VpcConfig:
         SecurityGroupIds:
           - sg-0594f0e78619424b3
