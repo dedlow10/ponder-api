@@ -51,3 +51,4 @@ jobs:
       - aws-s3/copy:
           from: ~/repo
           to: 's3://ponder-code/ponder-latest.zip'
+          arguments: '--recursive'
