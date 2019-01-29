@@ -5,7 +5,7 @@
 version: 2.1
 
 orbs:
-  aws-s3: circleci/aws-s3@1.0.0
+  aws-s3: circleci/aws-s3@1.0.3
 
 jobs:
   build:
@@ -39,7 +39,6 @@ jobs:
 
       - run: sudo apt-get install python-dev
       - run: sudo apt install python-pip
-      - run: pip install awscli --upgrade --user
 
       - aws-s3/copy:
           from: ~/repo/ponder.yml
