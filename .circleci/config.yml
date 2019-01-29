@@ -35,6 +35,11 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-        
-      # run tests!
-      - run: yarn test
+
+      - aws-s3/copy:
+          from: ~/repo/ponder.yml
+          to: 's3://ponder-code/Ponder-Cloudformation'
+
+      - aws-s3/copy:
+          from: ~/repo/ponder-api.yml
+          to: 's3://ponder-code/Ponder-Cloudformation'
