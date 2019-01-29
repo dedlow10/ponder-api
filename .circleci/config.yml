@@ -39,7 +39,8 @@ jobs:
 
       - run: sudo apt-get install python-dev
       - run: sudo apt install python-pip
-      
+      - run: pip install awscli --upgrade --user
+      - run: aws configure set default.region us-east-1
       - aws-s3/copy:
           from: ~/repo/ponder.yml
           to: 's3://ponder-code/Ponder-Cloudformation'
