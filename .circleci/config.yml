@@ -39,7 +39,8 @@ jobs:
 
       - run: sudo apt-get update
       - run: sudo apt-get -y install python3-pip
-      - run: sudo zip -r ponder-latest.zip ~/repo
+      - run: sudo apt-get -y install python3-pip
+      - run: sudo (cd ~/repo && zip -r - .) > ponder-latest.zip
 
       - aws-s3/copy:
           from: ~/repo/ponder.yml
