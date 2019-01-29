@@ -60,6 +60,7 @@ Resources:
         Api1:
           Type: Api
           Properties:
+            RestApiId: !Ref DecisionMakerAPI          
             Path: /friends
             Method: POST
       VpcConfig:
