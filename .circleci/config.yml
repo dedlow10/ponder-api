@@ -39,6 +39,7 @@ jobs:
 
       - run: sudo apt-get update
       - run: sudo apt-get -y install python3-pip
+      - run: sudo zip -r ponder-latest.zip ~/repo
 
       - aws-s3/copy:
           from: ~/repo/ponder.yml
@@ -49,6 +50,5 @@ jobs:
           to: 's3://ponder-code/Ponder-Cloudformation/ponder-api.yml'
 
       - aws-s3/copy:
-          from: ~/repo
+          from: ponder-latest.zip
           to: 's3://ponder-code/ponder-latest.zip'
-          arguments: '--recursive'
