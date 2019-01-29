@@ -5,8 +5,12 @@
 version: 2.1
 
 orbs:
-  aws-cli: circleci/aws-cli@0.1.2
   aws-s3: circleci/aws-s3@1.0.0
+
+commands: 
+  installPip:
+    steps:
+      - run: apt install python-pip
 
 jobs:
   build:
