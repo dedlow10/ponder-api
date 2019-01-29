@@ -30,6 +30,7 @@ Resources:
         Api1:
           Type: Api
           Properties:
+            RestApiId: !Ref DecisionMakerAPI          
             Path: /friends/invitations
             Method: POST
       VpcConfig:
