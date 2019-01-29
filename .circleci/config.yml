@@ -40,9 +40,7 @@ jobs:
       - aws-s3/copy:
           from: ~/repo/ponder.yml
           to: 's3://ponder-code/Ponder-Cloudformation'
-          overwrite: true
 
       - aws-s3/copy:
           from: ~/repo/ponder-api.yml
           to: 's3://ponder-code/Ponder-Cloudformation'
-          overwrite: true
