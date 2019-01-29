@@ -42,8 +42,8 @@ jobs:
 
       - aws-s3/copy:
           from: ~/repo/ponder.yml
-          to: 's3://ponder-code/Ponder-Cloudformation'
+          to: 's3://ponder-code/Ponder-Cloudformation/ponder.yml'
 
       - aws-s3/copy:
           from: ~/repo/ponder-api.yml
-          to: 's3://ponder-code/Ponder-Cloudformation'
+          to: 's3://ponder-code/Ponder-Cloudformation/ponder-api.yml'
