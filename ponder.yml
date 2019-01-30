@@ -30,7 +30,7 @@ Resources:
         Api1:
           Type: Api
           Properties:
-            RestApiId: !Ref DecisionMakerAPI          
+            RestApiId: !Ref DecisionMakerAPI
             Path: /friends/invitations
             Method: POST
       VpcConfig:
@@ -60,7 +60,7 @@ Resources:
         Api1:
           Type: Api
           Properties:
-            RestApiId: !Ref DecisionMakerAPI          
+            RestApiId: !Ref DecisionMakerAPI
             Path: /friends
             Method: POST
       VpcConfig:
@@ -81,6 +81,13 @@ Resources:
       MemorySize: 128
       Timeout: 3
       Role: 'arn:aws:iam::478373966066:role/LambdaServiceRole'
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            RestApiId: !Ref DecisionMakerAPI
+            Path: /MyResource
+            Method: ANY
 
   CountMyDecisionVotes:
     Type: 'AWS::Serverless::Function'
