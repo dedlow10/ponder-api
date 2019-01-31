@@ -29,7 +29,7 @@ module.exports = {
     getFriends: function(userId, callback) {
         var connection = da.getConnection();
         var sql = 
-        "SELECT u.UserId, u.Email, u.FirstName, u.LastName, f.InvitedOn, f.AcceptedOn, u.DeviceToken FROM Friends f JOIN Users u ON u.UserId = f.InvitedUserId WHERE f.InvitedByUserId = ? UNION SELECT u.UserId, u.Email, u.FirstName, u.LastName, f.InvitedOn, f.AcceptedOn, u.DeviceToken FROM Friends f JOIN Users u ON u.UserId = f.InvitedByUserId WHERE f.InvitedUserId = ? AND f.AcceptedOn IS NOT NULL"
+        "SELECT u.UserId, u.Email, u.FirstName, u.LastName, f.InvitedOn, f.AcceptedOn, u.DeviceToken, u.ScreenName, u.ProfilePhotoId FROM Friends f JOIN Users u ON u.UserId = f.InvitedUserId WHERE f.InvitedByUserId = ? UNION SELECT u.UserId, u.Email, u.FirstName, u.LastName, f.InvitedOn, f.AcceptedOn, u.DeviceToken, u.ScreenName, u.ProfilePhotoId FROM Friends f JOIN Users u ON u.UserId = f.InvitedByUserId WHERE f.InvitedUserId = ? AND f.AcceptedOn IS NOT NULL"
         connection.query(sql, [userId, userId], function(err, result, fields) {
             if (err) throw err;
             connection.end(function (err) { callback(result);});
@@ -38,7 +38,7 @@ module.exports = {
     getFriendInvitations: function(userId, callback) {
         var connection = da.getConnection();
         var sql = 
-        "SELECT u.UserId, u.Email, u.FirstName, u.LastName, f.InvitedOn, f.AcceptedOn FROM Friends f JOIN Users u ON u.UserId = f.InvitedByUserId WHERE f.InvitedUserId = ? AND f.AcceptedOn IS NULL"
+        "SELECT u.UserId, u.Email, u.FirstName, u.LastName, f.InvitedOn, f.AcceptedOn, u.DeviceToken, u.ScreenName, u.ProfilePhotoId FROM Friends f JOIN Users u ON u.UserId = f.InvitedByUserId WHERE f.InvitedUserId = ? AND f.AcceptedOn IS NULL"
         connection.query(sql, [userId], function(err, result, fields) {
             if (err) throw err;
             connection.end(function (err) { callback(result);});
