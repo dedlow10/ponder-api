@@ -37,12 +37,19 @@ module.exports = {
             }
         });
     },
-    findDecisionsByCreator: function(createdBy, callback, errorCallback) {
+    findDecisionsByCreator: function(createdBy, days, callback, errorCallback) {
         var connection = da.getConnection();
-        var sql = 
-        "SELECT d.*, (select count(*) from DecisionVotes dv where d.DecisionId = dv.DecisionId ) as Votes FROM Decisions d WHERE CreatedBy=" + createdBy + " ORDER BY CreatedOn desc";
-        
-        connection.query(sql, function (err, results) {
+        var dateFilter = new Date();
+        dateFilter.setDate(dateFilter.getDate() - days);
+
+        var sql = `
+            SELECT d.*, (select count(*) from DecisionVotes dv where d.DecisionId = dv.DecisionId ) as Votes 
+            FROM Decisions d WHERE CreatedBy = ?
+            WHERE d.CreatedOn > ? 
+            ORDER BY CreatedOn desc;
+        `;
+
+        connection.query(sql, [createdBy, dateFilter], function (err, results) {
             if (err) {
                 connection.end(function () { errorCallback(err);}); 
             }
