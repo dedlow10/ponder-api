@@ -44,8 +44,9 @@ module.exports = {
 
         var sql = `
             SELECT d.*, (select count(*) from DecisionVotes dv where d.DecisionId = dv.DecisionId ) as Votes 
-            FROM Decisions d WHERE CreatedBy = ?
-            WHERE d.CreatedOn > ? 
+            FROM Decisions d 
+            WHERE CreatedBy = ?
+            AND d.CreatedOn > ? 
             ORDER BY CreatedOn desc;
         `;
 
