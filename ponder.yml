@@ -379,11 +379,14 @@ Resources:
       FunctionName: Ponder-GetMyDecisions
       Handler: functions/getmydecisions.handler
       Runtime: nodejs8.10
-      CodeUri: s3://ponder-code/ponder-latest.zip
+      CodeUri: 
+        Bucket: !Ref BucketName
+        Key: !Ref CodeKey
       Description: ''
       MemorySize: 128
       Timeout: 3
       Role: 'arn:aws:iam::478373966066:role/LambdaServiceRole'
+      AutoPublishAlias: live
       Events:
         Schedule1:
           Type: Schedule
