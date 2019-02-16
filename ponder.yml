@@ -1,6 +1,11 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: 'AWS::Serverless-2016-10-31'
 Description: An AWS Serverless Specification template describing your function.
+Parameters: 
+  BucketName:
+    Type: String
+  CodeKey:
+    Type: String
 
 Resources:
   DecisionMakerAPI:
@@ -9,6 +14,7 @@ Resources:
     Properties:
       DefinitionUri: s3://ponder-code/Ponder-Cloudformation/ponder-api.yml
       StageName: prod
+      
 
   AcceptInvitation:
     Type: 'AWS::Serverless::Function'
@@ -340,11 +346,14 @@ Resources:
       FunctionName: Ponder-GetFriendsDecisions
       Handler: functions/getfriendsdecisions.handler
       Runtime: nodejs8.10
-      CodeUri: s3://ponder-code/ponder-latest.zip
+      CodeUri: 
+        Bucket: !Ref BucketName
+        Key: !Ref CodeKey
       Description: ''
       MemorySize: 128
       Timeout: 3
       Role: 'arn:aws:iam::478373966066:role/LambdaServiceRole'
+      AutoPublishAlias: live
       Events:
         Schedule1:
           Type: Schedule
