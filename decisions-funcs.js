@@ -65,11 +65,19 @@ module.exports = {
             }
         });
     },
-    getFriendsDecisions: function(userId, callback, errorCallback) {
+    getFriendsDecisions: function(userId, days, callback, errorCallback) {
         var connection = da.getConnection();
-        var sql = 
-        "SELECT d.*, u.ScreenName as CreatedByUserScreenName, u.ProfilePhotoId, (SELECT Count(*) FROM DecisionVotes dv where d.DecisionId = dv.DecisionId) as Votes, ((SELECT Count(*) FROM DecisionVotes dv WHERE dv.DecisionId = d.DecisionId AND dv.UserId=?) = 0) as CanVote FROM Decisions d JOIN Users u ON d.CreatedBy = u.UserId WHERE d.CreatedBy IN (SELECT InvitedByUserId FROM Friends WHERE InvitedUserId=? AND AcceptedOn IS NOT NULL UNION Select InvitedUserId FROM Friends WHERE InvitedByUserId=?) ORDER BY CreatedOn desc";
-        connection.query(sql, [userId, userId, userId], function (err, results) {
+        var dateFilter = new Date();
+        dateFilter.setDate(dateFilter.getDate() - days);
+
+        var sql = `
+            SELECT d.*, u.ScreenName as CreatedByUserScreenName, u.ProfilePhotoId, (SELECT Count(*) FROM DecisionVotes dv where d.DecisionId = dv.DecisionId) as Votes, ((SELECT Count(*) FROM DecisionVotes dv WHERE dv.DecisionId = d.DecisionId AND dv.UserId=?) = 0) as CanVote 
+            FROM Decisions d JOIN Users u ON d.CreatedBy = u.UserId 
+            WHERE d.CreatedBy IN (SELECT InvitedByUserId FROM Friends WHERE InvitedUserId=? AND AcceptedOn IS NOT NULL UNION Select InvitedUserId FROM Friends WHERE InvitedByUserId=?) AND
+                  d.CreatedOn > ?
+            ORDER BY CreatedOn desc
+        `;
+        connection.query(sql, [userId, userId, userId, dateFilter], function (err, results) {
             if (err) {
                 connection.end(function () { errorCallback(err);}); 
             }
