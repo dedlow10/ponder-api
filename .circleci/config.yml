@@ -44,8 +44,7 @@ jobs:
       - run: (cd ~/repo; zip -r ponder-latest.zip .;)
       - run: USER_BASE_PATH=$(python -m site --user-base)
       - run: export PATH=$PATH:$USER_BASE_PATH/bin
-      - run: exec "$SHELL"
-      
+
       - aws-s3/copy:
           from: ~/repo/ponder.yml
           to: 's3://ponder-code/Ponder-Cloudformation/ponder.yml'
