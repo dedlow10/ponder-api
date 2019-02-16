@@ -42,7 +42,7 @@ jobs:
       - run: sudo apt-get -y install python3-pip
       - run: pip3 install awscli --upgrade --user
       - run: (cd ~/repo; zip -r ponder-latest.zip .;)
-      - run: pip install --user aws-sam-cli
+      - run: pip3 install --user aws-sam-cli
       - run: USER_BASE_PATH=$(python -m site --user-base)
       - run: export PATH=$PATH:$USER_BASE_PATH/bin
 
