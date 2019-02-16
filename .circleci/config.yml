@@ -52,4 +52,4 @@ jobs:
 
       - aws-s3/copy:
           from: ponder-latest.zip
-          to: 's3://ponder-code/ponder-latest.zip'
+          to: 's3://ponder-code/ponder-$CIRCLE_BUILD_NUM.zip'
