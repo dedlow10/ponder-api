@@ -5,6 +5,13 @@ String.prototype.replaceAll = function(search, replacement) {
     return target.replace(new RegExp(search, 'g'), replacement);
 };
 
+Date.prototype.addDays = function(days) {
+    var date = new Date(this.valueOf());
+    date.setDate(date.getDate() + days);
+    return date;
+}
+
+
 module.exports = {
     create: function(decision, callback, errorCallback) {
 
@@ -39,8 +46,7 @@ module.exports = {
     },
     findDecisionsByCreator: function(createdBy, days, callback, errorCallback) {
         var connection = da.getConnection();
-        var dateFilter = new Date();
-        dateFilter.setDate(dateFilter.getDate() - days);
+        var dateFilter = new Date().addDays(days);
 
         var sql = `
             SELECT d.*, (select count(*) from DecisionVotes dv where d.DecisionId = dv.DecisionId ) as Votes 
@@ -62,7 +68,12 @@ module.exports = {
     getTopDecisions: function(currentUserId, callback, errorCallback) {
         var connection = da.getConnection();
         var sql = 
-        "SELECT d.*, u.ScreenName as CreatedByUserScreenName, u.ProfilePhotoId, (select count(*) from DecisionVotes dv where d.DecisionId = dv.DecisionId ) as Votes, ((SELECT Count(*) FROM DecisionVotes dv WHERE dv.DecisionId = d.DecisionId AND dv.UserId = " + currentUserId + ") = 0 && CreatedBy != " + currentUserId + ") as CanVote FROM Decisions d JOIN Users u ON d.CreatedBy = u.UserId WHERE d.IsPublic = 1 ORDER BY Votes desc, CreatedOn desc";
+        `
+        SELECT d.*, u.ScreenName as CreatedByUserScreenName, u.ProfilePhotoId, (select count(*) from DecisionVotes dv where d.DecisionId = dv.DecisionId ) as Votes, ((SELECT Count(*) FROM DecisionVotes dv WHERE dv.DecisionId = d.DecisionId AND dv.UserId = " + currentUserId + ") = 0 && CreatedBy != " + currentUserId + ") as CanVote 
+        FROM Decisions d JOIN Users u ON d.CreatedBy = u.UserId 
+        WHERE d.IsPublic = 1 
+        ORDER BY Votes desc, CreatedOn desc
+        `;
         
         connection.query(sql, function (err, results) {
             if (err) {
@@ -75,8 +86,7 @@ module.exports = {
     },
     getFriendsDecisions: function(userId, days, callback, errorCallback) {
         var connection = da.getConnection();
-        var dateFilter = new Date();
-        dateFilter.setDate(dateFilter.getDate() - days);
+        var dateFilter = new Date().addDays(days);
 
         var sql = `
             SELECT d.*, u.ScreenName as CreatedByUserScreenName, u.ProfilePhotoId, (SELECT Count(*) FROM DecisionVotes dv where d.DecisionId = dv.DecisionId) as Votes, ((SELECT Count(*) FROM DecisionVotes dv WHERE dv.DecisionId = d.DecisionId AND dv.UserId=?) = 0) as CanVote 
