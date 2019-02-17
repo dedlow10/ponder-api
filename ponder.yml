@@ -316,7 +316,9 @@ Resources:
       FunctionName: Ponder-GetFriends
       Handler: functions/getfriends.handler
       Runtime: nodejs8.10
-      CodeUri: s3://ponder-code/ponder-latest.zip
+      CodeUri: 
+        Bucket: !Ref BucketName
+        Key: !Ref CodeKey
       Description: ''
       MemorySize: 128
       Timeout: 3
