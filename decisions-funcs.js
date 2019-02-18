@@ -65,17 +65,20 @@ module.exports = {
             }
         });
     },
-    getTopDecisions: function(currentUserId, callback, errorCallback) {
+    getTopDecisions: function(currentUserId, days, callback, errorCallback) {
         var connection = da.getConnection();
+        var dateFilter = new Date().addDays(days);
+
         var sql = 
         `
         SELECT d.*, u.ScreenName as CreatedByUserScreenName, u.ProfilePhotoId, (select count(*) from DecisionVotes dv where d.DecisionId = dv.DecisionId ) as Votes, ((SELECT Count(*) FROM DecisionVotes dv WHERE dv.DecisionId = d.DecisionId AND dv.UserId = ?) = 0 && CreatedBy != ?) as CanVote 
         FROM Decisions d JOIN Users u ON d.CreatedBy = u.UserId 
         WHERE d.IsPublic = 1 
+        AND d.CreatedOn > ?
         ORDER BY Votes desc, CreatedOn desc
         `;
         
-        connection.query(sql, [currentUserId, currentUserId], function (err, results) {
+        connection.query(sql, [currentUserId, currentUserId, dateFilter], function (err, results) {
             if (err) {
                 connection.end(function () { errorCallback(err);}); 
             }

@@ -1306,6 +1306,12 @@ paths:
         type: "mock"
   /decisions/top:
     get:
+      parameters:
+      - name: "days"
+        in: "query"
+        required: false
+        schema:
+          type: "string"         
       responses:
         200:
           description: "200 response"
