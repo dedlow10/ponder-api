@@ -69,13 +69,13 @@ module.exports = {
         var connection = da.getConnection();
         var sql = 
         `
-        SELECT d.*, u.ScreenName as CreatedByUserScreenName, u.ProfilePhotoId, (select count(*) from DecisionVotes dv where d.DecisionId = dv.DecisionId ) as Votes, ((SELECT Count(*) FROM DecisionVotes dv WHERE dv.DecisionId = d.DecisionId AND dv.UserId = " + currentUserId + ") = 0 && CreatedBy != " + currentUserId + ") as CanVote 
+        SELECT d.*, u.ScreenName as CreatedByUserScreenName, u.ProfilePhotoId, (select count(*) from DecisionVotes dv where d.DecisionId = dv.DecisionId ) as Votes, ((SELECT Count(*) FROM DecisionVotes dv WHERE dv.DecisionId = d.DecisionId AND dv.UserId = ?) = 0 && CreatedBy != ?) as CanVote 
         FROM Decisions d JOIN Users u ON d.CreatedBy = u.UserId 
         WHERE d.IsPublic = 1 
         ORDER BY Votes desc, CreatedOn desc
         `;
         
-        connection.query(sql, function (err, results) {
+        connection.query(sql, [currentUserId, currentUserId], function (err, results) {
             if (err) {
                 connection.end(function () { errorCallback(err);}); 
             }
