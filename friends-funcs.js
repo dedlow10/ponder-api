@@ -39,6 +39,7 @@ module.exports = {
         SELECT u.UserId, u.Email, u.FirstName, u.LastName, f.InvitedOn, f.AcceptedOn, u.DeviceToken, u.ScreenName, u.ProfilePhotoId 
         FROM Friends f JOIN Users u ON u.UserId = f.InvitedByUserId 
         WHERE f.InvitedUserId = ? AND f.AcceptedOn IS NOT NULL
+        ORDER BY u.Email
         `;
         
         connection.query(sql, [userId, userId], function(err, result, fields) {
