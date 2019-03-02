@@ -22,7 +22,7 @@ module.exports = {
             FROM Comments c
             JOIN Users u 
             ON c.CreatedBy = u.UserId 
-            WHERE c.DecisionId = ? AND c.ParentCommentId = NULL
+            WHERE c.DecisionId = ? AND c.ParentCommentId IS NULL
             ORDER BY c.CreatedOn desc
             LIMIT ?,?
         `;
