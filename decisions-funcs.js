@@ -44,7 +44,7 @@ module.exports = {
             }
         });
     },
-    findDecisionsByCreator: function(createdBy, days, callback, errorCallback) {
+    findDecisionsByCreator: function(createdBy, days, offset, rows, callback, errorCallback) {
         var connection = da.getConnection();
         var dateFilter = new Date().addDays(days);
 
@@ -53,10 +53,11 @@ module.exports = {
             FROM Decisions d 
             WHERE CreatedBy = ?
             AND d.CreatedOn > ? 
-            ORDER BY CreatedOn desc;
+            ORDER BY CreatedOn desc
+            LIMIT ?,?
         `;
 
-        connection.query(sql, [createdBy, dateFilter], function (err, results) {
+        connection.query(sql, [createdBy, dateFilter, offset, rows], function (err, results) {
             if (err) {
                 connection.end(function () { errorCallback(err);}); 
             }
@@ -65,7 +66,7 @@ module.exports = {
             }
         });
     },
-    getTopDecisions: function(currentUserId, days, offset, perPage, callback, errorCallback) {
+    getTopDecisions: function(currentUserId, days, offset, rows, callback, errorCallback) {
         var connection = da.getConnection();
         var dateFilter = new Date().addDays(days);
         
@@ -79,7 +80,7 @@ module.exports = {
         LIMIT ?,?
         `;
         
-        connection.query(sql, [currentUserId, currentUserId, dateFilter, offset, perPage], function (err, results) {
+        connection.query(sql, [currentUserId, currentUserId, dateFilter, offset, rows], function (err, results) {
             if (err) {
                 connection.end(function () { errorCallback(err);}); 
             }
@@ -88,7 +89,7 @@ module.exports = {
             }
         });
     },
-    getFriendsDecisions: function(userId, days, callback, errorCallback) {
+    getFriendsDecisions: function(userId, days, offset, rows, callback, errorCallback) {
         var connection = da.getConnection();
         var dateFilter = new Date().addDays(days);
 
@@ -98,8 +99,9 @@ module.exports = {
             WHERE d.CreatedBy IN (SELECT InvitedByUserId FROM Friends WHERE InvitedUserId=? AND AcceptedOn IS NOT NULL UNION Select InvitedUserId FROM Friends WHERE InvitedByUserId=?) AND
                   d.CreatedOn > ?
             ORDER BY CreatedOn desc
+            LIMIT ?,?
         `;
-        connection.query(sql, [userId, userId, userId, dateFilter], function (err, results) {
+        connection.query(sql, [userId, userId, userId, dateFilter, offset, rows], function (err, results) {
             if (err) {
                 connection.end(function () { errorCallback(err);}); 
             }
