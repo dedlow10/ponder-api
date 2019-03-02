@@ -309,7 +309,7 @@ Resources:
     Type: 'AWS::Serverless::Function'
     Properties:
       FunctionName: Ponder-GetDecisionComments
-      Handler: functions/getdecisionbyid.handler
+      Handler: functions/getdecisioncomments.handler
       Runtime: nodejs8.10
       CodeUri: 
         Bucket: !Ref BucketName
