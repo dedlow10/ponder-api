@@ -13,5 +13,24 @@ module.exports = {
             var newId = results.insertId;
             connection.end(function (err) { callback(newId);});
         });
+    },
+    getMostRecentComments: function(decisionId, offset, rows, callback) {
+        var connection = da.getConnection();
+
+        var sql = `
+            SELECT c.*, u.ScreenName as CreatedByUserScreenName, u.ProfilePhotoId 
+            FROM Comments c
+            JOIN Users u 
+            ON c.CreatedBy = u.UserId 
+            WHERE c.DecisionId = ? AND c.ParentCommentId = NULL
+            ORDER BY c.CreatedOn desc
+            LIMIT ?,?
+        `;
+
+        connection.query(sql, [decisionId, offset, rows], function (err, results) {
+            if (err) throw err;
+            var newId = results.insertId;
+            connection.end(function (err) { callback(newId);});
+        });
     }
 };
