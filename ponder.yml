@@ -155,6 +155,38 @@ Resources:
           - subnet-c89e10e6
           - subnet-e54b0eea
 
+  CreateComment:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      FunctionName: Ponder-CreateComment
+      Handler: functions/createcomment.handler
+      Runtime: nodejs8.10
+      CodeUri: 
+        Bucket: !Ref BucketName
+        Key: !Ref CodeKey
+      Description: ''
+      MemorySize: 128
+      Timeout: 3
+      Role: 'arn:aws:iam::478373966066:role/LambdaServiceRole'
+      Events:
+        Schedule1:
+          Type: Schedule
+          Properties:
+            Schedule: rate(15 minutes)
+            Input: '{ "context" : { "authorizer-principal-id": 1}, "is-ping": true }'
+        Api1:
+          Type: Api
+          Properties:
+            RestApiId: !Ref DecisionMakerAPI
+            Path: /comments
+            Method: POST                        
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-0594f0e78619424b3
+        SubnetIds:
+          - subnet-c89e10e6
+          - subnet-e54b0eea
+
   CreateDecision:
     Type: 'AWS::Serverless::Function'
     Properties:
