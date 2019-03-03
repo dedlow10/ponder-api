@@ -29,8 +29,7 @@ module.exports = {
 
         connection.query(sql, [decisionId, offset, rows], function (err, results) {
             if (err) throw err;
-            var newId = results.insertId;
-            connection.end(function (err) { callback(newId);});
+            connection.end(function (err) { callback(results);});
         });
     }
 };

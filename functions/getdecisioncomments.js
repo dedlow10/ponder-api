@@ -7,7 +7,7 @@ module.exports = {
         var offset = Number(event.params.querystring.offset || 0);
         var decisionId = event.params.querystring.decisionId;
         var pm = new Promise((resolve, reject) => {
-            commentsFuncs.getMostRecentComments(userId, decisionId, offset, rows,
+            commentsFuncs.getMostRecentComments(decisionId, offset, rows,
             function(results) {
                 context.succeed(results);
             }, 
