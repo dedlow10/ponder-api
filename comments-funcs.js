@@ -18,8 +18,8 @@ module.exports = {
         var connection = da.getConnection();
 
         var sql = `
-            DELETE FROM Comments c
-            WHERE c.CommentId = ? AND c.CreatedBy = ?
+            DELETE FROM Comments
+            WHERE CommentId = ? AND CreatedBy = ?
         `;
 
         connection.query(sql, [commentId, userId], function (err, results) {
