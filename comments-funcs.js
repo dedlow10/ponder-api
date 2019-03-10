@@ -14,6 +14,19 @@ module.exports = {
             connection.end(function (err) { callback(newId);});
         });
     },
+    delete: function(commentId, userId, callback) {
+        var connection = da.getConnection();
+
+        var sql = `
+            DELETE FROM Comments c
+            WHERE c.CommentId = ? AND c.CreatedBy = ?
+        `;
+
+        connection.query(sql, [commentId, userId], function (err, results) {
+            if (err) throw err;
+            connection.end(function (err) { callback(result);});
+        });
+    },
     getMostRecentComments: function(decisionId, offset, rows, callback) {
         var connection = da.getConnection();
 

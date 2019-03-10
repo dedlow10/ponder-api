@@ -219,6 +219,33 @@ Resources:
           - subnet-c89e10e6
           - subnet-e54b0eea
 
+  DeleteComment:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      FunctionName: Ponder-DeleteComment
+      Handler: functions/deletecomment.handler
+      Runtime: nodejs8.10
+      CodeUri: 
+        Bucket: !Ref BucketName
+        Key: !Ref CodeKey
+      Description: ''
+      MemorySize: 128
+      Timeout: 3
+      Role: 'arn:aws:iam::478373966066:role/LambdaServiceRole'
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            RestApiId: !Ref DecisionMakerAPI  
+            Path: /comments
+            Method: DELETE      
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-0594f0e78619424b3
+        SubnetIds:
+          - subnet-c89e10e6
+          - subnet-e54b0eea
+
   DeleteDecision:
     Type: 'AWS::Serverless::Function'
     Properties:
