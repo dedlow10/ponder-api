@@ -22,7 +22,7 @@ module.exports = {
             WHERE CommentId = ? AND CreatedBy = ?
         `;
 
-        connection.query(sql, [commentId, userId], function (err, results) {
+        connection.query(sql, [commentId, userId], function (err, result) {
             if (err) throw err;
             connection.end(function (err) { callback(result);});
         });
