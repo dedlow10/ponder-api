@@ -17,8 +17,8 @@ module.exports = {
 
         var connection = da.getConnection();
         var sql = 
-        "INSERT INTO Decisions (Title, Description, CreatedBy, CreatedOn, IsPublic, DaysToPost, NumberOfOptions, OptionsJson, ImageId)" +
-        "VALUES ('" + decision.Title.replaceAll("'", "''") + "', '" + decision.Description.replaceAll("'", "''") + "', " + decision.CreatedBy + ", '" + decision.CreatedOn + "', " + decision.IsPublic + ", " + decision.DaysToPost + ", " + decision.NumberOfOptions + ", '" + decision.OptionsJson.replaceAll("'", "''") + "', " + (decision.ImageId == null ? null : ("'" + decision.ImageId + "'")) + ")";
+        "INSERT INTO Decisions (Title, Description, CreatedBy, CreatedOn, ShareStatus, DaysToPost, NumberOfOptions, OptionsJson, ImageId)" +
+        "VALUES ('" + decision.Title.replaceAll("'", "''") + "', '" + decision.Description.replaceAll("'", "''") + "', " + decision.CreatedBy + ", '" + decision.CreatedOn + "', " + decision.ShareStatus + ", " + decision.DaysToPost + ", " + decision.NumberOfOptions + ", '" + decision.OptionsJson.replaceAll("'", "''") + "', " + (decision.ImageId == null ? null : ("'" + decision.ImageId + "'")) + ")";
         
         connection.query(sql, function (err, results) {
             if (err) {
@@ -49,7 +49,7 @@ module.exports = {
         var dateFilter = new Date().addDays(days);
 
         var sql = `
-            SELECT d.*, (select count(*) from DecisionVotes dv where d.DecisionId = dv.DecisionId ) as Votes 
+            SELECT d.*, (select count(*) from DecisionVotes dv where d.DecisionId = dv.DecisionId) as Votes 
             FROM Decisions d 
             WHERE CreatedBy = ?
             AND d.CreatedOn > ? 
@@ -74,7 +74,7 @@ module.exports = {
         `
         SELECT d.*, u.ScreenName as CreatedByUserScreenName, u.ProfilePhotoId, (select count(*) from DecisionVotes dv where d.DecisionId = dv.DecisionId ) as Votes, ((SELECT Count(*) FROM DecisionVotes dv WHERE dv.DecisionId = d.DecisionId AND dv.UserId = ?) = 0 && CreatedBy != ?) as CanVote 
         FROM Decisions d JOIN Users u ON d.CreatedBy = u.UserId 
-        WHERE d.IsPublic = 1 
+        WHERE d.ShareStatus = 1 
         AND d.CreatedOn > ?
         ORDER BY Votes desc, CreatedOn desc
         LIMIT ?,?
