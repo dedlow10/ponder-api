@@ -50,7 +50,7 @@ module.exports = {
         ) u
         `;
         
-        if (onlyFriends) sql+= "WHERE u.IsFriend=1 ";
+        if (onlyFriends == true) sql+= "WHERE u.IsFriend=1 ";
         sql+= "ORDER BY Email LIMIT 10";
 
         connection.query(sql, [userId, userId, freeText, freeText, freeText, userId], function(err, result, fields) {
