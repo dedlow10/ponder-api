@@ -36,12 +36,24 @@ module.exports = {
             connection.end(function (err) { callback(result[0]);});
         });
     },
-    findUsers: function(freeText, userId, callback) {
+    findUsers: function(freeText, userId, onlyFriends, callback) {
         freeText+= "%";
         var connection = da.getConnection();
         var sql = 
-        "SELECT u.*, f1.InvitedOn IS NOT NULL || f2.InvitedOn IS NOT NULL as IsFriend FROM Users u LEFT JOIN Friends f1 ON u.UserId = f1.InvitedUserId AND f1.InvitedByUserId = " + userId + " LEFT JOIN Friends f2 ON u.UserId = f2.InvitedByUserId AND f2.InvitedUserId = " + userId + " Where (Email like ? OR FirstName like ? OR LastName like ?) AND UserId != " + userId + " ORDER BY Email LIMIT 10"
-        connection.query(sql, [freeText, freeText, freeText], function(err, result, fields) {
+        `
+        SELECT * FROM (
+            SELECT u.*, f1.InvitedOn IS NOT NULL || f2.InvitedOn IS NOT NULL as IsFriend 
+            FROM Users u 
+            LEFT JOIN Friends f1 ON u.UserId = f1.InvitedUserId AND f1.InvitedByUserId =?
+            LEFT JOIN Friends f2 ON u.UserId = f2.InvitedByUserId AND f2.InvitedUserId =? 
+            Where (Email like ? OR FirstName like ? OR LastName like ?) AND UserId !=?
+        ) u
+        `;
+        
+        if (onlyFriends) sql+= "WHERE u.IsFriend=1";
+        sql+= "ORDER BY Email LIMIT 10";
+
+        connection.query(sql, [userId, userId, freeText, freeText, freeText, userId], function(err, result, fields) {
             if (err) throw err;
             connection.end(function (err) { callback(result);});
         });
