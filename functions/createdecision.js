@@ -11,7 +11,7 @@ module.exports = {
             Description: body.Description || "",
             CreatedBy: userId,
             CreatedOn: new Date().toISOString(),
-            IsPublic: body.IsPublic,
+            ShareStatus: body.ShareStatus,
             DaysToPost: body.DaysToPost,
             NumberOfOptions: body.NumberOfOptions,
             OptionsJson: body.OptionsJson,
