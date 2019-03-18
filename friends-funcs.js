@@ -26,23 +26,39 @@ module.exports = {
             connection.end(function (err) { callback(newId);});
         });
     },
-    getFriends: function(userId, callback) {
+    getFriends: function(userId, text, callback) {
         var connection = da.getConnection();
-        var sql = 
+        var params = [];
+
+        var sql1 = 
         `
         SELECT u.UserId, u.Email, u.FirstName, u.LastName, f.InvitedOn, f.AcceptedOn, u.DeviceToken, u.ScreenName, u.ProfilePhotoId 
         FROM Friends f 
         JOIN Users u 
         ON u.UserId = f.InvitedUserId 
-        WHERE f.InvitedByUserId = ? 
+        WHERE f.InvitedByUserId = ?
+        `;
+
+        var sql2 = 
+        `
         UNION 
         SELECT u.UserId, u.Email, u.FirstName, u.LastName, f.InvitedOn, f.AcceptedOn, u.DeviceToken, u.ScreenName, u.ProfilePhotoId 
         FROM Friends f JOIN Users u ON u.UserId = f.InvitedByUserId 
         WHERE f.InvitedUserId = ? AND f.AcceptedOn IS NOT NULL
-        ORDER BY Email
         `;
         
-        connection.query(sql, [userId, userId], function(err, result, fields) {
+        if (text != null) {
+            sql1 += " AND u.Email=?";
+            sql2 += " AND u.Email=?";
+            params = [userId, text, userId, text];
+        }
+        else {
+            params = [userId, userId];
+        }
+
+        var sql = sql1 + sql2 +  " ORDER BY Email";
+
+        connection.query(sql, params, function(err, result, fields) {
             if (err) throw err;
             connection.end(function (err) { callback(result);});
         });
