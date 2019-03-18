@@ -50,7 +50,7 @@ module.exports = {
         if (text != null) {
             sql1 += " AND u.Email=?";
             sql2 += " AND u.Email=?";
-            params = [userId, text, userId, text];
+            params = [userId, text + "%", userId, text + "%"];
         }
         else {
             params = [userId, userId];
