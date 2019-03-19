@@ -48,8 +48,8 @@ module.exports = {
         `;
         
         if (text != null) {
-            sql1 += " AND u.Email=?";
-            sql2 += " AND u.Email=?";
+            sql1 += " AND u.Email like ?";
+            sql2 += " AND u.Email like ?";
             params = [userId, text + "%", userId, text + "%"];
         }
         else {
