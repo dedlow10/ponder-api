@@ -31,12 +31,12 @@ module.exports = {
         });
     },
     setSharedWith: function(decisionId, users, callback, errorCallback) {
-        var sql = "INSERT INTO DecisionShares Values ";
+        var connection = da.getConnection();
+        var sql = "INSERT INTO DecisionShares (DecisionId, UserId) Values ";
         for (var x = 0; x < users.length; x++) {
             sql += "(" + decisionId + "," + users[x].UserId + "),";
         }
-        sql = sql.trimEnd(",");
-
+        sql = sql.replace(/,\s*$/, "");
         connection.query(sql, function (err, results) {
             if (err) {
                 connection.end(function () { errorCallback(err);}); 

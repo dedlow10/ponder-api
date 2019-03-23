@@ -15,7 +15,8 @@ module.exports = {
             DaysToPost: body.DaysToPost,
             NumberOfOptions: body.NumberOfOptions,
             OptionsJson: body.OptionsJson,
-            ImageId: body.ImageId
+            ImageId: body.ImageId,
+            SharedWith: body.SharedWith
         }
         decisionsFuncs.create(decision,
             function(result) {
