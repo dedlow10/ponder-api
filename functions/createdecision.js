@@ -19,7 +19,17 @@ module.exports = {
         }
         decisionsFuncs.create(decision,
             function(result) {
-                context.succeed(result);
+                if (decision.ShareStatus == "2" && decision.SharedWith != null && decision.SharedWith.length > 0) {
+                    decisionsFuncs.setSharedWith(result, decision.SharedWith, function() {
+                        context.succeed(result);
+                    }, function(error) {
+                        callback(error);
+                    });
+                }
+                else {
+                    context.succeed(result);
+                }
+                
             },
             function(error) {
                 callback(error);

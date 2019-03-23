@@ -30,6 +30,23 @@ module.exports = {
             }
         });
     },
+    setSharedWith: function(decisionId, users, callback, errorCallback) {
+        var sql = "INSERT INTO DecisionShares Values ";
+        for (var x = 0; x < users.length; x++) {
+            sql += "(" + decisionId + "," + users[x].UserId + "),";
+        }
+        sql = sql.trimEnd(",");
+
+        connection.query(sql, function (err, results) {
+            if (err) {
+                connection.end(function () { errorCallback(err);}); 
+            }
+            else {
+               var newId = results.insertId;
+               connection.end(function (err) { callback(newId);}); 
+            }
+        });
+    },
     countDecisionsByUserId: function(id, callback, errorCallback) {
         var connection = da.getConnection();
         var sql = 
