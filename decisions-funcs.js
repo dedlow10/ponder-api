@@ -115,10 +115,18 @@ module.exports = {
             FROM Decisions d JOIN Users u ON d.CreatedBy = u.UserId 
             WHERE d.CreatedBy IN (SELECT InvitedByUserId FROM Friends WHERE InvitedUserId=? AND AcceptedOn IS NOT NULL UNION Select InvitedUserId FROM Friends WHERE InvitedByUserId=?) AND
                   d.CreatedOn > ?
+            UNION
+            SELECT d2.*, u2.ScreenName as CreatedByUserScreenName, u2.ProfilePhotoId, (SELECT Count(*) FROM DecisionVotes dv where d2.DecisionId = dv.DecisionId) as Votes, ((SELECT Count(*) FROM DecisionVotes dv WHERE dv.DecisionId = d2.DecisionId AND dv.UserId=?) = 0) as CanVote 
+            FROM Decisions d2 
+            JOIN DecisionShares ds 
+            ON d2.DecisionId = ds.DecisionId
+            JOIN Users u2
+            ON u2.UserId = d2.CreatedBy
+            WHERE ds.UserId = ?
             ORDER BY CreatedOn desc
             LIMIT ?,?
         `;
-        connection.query(sql, [userId, userId, userId, dateFilter, offset, rows], function (err, results) {
+        connection.query(sql, [userId, userId, userId, dateFilter, userId, userId, offset, rows], function (err, results) {
             if (err) {
                 connection.end(function () { errorCallback(err);}); 
             }
