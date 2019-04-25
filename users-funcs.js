@@ -13,6 +13,20 @@ module.exports = {
             connection.end(function (err) { callback(newId);});
         });
     },
+    changePassword: function(email, passwordHash, callback) {
+        var connection = da.getConnection();
+        var sql = 
+        "UPDATE Users SET PasswordHash=? WHERE Email=?" +
+
+        connection.query(sql, [passwordHash, email], function (err, results) {
+            if (err) {
+                connection.end(function () { errorCallback(err);}); 
+            }
+            else {
+                connection.end(function (err) { callback(true);}); 
+            }
+        });
+    },
     registerDeviceToken: function(userId, token, callback, errorCallback) {
         var connection = da.getConnection();
         var sql = 

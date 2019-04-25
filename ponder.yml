@@ -700,6 +700,26 @@ Resources:
           - subnet-61ae223d
           - subnet-c89e10e6
 
+  ResetPassword:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      FunctionName: Ponder-ResetPassword
+      Handler: functions/resetpassword.handler
+      Runtime: nodejs8.10
+      CodeUri: 
+        Bucket: !Ref BucketName
+        Key: !Ref CodeKey
+      Description: ''
+      MemorySize: 192
+      Timeout: 3
+      Role: 'arn:aws:iam::478373966066:role/LambdaServiceRole'
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-0594f0e78619424b3
+        SubnetIds:
+          - subnet-61ae223d
+          - subnet-c89e10e6
+
   UpdateUser:
     Type: 'AWS::Serverless::Function'
     Properties:
