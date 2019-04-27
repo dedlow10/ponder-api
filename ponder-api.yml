@@ -1491,7 +1491,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/Empty"
       x-amazon-apigateway-integration:
-        uri: "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:478373966066:function:Ponder-LoginUser/invocations"
+        uri: "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:478373966066:function:Ponder-ResetPassword/invocations"
         responses:
           default:
             statusCode: "200"
