@@ -11,7 +11,7 @@ module.exports = {
         <!DOCTYPE html>
         <html>
         <body>
-            <p>Here is your new password: ${password}</p>
+            <p>Your new password is: ${password}</p>
             <p></p>
             <p>You will be asked to change this password on the next login</p>
             <p></p>
