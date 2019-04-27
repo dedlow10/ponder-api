@@ -720,6 +720,20 @@ Resources:
           - subnet-61ae223d
           - subnet-c89e10e6
 
+  SendEmail:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      FunctionName: Ponder-SendEmail
+      Handler: functions/sendemail.handler
+      Runtime: nodejs8.10
+      CodeUri: 
+        Bucket: !Ref BucketName
+        Key: !Ref CodeKey
+      Description: ''
+      MemorySize: 192
+      Timeout: 3
+      Role: 'arn:aws:iam::478373966066:role/LambdaServiceRole'
+
   UpdateUser:
     Type: 'AWS::Serverless::Function'
     Properties:
