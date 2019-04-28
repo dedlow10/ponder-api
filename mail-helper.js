@@ -6,14 +6,14 @@ const source = "edlowsoftware@gmail.com";
 
 module.exports = {
     sendPaswordResetMail(email, password, callback) {
-        const subject = "Your temporary password for Ponder";
+        const subject = "Your new password for Ponder";
         const passwordResetTemplate = `
         <!DOCTYPE html>
         <html>
         <body>
             <p>Your new password is: ${password}</p>
             <p></p>
-            <p>You will be asked to change this password on the next login</p>
+            <p>You can change this password after your next login</p>
             <p></p>
             <p>Sincerely,</p>
             <p>The Ponder software team</p>

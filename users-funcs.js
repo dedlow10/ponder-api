@@ -13,10 +13,10 @@ module.exports = {
             connection.end(function (err) { callback(newId);});
         });
     },
-    changePassword: function(email, passwordHash, callback) {
+    changePassword: function(email, passwordHash, callback, errorCallback) {
         var connection = da.getConnection();
         var sql = 
-        "UPDATE Users SET PasswordHash=? WHERE Email=?" +
+        "UPDATE Users SET PasswordHash=? WHERE Email=?";
 
         connection.query(sql, [passwordHash, email], function (err, results) {
             if (err) {
