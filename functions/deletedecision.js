@@ -1,6 +1,7 @@
 var decisionsFuncs = require("../decisions-funcs");
-var s3Helper = require("../s3-helper");
+//var s3Helper = require("../s3-helper");
 
+/*
 function deleteImagePromise(imageId) {
     return new Promise((resolve, reject) => {
         s3Helper.deleteImage(imageId, function() {
@@ -27,20 +28,18 @@ function deleteImages(decision) {
 
     return Promise.all(promises);
 }
-
+*/
 module.exports = {
     handler: async function(event, context, callback) {
         var userId = event.context["authorizer-principal-id"];
         var pm = new Promise((resolve, reject) => {
             decisionsFuncs.findDecisionById(event.params.path.id, function(rsp) {
                 if (rsp.CreatedBy == userId) {
-                    deleteImages(rsp).then(() => {
-                        decisionsFuncs.deleteDecisionById(event.params.path.id, function(result) {
-                            context.succeed(true);
-                        },
-                        function(error) {
-                            callback(error);
-                        });
+                    decisionsFuncs.deleteDecisionById(event.params.path.id, function(result) {
+                        context.succeed(true);
+                    },
+                    function(error) {
+                        callback(error);
                     });
                 }
             },function(error) {
