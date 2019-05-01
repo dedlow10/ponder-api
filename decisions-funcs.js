@@ -162,5 +162,5 @@ module.exports = {
                 connection.end(function (err) { callback(results);}); 
             }
         });
-    }
+    },
 };
