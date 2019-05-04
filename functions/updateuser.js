@@ -14,7 +14,7 @@ module.exports = {
             
             usersFuncs.getById(user.Id, function(rsp) {
                 if (rsp.ProfilePhotoId != null) {
-                    s3Helper.deleteProfilePicture(rsp.profilePhotoId, 
+                    s3Helper.deleteProfilePicture(rsp.ProfilePhotoId, 
                     function() {
                         usersFuncs.updateUser(user,
                             function(result) {
