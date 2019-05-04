@@ -60,14 +60,14 @@ module.exports = {
             FROM Users u 
             LEFT JOIN Friends f1 ON u.UserId = f1.InvitedUserId AND f1.InvitedByUserId =?
             LEFT JOIN Friends f2 ON u.UserId = f2.InvitedByUserId AND f2.InvitedUserId =? 
-            Where (Email like ? OR FirstName like ? OR LastName like ?) AND UserId !=?
+            Where (Email like ? OR FirstName like ? OR LastName like ? OR ScreenName like ?) AND UserId !=?
         ) u
         `;
         
         if (onlyFriends == true) sql+= "WHERE u.IsFriend=1 ";
         sql+= "ORDER BY Email LIMIT 10";
 
-        connection.query(sql, [userId, userId, freeText, freeText, freeText, userId], function(err, result, fields) {
+        connection.query(sql, [userId, userId, freeText, freeText, freeText, freeText, userId], function(err, result, fields) {
             if (err) throw err;
             connection.end(function (err) { callback(result);});
         });
