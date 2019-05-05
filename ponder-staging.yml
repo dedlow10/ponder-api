@@ -16,7 +16,7 @@ Resources:
       StageName: stage
       
 
-  AcceptInvitation:
+  AcceptInvitationStaging:
     Type: 'AWS::Serverless::Function'
     Properties:
       FunctionName: Ponder-Staging-AcceptInvitation
@@ -50,7 +50,7 @@ Resources:
           - subnet-c89e10e6
           - subnet-e54b0eea
 
-  AddFriend:
+  AddFriendStaging:
     Type: 'AWS::Serverless::Function'
     Properties:
       FunctionName: Ponder-Staging-AddFriend
@@ -84,7 +84,7 @@ Resources:
           - subnet-c89e10e6
           - subnet-e54b0eea
 
-  AuthorizeUser:
+  AuthorizeUserStaging:
     Type: 'AWS::Serverless::Function'
     Properties:
       FunctionName: Ponder-Staging-AuthorizeUser
@@ -107,7 +107,7 @@ Resources:
             Path: /MyResource
             Method: ANY
 
-  CountMyDecisionVotes:
+  CountMyDecisionVotesStaging:
     Type: 'AWS::Serverless::Function'
     Properties:
       FunctionName: Ponder-CountMyDecisionVotes
@@ -136,7 +136,7 @@ Resources:
           - subnet-c89e10e6
           - subnet-e54b0eea
 
-  CountMyDecisions:
+  CountMyDecisionsStaging:
     Type: 'AWS::Serverless::Function'
     Properties:
       FunctionName: Ponder-Staging-CountMyDecisions
@@ -165,7 +165,7 @@ Resources:
           - subnet-c89e10e6
           - subnet-e54b0eea
 
-  CreateComment:
+  CreateCommentStaging:
     Type: 'AWS::Serverless::Function'
     Properties:
       FunctionName: Ponder-Staging-CreateComment
@@ -199,7 +199,7 @@ Resources:
           - subnet-c89e10e6
           - subnet-e54b0eea
 
-  CreateDecision:
+  CreateDecisionStaging:
     Type: 'AWS::Serverless::Function'
     Properties:
       FunctionName: Ponder-Staging-CreateDecision
@@ -233,7 +233,7 @@ Resources:
           - subnet-c89e10e6
           - subnet-e54b0eea
 
-  DeleteComment:
+  DeleteCommentStaging:
     Type: 'AWS::Serverless::Function'
     Properties:
       FunctionName: Ponder-Staging-DeleteComment
@@ -262,7 +262,7 @@ Resources:
           - subnet-c89e10e6
           - subnet-e54b0eea
 
-  DeleteDecision:
+  DeleteDecisionStaging:
     Type: 'AWS::Serverless::Function'
     Properties:
       FunctionName: Ponder-Staging-DeleteDecision
@@ -291,7 +291,7 @@ Resources:
           - subnet-c89e10e6
           - subnet-e54b0eea
 
-  DeleteFriend:
+  DeleteFriendStaging:
     Type: 'AWS::Serverless::Function'
     Properties:
       FunctionName: Ponder-Staging-DeleteFriend
@@ -320,7 +320,7 @@ Resources:
           - subnet-c89e10e6
           - subnet-e54b0eea
 
-  FindUsers:
+  FindUsersStaging:
     Type: 'AWS::Serverless::Function'
     Properties:
       FunctionName: Ponder-Staging-FindUsers
@@ -354,7 +354,7 @@ Resources:
           - subnet-c89e10e6
           - subnet-e54b0eea
 
-  GetDecisionComments:
+  GetDecisionCommentsStaging:
     Type: 'AWS::Serverless::Function'
     Properties:
       FunctionName: Ponder-Staging-GetDecisionComments
@@ -383,7 +383,7 @@ Resources:
           - subnet-c89e10e6
           - subnet-e54b0eea
 
-  GetDecisionById:
+  GetDecisionByIdStaging:
     Type: 'AWS::Serverless::Function'
     Properties:
       FunctionName: Ponder-Staging-GetDecisionById
@@ -412,7 +412,7 @@ Resources:
           - subnet-c89e10e6
           - subnet-e54b0eea
 
-  GetFriendInvitations:
+  GetFriendInvitationsStaging:
     Type: 'AWS::Serverless::Function'
     Properties:
       FunctionName: Ponder-Staging-GetFriendInvitations
@@ -446,7 +446,7 @@ Resources:
           - subnet-c89e10e6
           - subnet-e54b0eea
 
-  GetFriends:
+  GetFriendsStaging:
     Type: 'AWS::Serverless::Function'
     Properties:
       FunctionName: Ponder-Staging-GetFriends
@@ -480,7 +480,7 @@ Resources:
           - subnet-c89e10e6
           - subnet-e54b0eea
 
-  GetFriendsDecisions:
+  GetFriendsDecisionsStaging:
     Type: 'AWS::Serverless::Function'
     Properties:
       FunctionName: Ponder-Staging-GetFriendsDecisions
@@ -514,7 +514,7 @@ Resources:
           - subnet-c89e10e6
           - subnet-e54b0eea
 
-  GetMyDecisions:
+  GetMyDecisionsStaging:
     Type: 'AWS::Serverless::Function'
     Properties:
       FunctionName: Ponder-Staging-GetMyDecisions
@@ -548,7 +548,7 @@ Resources:
           - subnet-c89e10e6
           - subnet-e54b0eea
 
-  GetTopDecisions:
+  GetTopDecisionsStaging:
     Type: 'AWS::Serverless::Function'
     Properties:
       FunctionName: Ponder-Staging-GetTopDecisions
@@ -582,7 +582,7 @@ Resources:
           - subnet-c89e10e6
           - subnet-e54b0eea
 
-  GetUserById:
+  GetUserByIdStaging:
     Type: 'AWS::Serverless::Function'
     Properties:
       FunctionName: Ponder-Staging-GetUserById
@@ -615,7 +615,7 @@ Resources:
           - subnet-c89e10e6
           - subnet-e54b0eea
 
-  GetVotesForDecision:
+  GetVotesForDecisionStaging:
     Type: 'AWS::Serverless::Function'
     Properties:
       FunctionName: Ponder-Staging-GetVotesForDecision
@@ -649,7 +649,7 @@ Resources:
           - subnet-61ae223d
           - subnet-c89e10e6
 
-  LoginUser:
+  LoginUserStaging:
     Type: 'AWS::Serverless::Function'
     Properties:
       FunctionName: Ponder-Staging-LoginUser
@@ -683,7 +683,7 @@ Resources:
           - subnet-61ae223d
           - subnet-c89e10e6
 
-  RegisterDeviceToken:
+  RegisterDeviceTokenStaging:
     Type: 'AWS::Serverless::Function'
     Properties:
       FunctionName: Ponder-Staging-RegisterDeviceToken
@@ -712,7 +712,7 @@ Resources:
           - subnet-c89e10e6
           - subnet-e54b0eea
 
-  RegisterUser:
+  RegisterUserStaging:
     Type: 'AWS::Serverless::Function'
     Properties:
       FunctionName: Ponder-Staging-RegisterUser
@@ -746,7 +746,7 @@ Resources:
           - subnet-61ae223d
           - subnet-c89e10e6
 
-  ResetPassword:
+  ResetPasswordStaging:
     Type: 'AWS::Serverless::Function'
     Properties:
       FunctionName: Ponder-Staging-ResetPassword
@@ -768,7 +768,7 @@ Resources:
           - subnet-61ae223d
           - subnet-c89e10e6
 
-  SendEmail:
+  SendEmailStaging:
     Type: 'AWS::Serverless::Function'
     Properties:
       FunctionName: Ponder-Staging-SendEmail
@@ -782,7 +782,7 @@ Resources:
       Timeout: 3
       Role: 'arn:aws:iam::478373966066:role/LambdaServiceRole'
 
-  UpdateUser:
+  UpdateUserStaging:
     Type: 'AWS::Serverless::Function'
     Properties:
       FunctionName: Ponder-Staging-UpdateUser
@@ -811,7 +811,7 @@ Resources:
           - subnet-c89e10e6
           - subnet-e54b0eea
 
-  VoteDecision:
+  VoteDecisionStaging:
     Type: 'AWS::Serverless::Function'
     Properties:
       FunctionName: Ponder-Staging-VoteDecision
