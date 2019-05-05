@@ -9,9 +9,6 @@ orbs:
 
 jobs:
   build:
-    branches:
-      only:
-        - staging
     docker:
       # specify the version you desire here
       - image: circleci/node:8.10
@@ -61,3 +58,13 @@ jobs:
           to: 's3://ponder-code/ponder-$MAJOR_VERSION_NUMBER.$CIRCLE_BUILD_NUM-staging.zip'
       
       - run: aws cloudformation deploy --template-file ~/repo/ponder-staging.yml --stack-name Ponder-Serverless-Staging --capabilities CAPABILITY_IAM --parameter-overrides BucketName=ponder-code CodeKey=ponder-$MAJOR_VERSION_NUMBER.$CIRCLE_BUILD_NUM-staging.zip
+
+workflows:
+    version: 2.1
+    ci:
+    jobs:
+        - deploy:
+            filters:
+            branches:
+                only:
+                - staging
