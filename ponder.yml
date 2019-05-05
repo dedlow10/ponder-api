@@ -20,7 +20,7 @@ Resources:
     Type: 'AWS::Serverless::Function'
     Properties:
       FunctionName: Ponder-AcceptInvitation
-      Handler: functions/acceptinvitation.handler
+      Handler: functions/acceptInvitation.handler
       Runtime: nodejs8.10
       CodeUri: 
         Bucket: !Ref BucketName
