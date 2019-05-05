@@ -6,7 +6,7 @@ module.exports = {
             host: process.env.DatabaseHost,
             user: "dedlow",
             password: "Soccer1985",
-            database: "DecisionMaker",
+            database: process.env.Database,
             multipleStatements: true,
             typeCast: function castField( field, useDefaultTypeCasting ) {
 

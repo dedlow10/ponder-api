@@ -30,7 +30,7 @@ Resources:
       Timeout: 3
       Role: 'arn:aws:iam::478373966066:role/LambdaServiceRole'
       Environment:
-        Variables: { DatabaseHost: 'prodmysql.cphdeyoxcjbz.us-east-1.rds.amazonaws.com' }
+        Variables: { DatabaseHost: 'prodmysql.cphdeyoxcjbz.us-east-1.rds.amazonaws.com' , Database: 'DecisionMaker' }
       Events:
         Schedule1:
           Type: Schedule
@@ -64,7 +64,7 @@ Resources:
       Timeout: 3
       Role: 'arn:aws:iam::478373966066:role/LambdaServiceRole'
       Environment:
-        Variables: { DatabaseHost: 'prodmysql.cphdeyoxcjbz.us-east-1.rds.amazonaws.com' }      
+        Variables: { DatabaseHost: 'prodmysql.cphdeyoxcjbz.us-east-1.rds.amazonaws.com' , Database: 'DecisionMaker' }      
       Events:
         Schedule1:
           Type: Schedule
@@ -98,7 +98,7 @@ Resources:
       Timeout: 3
       Role: 'arn:aws:iam::478373966066:role/LambdaServiceRole'
       Environment:
-        Variables: { DatabaseHost: 'prodmysql.cphdeyoxcjbz.us-east-1.rds.amazonaws.com' }   
+        Variables: { DatabaseHost: 'prodmysql.cphdeyoxcjbz.us-east-1.rds.amazonaws.com' , Database: 'DecisionMaker' }   
       Events:
         Api1:
           Type: Api
@@ -121,7 +121,7 @@ Resources:
       Timeout: 3
       Role: 'arn:aws:iam::478373966066:role/LambdaServiceRole'
       Environment:
-        Variables: { DatabaseHost: 'prodmysql.cphdeyoxcjbz.us-east-1.rds.amazonaws.com' }   
+        Variables: { DatabaseHost: 'prodmysql.cphdeyoxcjbz.us-east-1.rds.amazonaws.com' , Database: 'DecisionMaker' }   
       Events:
         Api1:
           Type: Api
@@ -150,7 +150,7 @@ Resources:
       Timeout: 3
       Role: 'arn:aws:iam::478373966066:role/LambdaServiceRole'
       Environment:
-        Variables: { DatabaseHost: 'prodmysql.cphdeyoxcjbz.us-east-1.rds.amazonaws.com' }   
+        Variables: { DatabaseHost: 'prodmysql.cphdeyoxcjbz.us-east-1.rds.amazonaws.com' , Database: 'DecisionMaker' }   
       Events:
         Api1:
           Type: Api
@@ -179,7 +179,7 @@ Resources:
       Timeout: 3
       Role: 'arn:aws:iam::478373966066:role/LambdaServiceRole'
       Environment:
-        Variables: { DatabaseHost: 'prodmysql.cphdeyoxcjbz.us-east-1.rds.amazonaws.com' }   
+        Variables: { DatabaseHost: 'prodmysql.cphdeyoxcjbz.us-east-1.rds.amazonaws.com' , Database: 'DecisionMaker' }   
       Events:
         Schedule1:
           Type: Schedule
@@ -213,7 +213,7 @@ Resources:
       Timeout: 3
       Role: 'arn:aws:iam::478373966066:role/LambdaServiceRole'
       Environment:
-        Variables: { DatabaseHost: 'prodmysql.cphdeyoxcjbz.us-east-1.rds.amazonaws.com' }   
+        Variables: { DatabaseHost: 'prodmysql.cphdeyoxcjbz.us-east-1.rds.amazonaws.com' , Database: 'DecisionMaker' }   
       Events:
         Schedule1:
           Type: Schedule
@@ -247,7 +247,7 @@ Resources:
       Timeout: 3
       Role: 'arn:aws:iam::478373966066:role/LambdaServiceRole'
       Environment:
-        Variables: { DatabaseHost: 'prodmysql.cphdeyoxcjbz.us-east-1.rds.amazonaws.com' }   
+        Variables: { DatabaseHost: 'prodmysql.cphdeyoxcjbz.us-east-1.rds.amazonaws.com' , Database: 'DecisionMaker' }   
       Events:
         Api1:
           Type: Api
@@ -276,7 +276,7 @@ Resources:
       Timeout: 3
       Role: 'arn:aws:iam::478373966066:role/LambdaServiceRole'
       Environment:
-        Variables: { DatabaseHost: 'prodmysql.cphdeyoxcjbz.us-east-1.rds.amazonaws.com' }   
+        Variables: { DatabaseHost: 'prodmysql.cphdeyoxcjbz.us-east-1.rds.amazonaws.com' , Database: 'DecisionMaker' }   
       Events:
         Api1:
           Type: Api
@@ -305,7 +305,7 @@ Resources:
       Timeout: 3
       Role: 'arn:aws:iam::478373966066:role/LambdaServiceRole'
       Environment:
-        Variables: { DatabaseHost: 'prodmysql.cphdeyoxcjbz.us-east-1.rds.amazonaws.com' }   
+        Variables: { DatabaseHost: 'prodmysql.cphdeyoxcjbz.us-east-1.rds.amazonaws.com' , Database: 'DecisionMaker' }   
       Events:
         Api1:
           Type: Api
@@ -334,7 +334,7 @@ Resources:
       Timeout: 3
       Role: 'arn:aws:iam::478373966066:role/LambdaServiceRole'
       Environment:
-        Variables: { DatabaseHost: 'prodmysql.cphdeyoxcjbz.us-east-1.rds.amazonaws.com' }   
+        Variables: { DatabaseHost: 'prodmysql.cphdeyoxcjbz.us-east-1.rds.amazonaws.com' , Database: 'DecisionMaker' }   
       Events:
         Schedule1:
           Type: Schedule
@@ -368,7 +368,7 @@ Resources:
       Timeout: 3
       Role: 'arn:aws:iam::478373966066:role/LambdaServiceRole'
       Environment:
-        Variables: { DatabaseHost: 'prodmysql.cphdeyoxcjbz.us-east-1.rds.amazonaws.com' }   
+        Variables: { DatabaseHost: 'prodmysql.cphdeyoxcjbz.us-east-1.rds.amazonaws.com' , Database: 'DecisionMaker' }   
       Events:
         Api1:
           Type: Api
@@ -397,7 +397,7 @@ Resources:
       Timeout: 3
       Role: 'arn:aws:iam::478373966066:role/LambdaServiceRole'
       Environment:
-        Variables: { DatabaseHost: 'prodmysql.cphdeyoxcjbz.us-east-1.rds.amazonaws.com' }   
+        Variables: { DatabaseHost: 'prodmysql.cphdeyoxcjbz.us-east-1.rds.amazonaws.com' , Database: 'DecisionMaker' }   
       Events:
         Api1:
           Type: Api
@@ -426,7 +426,7 @@ Resources:
       Timeout: 3
       Role: 'arn:aws:iam::478373966066:role/LambdaServiceRole'
       Environment:
-        Variables: { DatabaseHost: 'prodmysql.cphdeyoxcjbz.us-east-1.rds.amazonaws.com' }   
+        Variables: { DatabaseHost: 'prodmysql.cphdeyoxcjbz.us-east-1.rds.amazonaws.com' , Database: 'DecisionMaker' }   
       Events:
         Schedule1:
           Type: Schedule
@@ -460,7 +460,7 @@ Resources:
       Timeout: 3
       Role: 'arn:aws:iam::478373966066:role/LambdaServiceRole'
       Environment:
-        Variables: { DatabaseHost: 'prodmysql.cphdeyoxcjbz.us-east-1.rds.amazonaws.com' }   
+        Variables: { DatabaseHost: 'prodmysql.cphdeyoxcjbz.us-east-1.rds.amazonaws.com' , Database: 'DecisionMaker' }   
       Events:
         Schedule1:
           Type: Schedule
@@ -494,7 +494,7 @@ Resources:
       Timeout: 3
       Role: 'arn:aws:iam::478373966066:role/LambdaServiceRole'
       Environment:
-        Variables: { DatabaseHost: 'prodmysql.cphdeyoxcjbz.us-east-1.rds.amazonaws.com' }   
+        Variables: { DatabaseHost: 'prodmysql.cphdeyoxcjbz.us-east-1.rds.amazonaws.com' , Database: 'DecisionMaker' }   
       Events:
         Schedule1:
           Type: Schedule
@@ -528,7 +528,7 @@ Resources:
       Timeout: 3
       Role: 'arn:aws:iam::478373966066:role/LambdaServiceRole'
       Environment:
-        Variables: { DatabaseHost: 'prodmysql.cphdeyoxcjbz.us-east-1.rds.amazonaws.com' }   
+        Variables: { DatabaseHost: 'prodmysql.cphdeyoxcjbz.us-east-1.rds.amazonaws.com' , Database: 'DecisionMaker' }   
       Events:
         Schedule1:
           Type: Schedule
@@ -562,7 +562,7 @@ Resources:
       Timeout: 3
       Role: 'arn:aws:iam::478373966066:role/LambdaServiceRole'
       Environment:
-        Variables: { DatabaseHost: 'prodmysql.cphdeyoxcjbz.us-east-1.rds.amazonaws.com' }   
+        Variables: { DatabaseHost: 'prodmysql.cphdeyoxcjbz.us-east-1.rds.amazonaws.com' , Database: 'DecisionMaker' }   
       Events:
         Schedule1:
           Type: Schedule
@@ -596,7 +596,7 @@ Resources:
       Timeout: 3
       Role: 'arn:aws:iam::478373966066:role/LambdaServiceRole'
       Environment:
-        Variables: { DatabaseHost: 'prodmysql.cphdeyoxcjbz.us-east-1.rds.amazonaws.com' }   
+        Variables: { DatabaseHost: 'prodmysql.cphdeyoxcjbz.us-east-1.rds.amazonaws.com' , Database: 'DecisionMaker' }   
       Events:
         Schedule1:
           Type: Schedule
@@ -629,7 +629,7 @@ Resources:
       Timeout: 3
       Role: 'arn:aws:iam::478373966066:role/LambdaServiceRole'
       Environment:
-        Variables: { DatabaseHost: 'prodmysql.cphdeyoxcjbz.us-east-1.rds.amazonaws.com' }   
+        Variables: { DatabaseHost: 'prodmysql.cphdeyoxcjbz.us-east-1.rds.amazonaws.com' , Database: 'DecisionMaker' }   
       Events:
         Schedule1:
           Type: Schedule
@@ -663,7 +663,7 @@ Resources:
       Timeout: 3
       Role: 'arn:aws:iam::478373966066:role/LambdaServiceRole'
       Environment:
-        Variables: { DatabaseHost: 'prodmysql.cphdeyoxcjbz.us-east-1.rds.amazonaws.com' }   
+        Variables: { DatabaseHost: 'prodmysql.cphdeyoxcjbz.us-east-1.rds.amazonaws.com' , Database: 'DecisionMaker' }   
       Events:
         Schedule1:
           Type: Schedule
@@ -697,7 +697,7 @@ Resources:
       Timeout: 3
       Role: 'arn:aws:iam::478373966066:role/LambdaServiceRole'
       Environment:
-        Variables: { DatabaseHost: 'prodmysql.cphdeyoxcjbz.us-east-1.rds.amazonaws.com' }   
+        Variables: { DatabaseHost: 'prodmysql.cphdeyoxcjbz.us-east-1.rds.amazonaws.com' , Database: 'DecisionMaker' }   
       Events:
         Api1:
           Type: Api
@@ -726,7 +726,7 @@ Resources:
       Timeout: 3
       Role: 'arn:aws:iam::478373966066:role/LambdaServiceRole'
       Environment:
-        Variables: { DatabaseHost: 'prodmysql.cphdeyoxcjbz.us-east-1.rds.amazonaws.com' }   
+        Variables: { DatabaseHost: 'prodmysql.cphdeyoxcjbz.us-east-1.rds.amazonaws.com' , Database: 'DecisionMaker' }   
       Events:
         Schedule1:
           Type: Schedule
@@ -760,7 +760,7 @@ Resources:
       Timeout: 3
       Role: 'arn:aws:iam::478373966066:role/LambdaServiceRole'
       Environment:
-        Variables: { DatabaseHost: 'prodmysql.cphdeyoxcjbz.us-east-1.rds.amazonaws.com' }   
+        Variables: { DatabaseHost: 'prodmysql.cphdeyoxcjbz.us-east-1.rds.amazonaws.com' , Database: 'DecisionMaker' }   
       VpcConfig:
         SecurityGroupIds:
           - sg-0594f0e78619424b3
@@ -796,7 +796,7 @@ Resources:
       Timeout: 3
       Role: 'arn:aws:iam::478373966066:role/LambdaServiceRole'
       Environment:
-        Variables: { DatabaseHost: 'prodmysql.cphdeyoxcjbz.us-east-1.rds.amazonaws.com' }   
+        Variables: { DatabaseHost: 'prodmysql.cphdeyoxcjbz.us-east-1.rds.amazonaws.com' , Database: 'DecisionMaker' }   
       Events:
         Api1:
           Type: Api
@@ -825,7 +825,7 @@ Resources:
       Timeout: 3
       Role: 'arn:aws:iam::478373966066:role/LambdaServiceRole'
       Environment:
-        Variables: { DatabaseHost: 'prodmysql.cphdeyoxcjbz.us-east-1.rds.amazonaws.com' }   
+        Variables: { DatabaseHost: 'prodmysql.cphdeyoxcjbz.us-east-1.rds.amazonaws.com' , Database: 'DecisionMaker' }   
       Events:
         Schedule1:
           Type: Schedule
