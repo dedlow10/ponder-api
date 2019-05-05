@@ -110,7 +110,7 @@ Resources:
   CountMyDecisionVotesStaging:
     Type: 'AWS::Serverless::Function'
     Properties:
-      FunctionName: Ponder-CountMyDecisionVotes
+      FunctionName: Ponder-Staging-CountMyDecisionVotes
       Handler: functions/countmydecisionvotes.handler
       Runtime: nodejs8.10
       CodeUri: 
