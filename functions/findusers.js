@@ -2,6 +2,7 @@ var usersFuncs = require("../users-funcs");
 
 module.exports = {
     handler: async function(event, context, callback) {
+        if (event["is-ping"]) context.succeed(true);
         var userId = event.context["authorizer-principal-id"];
         var onlyFriends = event.params.querystring.onlyFriends;
         var pm = new Promise((resolve, reject) => {
