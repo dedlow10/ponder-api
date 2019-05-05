@@ -1,0 +1,1954 @@
+openapi: "3.0.1"
+info:
+  title: "DecisionMakerAPIStaging"
+  version: "2019-01-19T17:33:12Z"
+servers:
+- url: "https://2vkkqn2ko1.execute-api.us-east-1.amazonaws.com/{basePath}"
+  variables:
+    basePath:
+      default: "/stage"
+paths:
+  /decisions:
+    post:
+      parameters:
+      - name: "principalId"
+        in: "header"
+        schema:
+          type: "string"
+      responses:
+        200:
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      security:
+      - UserAuthorizer: []
+      x-amazon-apigateway-integration:
+        uri: "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:478373966066:function:Ponder-Staging-CreateDecision/invocations"
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        requestParameters:
+          integration.request.header.principalId: "context.authorizer.principalId"
+        requestTemplates:
+          application/json: "##  See http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-mapping-template-reference.html\n\
+            ##  This template will pass through all parameters including path, querystring,\
+            \ header, stage variables, and context through to the integration endpoint\
+            \ via the body/payload\n#set($allParams = $input.params())\n{\n\"body-json\"\
+            \ : $input.json('$'),\n\"params\" : {\n#foreach($type in $allParams.keySet())\n\
+            \    #set($params = $allParams.get($type))\n\"$type\" : {\n    #foreach($paramName\
+            \ in $params.keySet())\n    \"$paramName\" : \"$util.escapeJavaScript($params.get($paramName))\"\
+            \n        #if($foreach.hasNext),#end\n    #end\n}\n    #if($foreach.hasNext),#end\n\
+            #end\n},\n\"stage-variables\" : {\n#foreach($key in $stageVariables.keySet())\n\
+            \"$key\" : \"$util.escapeJavaScript($stageVariables.get($key))\"\n   \
+            \ #if($foreach.hasNext),#end\n#end\n},\n\"context\" : {\n    \"account-id\"\
+            \ : \"$context.identity.accountId\",\n    \"api-id\" : \"$context.apiId\"\
+            ,\n    \"api-key\" : \"$context.identity.apiKey\",\n    \"authorizer-principal-id\"\
+            \ : \"$context.authorizer.principalId\",\n    \"caller\" : \"$context.identity.caller\"\
+            ,\n    \"cognito-authentication-provider\" : \"$context.identity.cognitoAuthenticationProvider\"\
+            ,\n    \"cognito-authentication-type\" : \"$context.identity.cognitoAuthenticationType\"\
+            ,\n    \"cognito-identity-id\" : \"$context.identity.cognitoIdentityId\"\
+            ,\n    \"cognito-identity-pool-id\" : \"$context.identity.cognitoIdentityPoolId\"\
+            ,\n    \"http-method\" : \"$context.httpMethod\",\n    \"stage\" : \"\
+            $context.stage\",\n    \"source-ip\" : \"$context.identity.sourceIp\"\
+            ,\n    \"user\" : \"$context.identity.user\",\n    \"user-agent\" : \"\
+            $context.identity.userAgent\",\n    \"user-arn\" : \"$context.identity.userArn\"\
+            ,\n    \"request-id\" : \"$context.requestId\",\n    \"resource-id\" :\
+            \ \"$context.resourceId\",\n    \"resource-path\" : \"$context.resourcePath\"\
+            \n    }\n}\n"
+        passthroughBehavior: "when_no_templates"
+        httpMethod: "POST"
+        contentHandling: "CONVERT_TO_TEXT"
+        type: "aws"
+    options:
+      responses:
+        200:
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+            Access-Control-Allow-Methods:
+              schema:
+                type: "string"
+            Access-Control-Allow-Headers:
+              schema:
+                type: "string"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: "'POST,OPTIONS'"
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        requestTemplates:
+          application/json: "{\"statusCode\": 200}"
+        passthroughBehavior: "when_no_match"
+        type: "mock"
+  /decisions/me/count:
+    get:
+      responses:
+        200:
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      security:
+      - UserAuthorizer: []
+      x-amazon-apigateway-integration:
+        uri: "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:478373966066:function:Ponder-Staging-CountMyDecisions/invocations"
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        requestTemplates:
+          application/json: "##  See http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-mapping-template-reference.html\n\
+            ##  This template will pass through all parameters including path, querystring,\
+            \ header, stage variables, and context through to the integration endpoint\
+            \ via the body/payload\n#set($allParams = $input.params())\n{\n\"body-json\"\
+            \ : $input.json('$'),\n\"params\" : {\n#foreach($type in $allParams.keySet())\n\
+            \    #set($params = $allParams.get($type))\n\"$type\" : {\n    #foreach($paramName\
+            \ in $params.keySet())\n    \"$paramName\" : \"$util.escapeJavaScript($params.get($paramName))\"\
+            \n        #if($foreach.hasNext),#end\n    #end\n}\n    #if($foreach.hasNext),#end\n\
+            #end\n},\n\"stage-variables\" : {\n#foreach($key in $stageVariables.keySet())\n\
+            \"$key\" : \"$util.escapeJavaScript($stageVariables.get($key))\"\n   \
+            \ #if($foreach.hasNext),#end\n#end\n},\n\"context\" : {\n    \"account-id\"\
+            \ : \"$context.identity.accountId\",\n    \"api-id\" : \"$context.apiId\"\
+            ,\n    \"api-key\" : \"$context.identity.apiKey\",\n    \"authorizer-principal-id\"\
+            \ : \"$context.authorizer.principalId\",\n    \"caller\" : \"$context.identity.caller\"\
+            ,\n    \"cognito-authentication-provider\" : \"$context.identity.cognitoAuthenticationProvider\"\
+            ,\n    \"cognito-authentication-type\" : \"$context.identity.cognitoAuthenticationType\"\
+            ,\n    \"cognito-identity-id\" : \"$context.identity.cognitoIdentityId\"\
+            ,\n    \"cognito-identity-pool-id\" : \"$context.identity.cognitoIdentityPoolId\"\
+            ,\n    \"http-method\" : \"$context.httpMethod\",\n    \"stage\" : \"\
+            $context.stage\",\n    \"source-ip\" : \"$context.identity.sourceIp\"\
+            ,\n    \"user\" : \"$context.identity.user\",\n    \"user-agent\" : \"\
+            $context.identity.userAgent\",\n    \"user-arn\" : \"$context.identity.userArn\"\
+            ,\n    \"request-id\" : \"$context.requestId\",\n    \"resource-id\" :\
+            \ \"$context.resourceId\",\n    \"resource-path\" : \"$context.resourcePath\"\
+            \n    }\n}\n"
+        passthroughBehavior: "when_no_templates"
+        httpMethod: "POST"
+        contentHandling: "CONVERT_TO_TEXT"
+        type: "aws"
+    options:
+      responses:
+        200:
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+            Access-Control-Allow-Methods:
+              schema:
+                type: "string"
+            Access-Control-Allow-Headers:
+              schema:
+                type: "string"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: "'GET,OPTIONS'"
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        requestTemplates:
+          application/json: "{\"statusCode\": 200}"
+        passthroughBehavior: "when_no_match"
+        type: "mock"
+  /email/send:
+    post:
+      responses:
+        200:
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      x-amazon-apigateway-integration:
+        uri: "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:478373966066:function:Ponder-Staging-SendEmail/invocations"
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "POST"
+        contentHandling: "CONVERT_TO_TEXT"
+        type: "aws"
+    options:
+      responses:
+        200:
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+            Access-Control-Allow-Methods:
+              schema:
+                type: "string"
+            Access-Control-Allow-Headers:
+              schema:
+                type: "string"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: "'POST,OPTIONS'"
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        requestTemplates:
+          application/json: "{\"statusCode\": 200}"
+        passthroughBehavior: "when_no_match"
+        type: "mock"        
+  /votes/me/count:
+    get:
+      responses:
+        200:
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      security:
+      - UserAuthorizer: []
+      x-amazon-apigateway-integration:
+        uri: "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:478373966066:function:Ponder-Staging-CountMyDecisionVotes/invocations"
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        requestTemplates:
+          application/json: "##  See http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-mapping-template-reference.html\n\
+            ##  This template will pass through all parameters including path, querystring,\
+            \ header, stage variables, and context through to the integration endpoint\
+            \ via the body/payload\n#set($allParams = $input.params())\n{\n\"body-json\"\
+            \ : $input.json('$'),\n\"params\" : {\n#foreach($type in $allParams.keySet())\n\
+            \    #set($params = $allParams.get($type))\n\"$type\" : {\n    #foreach($paramName\
+            \ in $params.keySet())\n    \"$paramName\" : \"$util.escapeJavaScript($params.get($paramName))\"\
+            \n        #if($foreach.hasNext),#end\n    #end\n}\n    #if($foreach.hasNext),#end\n\
+            #end\n},\n\"stage-variables\" : {\n#foreach($key in $stageVariables.keySet())\n\
+            \"$key\" : \"$util.escapeJavaScript($stageVariables.get($key))\"\n   \
+            \ #if($foreach.hasNext),#end\n#end\n},\n\"context\" : {\n    \"account-id\"\
+            \ : \"$context.identity.accountId\",\n    \"api-id\" : \"$context.apiId\"\
+            ,\n    \"api-key\" : \"$context.identity.apiKey\",\n    \"authorizer-principal-id\"\
+            \ : \"$context.authorizer.principalId\",\n    \"caller\" : \"$context.identity.caller\"\
+            ,\n    \"cognito-authentication-provider\" : \"$context.identity.cognitoAuthenticationProvider\"\
+            ,\n    \"cognito-authentication-type\" : \"$context.identity.cognitoAuthenticationType\"\
+            ,\n    \"cognito-identity-id\" : \"$context.identity.cognitoIdentityId\"\
+            ,\n    \"cognito-identity-pool-id\" : \"$context.identity.cognitoIdentityPoolId\"\
+            ,\n    \"http-method\" : \"$context.httpMethod\",\n    \"stage\" : \"\
+            $context.stage\",\n    \"source-ip\" : \"$context.identity.sourceIp\"\
+            ,\n    \"user\" : \"$context.identity.user\",\n    \"user-agent\" : \"\
+            $context.identity.userAgent\",\n    \"user-arn\" : \"$context.identity.userArn\"\
+            ,\n    \"request-id\" : \"$context.requestId\",\n    \"resource-id\" :\
+            \ \"$context.resourceId\",\n    \"resource-path\" : \"$context.resourcePath\"\
+            \n    }\n}\n"
+        passthroughBehavior: "when_no_templates"
+        httpMethod: "POST"
+        contentHandling: "CONVERT_TO_TEXT"
+        type: "aws"
+    options:
+      responses:
+        200:
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+            Access-Control-Allow-Methods:
+              schema:
+                type: "string"
+            Access-Control-Allow-Headers:
+              schema:
+                type: "string"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: "'GET,OPTIONS'"
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        requestTemplates:
+          application/json: "{\"statusCode\": 200}"
+        passthroughBehavior: "when_no_match"
+        type: "mock"
+  /decisions/{id}:
+    get:
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        200:
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      security:
+      - UserAuthorizer: []
+      x-amazon-apigateway-integration:
+        uri: "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:478373966066:function:Ponder-Staging-GetDecisionById/invocations"
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        requestTemplates:
+          application/json: "##  See http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-mapping-template-reference.html\n\
+            ##  This template will pass through all parameters including path, querystring,\
+            \ header, stage variables, and context through to the integration endpoint\
+            \ via the body/payload\n#set($allParams = $input.params())\n{\n\"body-json\"\
+            \ : $input.json('$'),\n\"params\" : {\n#foreach($type in $allParams.keySet())\n\
+            \    #set($params = $allParams.get($type))\n\"$type\" : {\n    #foreach($paramName\
+            \ in $params.keySet())\n    \"$paramName\" : \"$util.escapeJavaScript($params.get($paramName))\"\
+            \n        #if($foreach.hasNext),#end\n    #end\n}\n    #if($foreach.hasNext),#end\n\
+            #end\n},\n\"stage-variables\" : {\n#foreach($key in $stageVariables.keySet())\n\
+            \"$key\" : \"$util.escapeJavaScript($stageVariables.get($key))\"\n   \
+            \ #if($foreach.hasNext),#end\n#end\n},\n\"context\" : {\n    \"account-id\"\
+            \ : \"$context.identity.accountId\",\n    \"api-id\" : \"$context.apiId\"\
+            ,\n    \"api-key\" : \"$context.identity.apiKey\",\n    \"authorizer-principal-id\"\
+            \ : \"$context.authorizer.principalId\",\n    \"caller\" : \"$context.identity.caller\"\
+            ,\n    \"cognito-authentication-provider\" : \"$context.identity.cognitoAuthenticationProvider\"\
+            ,\n    \"cognito-authentication-type\" : \"$context.identity.cognitoAuthenticationType\"\
+            ,\n    \"cognito-identity-id\" : \"$context.identity.cognitoIdentityId\"\
+            ,\n    \"cognito-identity-pool-id\" : \"$context.identity.cognitoIdentityPoolId\"\
+            ,\n    \"http-method\" : \"$context.httpMethod\",\n    \"stage\" : \"\
+            $context.stage\",\n    \"source-ip\" : \"$context.identity.sourceIp\"\
+            ,\n    \"user\" : \"$context.identity.user\",\n    \"user-agent\" : \"\
+            $context.identity.userAgent\",\n    \"user-arn\" : \"$context.identity.userArn\"\
+            ,\n    \"request-id\" : \"$context.requestId\",\n    \"resource-id\" :\
+            \ \"$context.resourceId\",\n    \"resource-path\" : \"$context.resourcePath\"\
+            \n    }\n}\n"
+        passthroughBehavior: "when_no_templates"
+        httpMethod: "POST"
+        contentHandling: "CONVERT_TO_TEXT"
+        type: "aws"
+    delete:
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        200:
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      security:
+      - UserAuthorizer: []
+      x-amazon-apigateway-integration:
+        uri: "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:478373966066:function:Ponder-Staging-DeleteDecision/invocations"
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        requestTemplates:
+          application/json: "##  See http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-mapping-template-reference.html\n\
+            ##  This template will pass through all parameters including path, querystring,\
+            \ header, stage variables, and context through to the integration endpoint\
+            \ via the body/payload\n#set($allParams = $input.params())\n{\n\"body-json\"\
+            \ : $input.json('$'),\n\"params\" : {\n#foreach($type in $allParams.keySet())\n\
+            \    #set($params = $allParams.get($type))\n\"$type\" : {\n    #foreach($paramName\
+            \ in $params.keySet())\n    \"$paramName\" : \"$util.escapeJavaScript($params.get($paramName))\"\
+            \n        #if($foreach.hasNext),#end\n    #end\n}\n    #if($foreach.hasNext),#end\n\
+            #end\n},\n\"stage-variables\" : {\n#foreach($key in $stageVariables.keySet())\n\
+            \"$key\" : \"$util.escapeJavaScript($stageVariables.get($key))\"\n   \
+            \ #if($foreach.hasNext),#end\n#end\n},\n\"context\" : {\n    \"account-id\"\
+            \ : \"$context.identity.accountId\",\n    \"api-id\" : \"$context.apiId\"\
+            ,\n    \"api-key\" : \"$context.identity.apiKey\",\n    \"authorizer-principal-id\"\
+            \ : \"$context.authorizer.principalId\",\n    \"caller\" : \"$context.identity.caller\"\
+            ,\n    \"cognito-authentication-provider\" : \"$context.identity.cognitoAuthenticationProvider\"\
+            ,\n    \"cognito-authentication-type\" : \"$context.identity.cognitoAuthenticationType\"\
+            ,\n    \"cognito-identity-id\" : \"$context.identity.cognitoIdentityId\"\
+            ,\n    \"cognito-identity-pool-id\" : \"$context.identity.cognitoIdentityPoolId\"\
+            ,\n    \"http-method\" : \"$context.httpMethod\",\n    \"stage\" : \"\
+            $context.stage\",\n    \"source-ip\" : \"$context.identity.sourceIp\"\
+            ,\n    \"user\" : \"$context.identity.user\",\n    \"user-agent\" : \"\
+            $context.identity.userAgent\",\n    \"user-arn\" : \"$context.identity.userArn\"\
+            ,\n    \"request-id\" : \"$context.requestId\",\n    \"resource-id\" :\
+            \ \"$context.resourceId\",\n    \"resource-path\" : \"$context.resourcePath\"\
+            \n    }\n}\n"
+        passthroughBehavior: "when_no_templates"
+        httpMethod: "POST"
+        contentHandling: "CONVERT_TO_TEXT"
+        type: "aws"
+    options:
+      responses:
+        200:
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+            Access-Control-Allow-Methods:
+              schema:
+                type: "string"
+            Access-Control-Allow-Headers:
+              schema:
+                type: "string"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: "'DELETE,GET,OPTIONS'"
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        requestTemplates:
+          application/json: "{\"statusCode\": 200}"
+        passthroughBehavior: "when_no_match"
+        type: "mock"
+  /votes/me:
+    options:
+      responses:
+        200:
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+            Access-Control-Allow-Methods:
+              schema:
+                type: "string"
+            Access-Control-Allow-Headers:
+              schema:
+                type: "string"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: "'DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT'"
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        requestTemplates:
+          application/json: "{\"statusCode\": 200}"
+        passthroughBehavior: "when_no_match"
+        type: "mock"
+  /friends/invitations:
+    get:
+      responses:
+        200:
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      security:
+      - UserAuthorizer: []
+      x-amazon-apigateway-integration:
+        uri: "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:478373966066:function:Ponder-Staging-GetFriendInvitations/invocations"
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        requestTemplates:
+          application/json: "##  See http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-mapping-template-reference.html\n\
+            ##  This template will pass through all parameters including path, querystring,\
+            \ header, stage variables, and context through to the integration endpoint\
+            \ via the body/payload\n#set($allParams = $input.params())\n{\n\"body-json\"\
+            \ : $input.json('$'),\n\"params\" : {\n#foreach($type in $allParams.keySet())\n\
+            \    #set($params = $allParams.get($type))\n\"$type\" : {\n    #foreach($paramName\
+            \ in $params.keySet())\n    \"$paramName\" : \"$util.escapeJavaScript($params.get($paramName))\"\
+            \n        #if($foreach.hasNext),#end\n    #end\n}\n    #if($foreach.hasNext),#end\n\
+            #end\n},\n\"stage-variables\" : {\n#foreach($key in $stageVariables.keySet())\n\
+            \"$key\" : \"$util.escapeJavaScript($stageVariables.get($key))\"\n   \
+            \ #if($foreach.hasNext),#end\n#end\n},\n\"context\" : {\n    \"account-id\"\
+            \ : \"$context.identity.accountId\",\n    \"api-id\" : \"$context.apiId\"\
+            ,\n    \"api-key\" : \"$context.identity.apiKey\",\n    \"authorizer-principal-id\"\
+            \ : \"$context.authorizer.principalId\",\n    \"caller\" : \"$context.identity.caller\"\
+            ,\n    \"cognito-authentication-provider\" : \"$context.identity.cognitoAuthenticationProvider\"\
+            ,\n    \"cognito-authentication-type\" : \"$context.identity.cognitoAuthenticationType\"\
+            ,\n    \"cognito-identity-id\" : \"$context.identity.cognitoIdentityId\"\
+            ,\n    \"cognito-identity-pool-id\" : \"$context.identity.cognitoIdentityPoolId\"\
+            ,\n    \"http-method\" : \"$context.httpMethod\",\n    \"stage\" : \"\
+            $context.stage\",\n    \"source-ip\" : \"$context.identity.sourceIp\"\
+            ,\n    \"user\" : \"$context.identity.user\",\n    \"user-agent\" : \"\
+            $context.identity.userAgent\",\n    \"user-arn\" : \"$context.identity.userArn\"\
+            ,\n    \"request-id\" : \"$context.requestId\",\n    \"resource-id\" :\
+            \ \"$context.resourceId\",\n    \"resource-path\" : \"$context.resourcePath\"\
+            \n    }\n}\n"
+        passthroughBehavior: "when_no_templates"
+        httpMethod: "POST"
+        contentHandling: "CONVERT_TO_TEXT"
+        type: "aws"
+    post:
+      parameters:
+      - name: "invitedByUserId"
+        in: "query"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        200:
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      security:
+      - UserAuthorizer: []
+      x-amazon-apigateway-request-validator: "Validate query string parameters and\
+        \ headers"
+      x-amazon-apigateway-integration:
+        uri: "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:478373966066:function:Ponder-Staging-AcceptInvitation/invocations"
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        requestTemplates:
+          application/json: "##  See http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-mapping-template-reference.html\n\
+            ##  This template will pass through all parameters including path, querystring,\
+            \ header, stage variables, and context through to the integration endpoint\
+            \ via the body/payload\n#set($allParams = $input.params())\n{\n\"body-json\"\
+            \ : $input.json('$'),\n\"params\" : {\n#foreach($type in $allParams.keySet())\n\
+            \    #set($params = $allParams.get($type))\n\"$type\" : {\n    #foreach($paramName\
+            \ in $params.keySet())\n    \"$paramName\" : \"$util.escapeJavaScript($params.get($paramName))\"\
+            \n        #if($foreach.hasNext),#end\n    #end\n}\n    #if($foreach.hasNext),#end\n\
+            #end\n},\n\"stage-variables\" : {\n#foreach($key in $stageVariables.keySet())\n\
+            \"$key\" : \"$util.escapeJavaScript($stageVariables.get($key))\"\n   \
+            \ #if($foreach.hasNext),#end\n#end\n},\n\"context\" : {\n    \"account-id\"\
+            \ : \"$context.identity.accountId\",\n    \"api-id\" : \"$context.apiId\"\
+            ,\n    \"api-key\" : \"$context.identity.apiKey\",\n    \"authorizer-principal-id\"\
+            \ : \"$context.authorizer.principalId\",\n    \"caller\" : \"$context.identity.caller\"\
+            ,\n    \"cognito-authentication-provider\" : \"$context.identity.cognitoAuthenticationProvider\"\
+            ,\n    \"cognito-authentication-type\" : \"$context.identity.cognitoAuthenticationType\"\
+            ,\n    \"cognito-identity-id\" : \"$context.identity.cognitoIdentityId\"\
+            ,\n    \"cognito-identity-pool-id\" : \"$context.identity.cognitoIdentityPoolId\"\
+            ,\n    \"http-method\" : \"$context.httpMethod\",\n    \"stage\" : \"\
+            $context.stage\",\n    \"source-ip\" : \"$context.identity.sourceIp\"\
+            ,\n    \"user\" : \"$context.identity.user\",\n    \"user-agent\" : \"\
+            $context.identity.userAgent\",\n    \"user-arn\" : \"$context.identity.userArn\"\
+            ,\n    \"request-id\" : \"$context.requestId\",\n    \"resource-id\" :\
+            \ \"$context.resourceId\",\n    \"resource-path\" : \"$context.resourcePath\"\
+            ,\n    \"invitedByUserId\": \"$input.params('invitedByUserId')\"\n   \
+            \ }\n}\n"
+        passthroughBehavior: "when_no_templates"
+        httpMethod: "POST"
+        contentHandling: "CONVERT_TO_TEXT"
+        type: "aws"
+    options:
+      responses:
+        200:
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+            Access-Control-Allow-Methods:
+              schema:
+                type: "string"
+            Access-Control-Allow-Headers:
+              schema:
+                type: "string"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: "'POST,GET,OPTIONS'"
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        requestTemplates:
+          application/json: "{\"statusCode\": 200}"
+        passthroughBehavior: "when_no_match"
+        type: "mock"
+  /decisions/friends:
+    get:
+      parameters:
+      - name: "days"
+        in: "query"
+        required: false
+        schema:
+          type: "string"
+      responses:
+        200:
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      security:
+      - UserAuthorizer: []
+      x-amazon-apigateway-integration:
+        uri: "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:478373966066:function:Ponder-Staging-GetFriendsDecisions/invocations"
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        requestTemplates:
+          application/json: "##  See http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-mapping-template-reference.html\n\
+            ##  This template will pass through all parameters including path, querystring,\
+            \ header, stage variables, and context through to the integration endpoint\
+            \ via the body/payload\n#set($allParams = $input.params())\n{\n\"body-json\"\
+            \ : $input.json('$'),\n\"params\" : {\n#foreach($type in $allParams.keySet())\n\
+            \    #set($params = $allParams.get($type))\n\"$type\" : {\n    #foreach($paramName\
+            \ in $params.keySet())\n    \"$paramName\" : \"$util.escapeJavaScript($params.get($paramName))\"\
+            \n        #if($foreach.hasNext),#end\n    #end\n}\n    #if($foreach.hasNext),#end\n\
+            #end\n},\n\"stage-variables\" : {\n#foreach($key in $stageVariables.keySet())\n\
+            \"$key\" : \"$util.escapeJavaScript($stageVariables.get($key))\"\n   \
+            \ #if($foreach.hasNext),#end\n#end\n},\n\"context\" : {\n    \"account-id\"\
+            \ : \"$context.identity.accountId\",\n    \"api-id\" : \"$context.apiId\"\
+            ,\n    \"api-key\" : \"$context.identity.apiKey\",\n    \"authorizer-principal-id\"\
+            \ : \"$context.authorizer.principalId\",\n    \"caller\" : \"$context.identity.caller\"\
+            ,\n    \"cognito-authentication-provider\" : \"$context.identity.cognitoAuthenticationProvider\"\
+            ,\n    \"cognito-authentication-type\" : \"$context.identity.cognitoAuthenticationType\"\
+            ,\n    \"cognito-identity-id\" : \"$context.identity.cognitoIdentityId\"\
+            ,\n    \"cognito-identity-pool-id\" : \"$context.identity.cognitoIdentityPoolId\"\
+            ,\n    \"http-method\" : \"$context.httpMethod\",\n    \"stage\" : \"\
+            $context.stage\",\n    \"source-ip\" : \"$context.identity.sourceIp\"\
+            ,\n    \"user\" : \"$context.identity.user\",\n    \"user-agent\" : \"\
+            $context.identity.userAgent\",\n    \"user-arn\" : \"$context.identity.userArn\"\
+            ,\n    \"request-id\" : \"$context.requestId\",\n    \"resource-id\" :\
+            \ \"$context.resourceId\",\n    \"resource-path\" : \"$context.resourcePath\"\
+            \n    }\n}\n"
+        passthroughBehavior: "when_no_templates"
+        httpMethod: "POST"
+        contentHandling: "CONVERT_TO_TEXT"
+        type: "aws"
+    options:
+      responses:
+        200:
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+            Access-Control-Allow-Methods:
+              schema:
+                type: "string"
+            Access-Control-Allow-Headers:
+              schema:
+                type: "string"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: "'GET,OPTIONS'"
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        requestTemplates:
+          application/json: "{\"statusCode\": 200}"
+        passthroughBehavior: "when_no_match"
+        type: "mock"
+  /decisions/{id}/votes:
+    get:
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        200:
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      security:
+      - UserAuthorizer: []
+      x-amazon-apigateway-integration:
+        uri: "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:478373966066:function:Ponder-Staging-GetVotesForDecision/invocations"
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        requestTemplates:
+          application/json: "##  See http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-mapping-template-reference.html\n\
+            ##  This template will pass through all parameters including path, querystring,\
+            \ header, stage variables, and context through to the integration endpoint\
+            \ via the body/payload\n#set($allParams = $input.params())\n{\n\"body-json\"\
+            \ : $input.json('$'),\n\"params\" : {\n#foreach($type in $allParams.keySet())\n\
+            \    #set($params = $allParams.get($type))\n\"$type\" : {\n    #foreach($paramName\
+            \ in $params.keySet())\n    \"$paramName\" : \"$util.escapeJavaScript($params.get($paramName))\"\
+            \n        #if($foreach.hasNext),#end\n    #end\n}\n    #if($foreach.hasNext),#end\n\
+            #end\n},\n\"stage-variables\" : {\n#foreach($key in $stageVariables.keySet())\n\
+            \"$key\" : \"$util.escapeJavaScript($stageVariables.get($key))\"\n   \
+            \ #if($foreach.hasNext),#end\n#end\n},\n\"context\" : {\n    \"account-id\"\
+            \ : \"$context.identity.accountId\",\n    \"api-id\" : \"$context.apiId\"\
+            ,\n    \"api-key\" : \"$context.identity.apiKey\",\n    \"authorizer-principal-id\"\
+            \ : \"$context.authorizer.principalId\",\n    \"caller\" : \"$context.identity.caller\"\
+            ,\n    \"cognito-authentication-provider\" : \"$context.identity.cognitoAuthenticationProvider\"\
+            ,\n    \"cognito-authentication-type\" : \"$context.identity.cognitoAuthenticationType\"\
+            ,\n    \"cognito-identity-id\" : \"$context.identity.cognitoIdentityId\"\
+            ,\n    \"cognito-identity-pool-id\" : \"$context.identity.cognitoIdentityPoolId\"\
+            ,\n    \"http-method\" : \"$context.httpMethod\",\n    \"stage\" : \"\
+            $context.stage\",\n    \"source-ip\" : \"$context.identity.sourceIp\"\
+            ,\n    \"user\" : \"$context.identity.user\",\n    \"user-agent\" : \"\
+            $context.identity.userAgent\",\n    \"user-arn\" : \"$context.identity.userArn\"\
+            ,\n    \"request-id\" : \"$context.requestId\",\n    \"resource-id\" :\
+            \ \"$context.resourceId\",\n    \"resource-path\" : \"$context.resourcePath\"\
+            \n    }\n}\n"
+        passthroughBehavior: "when_no_templates"
+        httpMethod: "POST"
+        contentHandling: "CONVERT_TO_TEXT"
+        type: "aws"
+    options:
+      responses:
+        200:
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+            Access-Control-Allow-Methods:
+              schema:
+                type: "string"
+            Access-Control-Allow-Headers:
+              schema:
+                type: "string"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: "'GET,OPTIONS'"
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        requestTemplates:
+          application/json: "{\"statusCode\": 200}"
+        passthroughBehavior: "when_no_match"
+        type: "mock"
+  /friends:
+    get:
+      responses:
+        200:
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      security:
+      - UserAuthorizer: []
+      x-amazon-apigateway-integration:
+        uri: "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:478373966066:function:Ponder-Staging-GetFriends/invocations"
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        requestTemplates:
+          application/json: "##  See http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-mapping-template-reference.html\n\
+            ##  This template will pass through all parameters including path, querystring,\
+            \ header, stage variables, and context through to the integration endpoint\
+            \ via the body/payload\n#set($allParams = $input.params())\n{\n\"body-json\"\
+            \ : $input.json('$'),\n\"params\" : {\n#foreach($type in $allParams.keySet())\n\
+            \    #set($params = $allParams.get($type))\n\"$type\" : {\n    #foreach($paramName\
+            \ in $params.keySet())\n    \"$paramName\" : \"$util.escapeJavaScript($params.get($paramName))\"\
+            \n        #if($foreach.hasNext),#end\n    #end\n}\n    #if($foreach.hasNext),#end\n\
+            #end\n},\n\"stage-variables\" : {\n#foreach($key in $stageVariables.keySet())\n\
+            \"$key\" : \"$util.escapeJavaScript($stageVariables.get($key))\"\n   \
+            \ #if($foreach.hasNext),#end\n#end\n},\n\"context\" : {\n    \"account-id\"\
+            \ : \"$context.identity.accountId\",\n    \"api-id\" : \"$context.apiId\"\
+            ,\n    \"api-key\" : \"$context.identity.apiKey\",\n    \"authorizer-principal-id\"\
+            \ : \"$context.authorizer.principalId\",\n    \"caller\" : \"$context.identity.caller\"\
+            ,\n    \"cognito-authentication-provider\" : \"$context.identity.cognitoAuthenticationProvider\"\
+            ,\n    \"cognito-authentication-type\" : \"$context.identity.cognitoAuthenticationType\"\
+            ,\n    \"cognito-identity-id\" : \"$context.identity.cognitoIdentityId\"\
+            ,\n    \"cognito-identity-pool-id\" : \"$context.identity.cognitoIdentityPoolId\"\
+            ,\n    \"http-method\" : \"$context.httpMethod\",\n    \"stage\" : \"\
+            $context.stage\",\n    \"source-ip\" : \"$context.identity.sourceIp\"\
+            ,\n    \"user\" : \"$context.identity.user\",\n    \"user-agent\" : \"\
+            $context.identity.userAgent\",\n    \"user-arn\" : \"$context.identity.userArn\"\
+            ,\n    \"request-id\" : \"$context.requestId\",\n    \"resource-id\" :\
+            \ \"$context.resourceId\",\n    \"resource-path\" : \"$context.resourcePath\"\
+            \n    }\n}\n"
+        passthroughBehavior: "when_no_templates"
+        httpMethod: "POST"
+        contentHandling: "CONVERT_TO_TEXT"
+        type: "aws"
+    post:
+      parameters:
+      - name: "invitedUserId"
+        in: "query"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        200:
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      security:
+      - UserAuthorizer: []
+      x-amazon-apigateway-request-validator: "Validate query string parameters and\
+        \ headers"
+      x-amazon-apigateway-integration:
+        uri: "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:478373966066:function:Ponder-Staging-AddFriend/invocations"
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        requestTemplates:
+          application/json: "##  See http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-mapping-template-reference.html\n\
+            ##  This template will pass through all parameters including path, querystring,\
+            \ header, stage variables, and context through to the integration endpoint\
+            \ via the body/payload\n#set($allParams = $input.params())\n{\n\"body-json\"\
+            \ : $input.json('$'),\n\"params\" : {\n#foreach($type in $allParams.keySet())\n\
+            \    #set($params = $allParams.get($type))\n\"$type\" : {\n    #foreach($paramName\
+            \ in $params.keySet())\n    \"$paramName\" : \"$util.escapeJavaScript($params.get($paramName))\"\
+            \n        #if($foreach.hasNext),#end\n    #end\n}\n    #if($foreach.hasNext),#end\n\
+            #end\n},\n\"stage-variables\" : {\n#foreach($key in $stageVariables.keySet())\n\
+            \"$key\" : \"$util.escapeJavaScript($stageVariables.get($key))\"\n   \
+            \ #if($foreach.hasNext),#end\n#end\n},\n\"context\" : {\n    \"account-id\"\
+            \ : \"$context.identity.accountId\",\n    \"api-id\" : \"$context.apiId\"\
+            ,\n    \"api-key\" : \"$context.identity.apiKey\",\n    \"authorizer-principal-id\"\
+            \ : \"$context.authorizer.principalId\",\n    \"caller\" : \"$context.identity.caller\"\
+            ,\n    \"cognito-authentication-provider\" : \"$context.identity.cognitoAuthenticationProvider\"\
+            ,\n    \"cognito-authentication-type\" : \"$context.identity.cognitoAuthenticationType\"\
+            ,\n    \"cognito-identity-id\" : \"$context.identity.cognitoIdentityId\"\
+            ,\n    \"cognito-identity-pool-id\" : \"$context.identity.cognitoIdentityPoolId\"\
+            ,\n    \"http-method\" : \"$context.httpMethod\",\n    \"stage\" : \"\
+            $context.stage\",\n    \"source-ip\" : \"$context.identity.sourceIp\"\
+            ,\n    \"user\" : \"$context.identity.user\",\n    \"user-agent\" : \"\
+            $context.identity.userAgent\",\n    \"user-arn\" : \"$context.identity.userArn\"\
+            ,\n    \"request-id\" : \"$context.requestId\",\n    \"resource-id\" :\
+            \ \"$context.resourceId\",\n    \"resource-path\" : \"$context.resourcePath\"\
+            ,\n    \"invitedUserId\": \"$input.params('invitedUserId')\"\n    }\n\
+            }\n"
+        passthroughBehavior: "when_no_templates"
+        httpMethod: "POST"
+        contentHandling: "CONVERT_TO_TEXT"
+        type: "aws"
+    delete:
+      parameters:
+      - name: "friendId"
+        in: "query"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        200:
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      security:
+      - UserAuthorizer: []
+      x-amazon-apigateway-request-validator: "Validate query string parameters and\
+        \ headers"
+      x-amazon-apigateway-integration:
+        uri: "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:478373966066:function:Ponder-Staging-DeleteFriend/invocations"
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        requestTemplates:
+          application/json: "##  See http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-mapping-template-reference.html\n\
+            ##  This template will pass through all parameters including path, querystring,\
+            \ header, stage variables, and context through to the integration endpoint\
+            \ via the body/payload\n#set($allParams = $input.params())\n{\n\"body-json\"\
+            \ : $input.json('$'),\n\"params\" : {\n#foreach($type in $allParams.keySet())\n\
+            \    #set($params = $allParams.get($type))\n\"$type\" : {\n    #foreach($paramName\
+            \ in $params.keySet())\n    \"$paramName\" : \"$util.escapeJavaScript($params.get($paramName))\"\
+            \n        #if($foreach.hasNext),#end\n    #end\n}\n    #if($foreach.hasNext),#end\n\
+            #end\n},\n\"stage-variables\" : {\n#foreach($key in $stageVariables.keySet())\n\
+            \"$key\" : \"$util.escapeJavaScript($stageVariables.get($key))\"\n   \
+            \ #if($foreach.hasNext),#end\n#end\n},\n\"context\" : {\n    \"account-id\"\
+            \ : \"$context.identity.accountId\",\n    \"api-id\" : \"$context.apiId\"\
+            ,\n    \"api-key\" : \"$context.identity.apiKey\",\n    \"authorizer-principal-id\"\
+            \ : \"$context.authorizer.principalId\",\n    \"caller\" : \"$context.identity.caller\"\
+            ,\n    \"cognito-authentication-provider\" : \"$context.identity.cognitoAuthenticationProvider\"\
+            ,\n    \"cognito-authentication-type\" : \"$context.identity.cognitoAuthenticationType\"\
+            ,\n    \"cognito-identity-id\" : \"$context.identity.cognitoIdentityId\"\
+            ,\n    \"cognito-identity-pool-id\" : \"$context.identity.cognitoIdentityPoolId\"\
+            ,\n    \"http-method\" : \"$context.httpMethod\",\n    \"stage\" : \"\
+            $context.stage\",\n    \"source-ip\" : \"$context.identity.sourceIp\"\
+            ,\n    \"user\" : \"$context.identity.user\",\n    \"user-agent\" : \"\
+            $context.identity.userAgent\",\n    \"user-arn\" : \"$context.identity.userArn\"\
+            ,\n    \"request-id\" : \"$context.requestId\",\n    \"resource-id\" :\
+            \ \"$context.resourceId\",\n    \"resource-path\" : \"$context.resourcePath\"\
+            ,\n    \"friendId\": \"$input.params('friendId')\"\n    }\n}\n"
+        passthroughBehavior: "when_no_templates"
+        httpMethod: "POST"
+        contentHandling: "CONVERT_TO_TEXT"
+        type: "aws"
+    options:
+      responses:
+        200:
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+            Access-Control-Allow-Methods:
+              schema:
+                type: "string"
+            Access-Control-Allow-Headers:
+              schema:
+                type: "string"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: "'DELETE,POST,GET,OPTIONS'"
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        requestTemplates:
+          application/json: "{\"statusCode\": 200}"
+        passthroughBehavior: "when_no_match"
+        type: "mock"
+  /decisions/top:
+    get:
+      parameters:
+      - name: "days"
+        in: "query"
+        required: false
+        schema:
+          type: "string"         
+      responses:
+        200:
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      security:
+      - UserAuthorizer: []
+      x-amazon-apigateway-integration:
+        uri: "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:478373966066:function:Ponder-Staging-GetTopDecisions/invocations"
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        requestTemplates:
+          application/json: "##  See http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-mapping-template-reference.html\n\
+            ##  This template will pass through all parameters including path, querystring,\
+            \ header, stage variables, and context through to the integration endpoint\
+            \ via the body/payload\n#set($allParams = $input.params())\n{\n\"body-json\"\
+            \ : $input.json('$'),\n\"params\" : {\n#foreach($type in $allParams.keySet())\n\
+            \    #set($params = $allParams.get($type))\n\"$type\" : {\n    #foreach($paramName\
+            \ in $params.keySet())\n    \"$paramName\" : \"$util.escapeJavaScript($params.get($paramName))\"\
+            \n        #if($foreach.hasNext),#end\n    #end\n}\n    #if($foreach.hasNext),#end\n\
+            #end\n},\n\"stage-variables\" : {\n#foreach($key in $stageVariables.keySet())\n\
+            \"$key\" : \"$util.escapeJavaScript($stageVariables.get($key))\"\n   \
+            \ #if($foreach.hasNext),#end\n#end\n},\n\"context\" : {\n    \"account-id\"\
+            \ : \"$context.identity.accountId\",\n    \"api-id\" : \"$context.apiId\"\
+            ,\n    \"api-key\" : \"$context.identity.apiKey\",\n    \"authorizer-principal-id\"\
+            \ : \"$context.authorizer.principalId\",\n    \"caller\" : \"$context.identity.caller\"\
+            ,\n    \"cognito-authentication-provider\" : \"$context.identity.cognitoAuthenticationProvider\"\
+            ,\n    \"cognito-authentication-type\" : \"$context.identity.cognitoAuthenticationType\"\
+            ,\n    \"cognito-identity-id\" : \"$context.identity.cognitoIdentityId\"\
+            ,\n    \"cognito-identity-pool-id\" : \"$context.identity.cognitoIdentityPoolId\"\
+            ,\n    \"http-method\" : \"$context.httpMethod\",\n    \"stage\" : \"\
+            $context.stage\",\n    \"source-ip\" : \"$context.identity.sourceIp\"\
+            ,\n    \"user\" : \"$context.identity.user\",\n    \"user-agent\" : \"\
+            $context.identity.userAgent\",\n    \"user-arn\" : \"$context.identity.userArn\"\
+            ,\n    \"request-id\" : \"$context.requestId\",\n    \"resource-id\" :\
+            \ \"$context.resourceId\",\n    \"resource-path\" : \"$context.resourcePath\"\
+            \n    }\n}\n"
+        passthroughBehavior: "when_no_templates"
+        httpMethod: "POST"
+        contentHandling: "CONVERT_TO_TEXT"
+        type: "aws"
+    options:
+      responses:
+        200:
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+            Access-Control-Allow-Methods:
+              schema:
+                type: "string"
+            Access-Control-Allow-Headers:
+              schema:
+                type: "string"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: "'GET,OPTIONS'"
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        requestTemplates:
+          application/json: "{\"statusCode\": 200}"
+        passthroughBehavior: "when_no_match"
+        type: "mock"
+  /decisions/me:
+    get:
+      parameters:
+      - name: "days"
+        in: "query"
+        required: false
+        schema:
+          type: "string"      
+      responses:
+        200:
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      security:
+      - UserAuthorizer: []
+      x-amazon-apigateway-integration:
+        uri: "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:478373966066:function:Ponder-Staging-GetMyDecisions/invocations"
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        requestTemplates:
+          application/json: "##  See http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-mapping-template-reference.html\n\
+            ##  This template will pass through all parameters including path, querystring,\
+            \ header, stage variables, and context through to the integration endpoint\
+            \ via the body/payload\n#set($allParams = $input.params())\n{\n\"body-json\"\
+            \ : $input.json('$'),\n\"params\" : {\n#foreach($type in $allParams.keySet())\n\
+            \    #set($params = $allParams.get($type))\n\"$type\" : {\n    #foreach($paramName\
+            \ in $params.keySet())\n    \"$paramName\" : \"$util.escapeJavaScript($params.get($paramName))\"\
+            \n        #if($foreach.hasNext),#end\n    #end\n}\n    #if($foreach.hasNext),#end\n\
+            #end\n},\n\"stage-variables\" : {\n#foreach($key in $stageVariables.keySet())\n\
+            \"$key\" : \"$util.escapeJavaScript($stageVariables.get($key))\"\n   \
+            \ #if($foreach.hasNext),#end\n#end\n},\n\"context\" : {\n    \"account-id\"\
+            \ : \"$context.identity.accountId\",\n    \"api-id\" : \"$context.apiId\"\
+            ,\n    \"api-key\" : \"$context.identity.apiKey\",\n    \"authorizer-principal-id\"\
+            \ : \"$context.authorizer.principalId\",\n    \"caller\" : \"$context.identity.caller\"\
+            ,\n    \"cognito-authentication-provider\" : \"$context.identity.cognitoAuthenticationProvider\"\
+            ,\n    \"cognito-authentication-type\" : \"$context.identity.cognitoAuthenticationType\"\
+            ,\n    \"cognito-identity-id\" : \"$context.identity.cognitoIdentityId\"\
+            ,\n    \"cognito-identity-pool-id\" : \"$context.identity.cognitoIdentityPoolId\"\
+            ,\n    \"http-method\" : \"$context.httpMethod\",\n    \"stage\" : \"\
+            $context.stage\",\n    \"source-ip\" : \"$context.identity.sourceIp\"\
+            ,\n    \"user\" : \"$context.identity.user\",\n    \"user-agent\" : \"\
+            $context.identity.userAgent\",\n    \"user-arn\" : \"$context.identity.userArn\"\
+            ,\n    \"request-id\" : \"$context.requestId\",\n    \"resource-id\" :\
+            \ \"$context.resourceId\",\n    \"resource-path\" : \"$context.resourcePath\"\
+            \n    }\n}\n"
+        passthroughBehavior: "when_no_templates"
+        httpMethod: "POST"
+        contentHandling: "CONVERT_TO_TEXT"
+        type: "aws"
+    options:
+      responses:
+        200:
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+            Access-Control-Allow-Methods:
+              schema:
+                type: "string"
+            Access-Control-Allow-Headers:
+              schema:
+                type: "string"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: "'GET,OPTIONS'"
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        requestTemplates:
+          application/json: "{\"statusCode\": 200}"
+        passthroughBehavior: "when_no_match"
+        type: "mock"
+  /decisions/{id}/vote/{optionNum}:
+    post:
+      parameters:
+      - name: "optionNum"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "id"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        200:
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      security:
+      - UserAuthorizer: []
+      x-amazon-apigateway-integration:
+        uri: "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:478373966066:function:Ponder-Staging-VoteDecision/invocations"
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        requestTemplates:
+          application/json: "##  See http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-mapping-template-reference.html\n\
+            ##  This template will pass through all parameters including path, querystring,\
+            \ header, stage variables, and context through to the integration endpoint\
+            \ via the body/payload\n#set($allParams = $input.params())\n{\n\"body-json\"\
+            \ : $input.json('$'),\n\"params\" : {\n#foreach($type in $allParams.keySet())\n\
+            \    #set($params = $allParams.get($type))\n\"$type\" : {\n    #foreach($paramName\
+            \ in $params.keySet())\n    \"$paramName\" : \"$util.escapeJavaScript($params.get($paramName))\"\
+            \n        #if($foreach.hasNext),#end\n    #end\n}\n    #if($foreach.hasNext),#end\n\
+            #end\n},\n\"stage-variables\" : {\n#foreach($key in $stageVariables.keySet())\n\
+            \"$key\" : \"$util.escapeJavaScript($stageVariables.get($key))\"\n   \
+            \ #if($foreach.hasNext),#end\n#end\n},\n\"context\" : {\n    \"account-id\"\
+            \ : \"$context.identity.accountId\",\n    \"api-id\" : \"$context.apiId\"\
+            ,\n    \"api-key\" : \"$context.identity.apiKey\",\n    \"authorizer-principal-id\"\
+            \ : \"$context.authorizer.principalId\",\n    \"caller\" : \"$context.identity.caller\"\
+            ,\n    \"cognito-authentication-provider\" : \"$context.identity.cognitoAuthenticationProvider\"\
+            ,\n    \"cognito-authentication-type\" : \"$context.identity.cognitoAuthenticationType\"\
+            ,\n    \"cognito-identity-id\" : \"$context.identity.cognitoIdentityId\"\
+            ,\n    \"cognito-identity-pool-id\" : \"$context.identity.cognitoIdentityPoolId\"\
+            ,\n    \"http-method\" : \"$context.httpMethod\",\n    \"stage\" : \"\
+            $context.stage\",\n    \"source-ip\" : \"$context.identity.sourceIp\"\
+            ,\n    \"user\" : \"$context.identity.user\",\n    \"user-agent\" : \"\
+            $context.identity.userAgent\",\n    \"user-arn\" : \"$context.identity.userArn\"\
+            ,\n    \"request-id\" : \"$context.requestId\",\n    \"resource-id\" :\
+            \ \"$context.resourceId\",\n    \"resource-path\" : \"$context.resourcePath\"\
+            \n    }\n}\n"
+        passthroughBehavior: "when_no_templates"
+        httpMethod: "POST"
+        contentHandling: "CONVERT_TO_TEXT"
+        type: "aws"
+    options:
+      responses:
+        200:
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+            Access-Control-Allow-Methods:
+              schema:
+                type: "string"
+            Access-Control-Allow-Headers:
+              schema:
+                type: "string"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: "'POST,OPTIONS'"
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        requestTemplates:
+          application/json: "{\"statusCode\": 200}"
+        passthroughBehavior: "when_no_match"
+        type: "mock"    
+  /comments:
+    post:
+      parameters:
+      - name: "principalId"
+        in: "header"
+        schema:
+          type: "string"
+      responses:
+        200:
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      security:
+      - UserAuthorizer: []
+      x-amazon-apigateway-integration:
+        uri: "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:478373966066:function:Ponder-Staging-CreateComment/invocations"
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        requestParameters:
+          integration.request.header.principalId: "context.authorizer.principalId"
+        requestTemplates:
+          application/json: "##  See http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-mapping-template-reference.html\n\
+            ##  This template will pass through all parameters including path, querystring,\
+            \ header, stage variables, and context through to the integration endpoint\
+            \ via the body/payload\n#set($allParams = $input.params())\n{\n\"body-json\"\
+            \ : $input.json('$'),\n\"params\" : {\n#foreach($type in $allParams.keySet())\n\
+            \    #set($params = $allParams.get($type))\n\"$type\" : {\n    #foreach($paramName\
+            \ in $params.keySet())\n    \"$paramName\" : \"$util.escapeJavaScript($params.get($paramName))\"\
+            \n        #if($foreach.hasNext),#end\n    #end\n}\n    #if($foreach.hasNext),#end\n\
+            #end\n},\n\"stage-variables\" : {\n#foreach($key in $stageVariables.keySet())\n\
+            \"$key\" : \"$util.escapeJavaScript($stageVariables.get($key))\"\n   \
+            \ #if($foreach.hasNext),#end\n#end\n},\n\"context\" : {\n    \"account-id\"\
+            \ : \"$context.identity.accountId\",\n    \"api-id\" : \"$context.apiId\"\
+            ,\n    \"api-key\" : \"$context.identity.apiKey\",\n    \"authorizer-principal-id\"\
+            \ : \"$context.authorizer.principalId\",\n    \"caller\" : \"$context.identity.caller\"\
+            ,\n    \"cognito-authentication-provider\" : \"$context.identity.cognitoAuthenticationProvider\"\
+            ,\n    \"cognito-authentication-type\" : \"$context.identity.cognitoAuthenticationType\"\
+            ,\n    \"cognito-identity-id\" : \"$context.identity.cognitoIdentityId\"\
+            ,\n    \"cognito-identity-pool-id\" : \"$context.identity.cognitoIdentityPoolId\"\
+            ,\n    \"http-method\" : \"$context.httpMethod\",\n    \"stage\" : \"\
+            $context.stage\",\n    \"source-ip\" : \"$context.identity.sourceIp\"\
+            ,\n    \"user\" : \"$context.identity.user\",\n    \"user-agent\" : \"\
+            $context.identity.userAgent\",\n    \"user-arn\" : \"$context.identity.userArn\"\
+            ,\n    \"request-id\" : \"$context.requestId\",\n    \"resource-id\" :\
+            \ \"$context.resourceId\",\n    \"resource-path\" : \"$context.resourcePath\"\
+            \n    }\n}\n"
+        passthroughBehavior: "when_no_templates"
+        httpMethod: "POST"
+        contentHandling: "CONVERT_TO_TEXT"
+        type: "aws"
+    get:
+      responses:
+        200:
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      security:
+      - UserAuthorizer: []
+      x-amazon-apigateway-integration:
+        uri: "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:478373966066:function:Ponder-Staging-GetDecisionComments/invocations"
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        requestTemplates:
+          application/json: "##  See http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-mapping-template-reference.html\n\
+            ##  This template will pass through all parameters including path, querystring,\
+            \ header, stage variables, and context through to the integration endpoint\
+            \ via the body/payload\n#set($allParams = $input.params())\n{\n\"body-json\"\
+            \ : $input.json('$'),\n\"params\" : {\n#foreach($type in $allParams.keySet())\n\
+            \    #set($params = $allParams.get($type))\n\"$type\" : {\n    #foreach($paramName\
+            \ in $params.keySet())\n    \"$paramName\" : \"$util.escapeJavaScript($params.get($paramName))\"\
+            \n        #if($foreach.hasNext),#end\n    #end\n}\n    #if($foreach.hasNext),#end\n\
+            #end\n},\n\"stage-variables\" : {\n#foreach($key in $stageVariables.keySet())\n\
+            \"$key\" : \"$util.escapeJavaScript($stageVariables.get($key))\"\n   \
+            \ #if($foreach.hasNext),#end\n#end\n},\n\"context\" : {\n    \"account-id\"\
+            \ : \"$context.identity.accountId\",\n    \"api-id\" : \"$context.apiId\"\
+            ,\n    \"api-key\" : \"$context.identity.apiKey\",\n    \"authorizer-principal-id\"\
+            \ : \"$context.authorizer.principalId\",\n    \"caller\" : \"$context.identity.caller\"\
+            ,\n    \"cognito-authentication-provider\" : \"$context.identity.cognitoAuthenticationProvider\"\
+            ,\n    \"cognito-authentication-type\" : \"$context.identity.cognitoAuthenticationType\"\
+            ,\n    \"cognito-identity-id\" : \"$context.identity.cognitoIdentityId\"\
+            ,\n    \"cognito-identity-pool-id\" : \"$context.identity.cognitoIdentityPoolId\"\
+            ,\n    \"http-method\" : \"$context.httpMethod\",\n    \"stage\" : \"\
+            $context.stage\",\n    \"source-ip\" : \"$context.identity.sourceIp\"\
+            ,\n    \"user\" : \"$context.identity.user\",\n    \"user-agent\" : \"\
+            $context.identity.userAgent\",\n    \"user-arn\" : \"$context.identity.userArn\"\
+            ,\n    \"request-id\" : \"$context.requestId\",\n    \"resource-id\" :\
+            \ \"$context.resourceId\",\n    \"resource-path\" : \"$context.resourcePath\"\
+            \n    }\n}\n"
+        passthroughBehavior: "when_no_templates"
+        httpMethod: "POST"
+        contentHandling: "CONVERT_TO_TEXT"
+        type: "aws"        
+    options:
+      responses:
+        200:
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+            Access-Control-Allow-Methods:
+              schema:
+                type: "string"
+            Access-Control-Allow-Headers:
+              schema:
+                type: "string"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: "'POST,OPTIONS'"
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        requestTemplates:
+          application/json: "{\"statusCode\": 200}"
+        passthroughBehavior: "when_no_match"
+        type: "mock"
+  /comments/{id}:
+     delete:
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        200:
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      security:
+      - UserAuthorizer: []
+      x-amazon-apigateway-integration:
+        uri: "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:478373966066:function:Ponder-Staging-DeleteComment/invocations"
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        requestTemplates:
+          application/json: "##  See http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-mapping-template-reference.html\n\
+            ##  This template will pass through all parameters including path, querystring,\
+            \ header, stage variables, and context through to the integration endpoint\
+            \ via the body/payload\n#set($allParams = $input.params())\n{\n\"body-json\"\
+            \ : $input.json('$'),\n\"params\" : {\n#foreach($type in $allParams.keySet())\n\
+            \    #set($params = $allParams.get($type))\n\"$type\" : {\n    #foreach($paramName\
+            \ in $params.keySet())\n    \"$paramName\" : \"$util.escapeJavaScript($params.get($paramName))\"\
+            \n        #if($foreach.hasNext),#end\n    #end\n}\n    #if($foreach.hasNext),#end\n\
+            #end\n},\n\"stage-variables\" : {\n#foreach($key in $stageVariables.keySet())\n\
+            \"$key\" : \"$util.escapeJavaScript($stageVariables.get($key))\"\n   \
+            \ #if($foreach.hasNext),#end\n#end\n},\n\"context\" : {\n    \"account-id\"\
+            \ : \"$context.identity.accountId\",\n    \"api-id\" : \"$context.apiId\"\
+            ,\n    \"api-key\" : \"$context.identity.apiKey\",\n    \"authorizer-principal-id\"\
+            \ : \"$context.authorizer.principalId\",\n    \"caller\" : \"$context.identity.caller\"\
+            ,\n    \"cognito-authentication-provider\" : \"$context.identity.cognitoAuthenticationProvider\"\
+            ,\n    \"cognito-authentication-type\" : \"$context.identity.cognitoAuthenticationType\"\
+            ,\n    \"cognito-identity-id\" : \"$context.identity.cognitoIdentityId\"\
+            ,\n    \"cognito-identity-pool-id\" : \"$context.identity.cognitoIdentityPoolId\"\
+            ,\n    \"http-method\" : \"$context.httpMethod\",\n    \"stage\" : \"\
+            $context.stage\",\n    \"source-ip\" : \"$context.identity.sourceIp\"\
+            ,\n    \"user\" : \"$context.identity.user\",\n    \"user-agent\" : \"\
+            $context.identity.userAgent\",\n    \"user-arn\" : \"$context.identity.userArn\"\
+            ,\n    \"request-id\" : \"$context.requestId\",\n    \"resource-id\" :\
+            \ \"$context.resourceId\",\n    \"resource-path\" : \"$context.resourcePath\"\
+            \n    }\n}\n"
+        passthroughBehavior: "when_no_templates"
+        httpMethod: "POST"
+        contentHandling: "CONVERT_TO_TEXT"
+        type: "aws"
+  /users/login:
+    post:
+      responses:
+        200:
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      x-amazon-apigateway-integration:
+        uri: "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:478373966066:function:Ponder-Staging-LoginUser/invocations"
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "POST"
+        contentHandling: "CONVERT_TO_TEXT"
+        type: "aws"
+    options:
+      responses:
+        200:
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+            Access-Control-Allow-Methods:
+              schema:
+                type: "string"
+            Access-Control-Allow-Headers:
+              schema:
+                type: "string"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: "'POST,OPTIONS'"
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        requestTemplates:
+          application/json: "{\"statusCode\": 200}"
+        passthroughBehavior: "when_no_match"
+        type: "mock"
+  /users/resetpassword:
+    post:
+      responses:
+        200:
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      x-amazon-apigateway-integration:
+        uri: "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:478373966066:function:Ponder-Staging-ResetPassword/invocations"
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "POST"
+        contentHandling: "CONVERT_TO_TEXT"
+        type: "aws"
+    options:
+      responses:
+        200:
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+            Access-Control-Allow-Methods:
+              schema:
+                type: "string"
+            Access-Control-Allow-Headers:
+              schema:
+                type: "string"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: "'POST,OPTIONS'"
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        requestTemplates:
+          application/json: "{\"statusCode\": 200}"
+        passthroughBehavior: "when_no_match"
+        type: "mock"
+  /users/device-token:
+    post:
+      parameters:
+      - name: "token"
+        in: "query"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        200:
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      security:
+      - UserAuthorizer: []
+      x-amazon-apigateway-request-validator: "Validate query string parameters and\
+        \ headers"
+      x-amazon-apigateway-integration:
+        uri: "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:478373966066:function:Ponder-Staging-RegisterDeviceToken/invocations"
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        requestTemplates:
+          application/json: "##  See http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-mapping-template-reference.html\n\
+            ##  This template will pass through all parameters including path, querystring,\
+            \ header, stage variables, and context through to the integration endpoint\
+            \ via the body/payload\n#set($allParams = $input.params())\n{\n\"body-json\"\
+            \ : $input.json('$'),\n\"params\" : {\n#foreach($type in $allParams.keySet())\n\
+            \    #set($params = $allParams.get($type))\n\"$type\" : {\n    #foreach($paramName\
+            \ in $params.keySet())\n    \"$paramName\" : \"$util.escapeJavaScript($params.get($paramName))\"\
+            \n        #if($foreach.hasNext),#end\n    #end\n}\n    #if($foreach.hasNext),#end\n\
+            #end\n},\n\"stage-variables\" : {\n#foreach($key in $stageVariables.keySet())\n\
+            \"$key\" : \"$util.escapeJavaScript($stageVariables.get($key))\"\n   \
+            \ #if($foreach.hasNext),#end\n#end\n},\n\"context\" : {\n    \"account-id\"\
+            \ : \"$context.identity.accountId\",\n    \"api-id\" : \"$context.apiId\"\
+            ,\n    \"api-key\" : \"$context.identity.apiKey\",\n    \"authorizer-principal-id\"\
+            \ : \"$context.authorizer.principalId\",\n    \"caller\" : \"$context.identity.caller\"\
+            ,\n    \"cognito-authentication-provider\" : \"$context.identity.cognitoAuthenticationProvider\"\
+            ,\n    \"cognito-authentication-type\" : \"$context.identity.cognitoAuthenticationType\"\
+            ,\n    \"cognito-identity-id\" : \"$context.identity.cognitoIdentityId\"\
+            ,\n    \"cognito-identity-pool-id\" : \"$context.identity.cognitoIdentityPoolId\"\
+            ,\n    \"http-method\" : \"$context.httpMethod\",\n    \"stage\" : \"\
+            $context.stage\",\n    \"source-ip\" : \"$context.identity.sourceIp\"\
+            ,\n    \"user\" : \"$context.identity.user\",\n    \"user-agent\" : \"\
+            $context.identity.userAgent\",\n    \"user-arn\" : \"$context.identity.userArn\"\
+            ,\n    \"request-id\" : \"$context.requestId\",\n    \"resource-id\" :\
+            \ \"$context.resourceId\",\n    \"resource-path\" : \"$context.resourcePath\"\
+            ,\n    \"token\": \"$input.params('token')\"\n    }\n}\n"
+        passthroughBehavior: "when_no_templates"
+        httpMethod: "POST"
+        contentHandling: "CONVERT_TO_TEXT"
+        type: "aws"
+    options:
+      responses:
+        200:
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+            Access-Control-Allow-Methods:
+              schema:
+                type: "string"
+            Access-Control-Allow-Headers:
+              schema:
+                type: "string"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: "'POST,OPTIONS'"
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        requestTemplates:
+          application/json: "{\"statusCode\": 200}"
+        passthroughBehavior: "when_no_match"
+        type: "mock"
+  /users/{id}:
+    get:
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        200:
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      x-amazon-apigateway-integration:
+        uri: "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:478373966066:function:Ponder-Staging-GetUserById/invocations"
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        requestTemplates:
+          application/json: "##  See http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-mapping-template-reference.html\n\
+            ##  This template will pass through all parameters including path, querystring,\
+            \ header, stage variables, and context through to the integration endpoint\
+            \ via the body/payload\n#set($allParams = $input.params())\n{\n\"body-json\"\
+            \ : $input.json('$'),\n\"params\" : {\n#foreach($type in $allParams.keySet())\n\
+            \    #set($params = $allParams.get($type))\n\"$type\" : {\n    #foreach($paramName\
+            \ in $params.keySet())\n    \"$paramName\" : \"$util.escapeJavaScript($params.get($paramName))\"\
+            \n        #if($foreach.hasNext),#end\n    #end\n}\n    #if($foreach.hasNext),#end\n\
+            #end\n},\n\"stage-variables\" : {\n#foreach($key in $stageVariables.keySet())\n\
+            \"$key\" : \"$util.escapeJavaScript($stageVariables.get($key))\"\n   \
+            \ #if($foreach.hasNext),#end\n#end\n},\n\"context\" : {\n    \"account-id\"\
+            \ : \"$context.identity.accountId\",\n    \"api-id\" : \"$context.apiId\"\
+            ,\n    \"api-key\" : \"$context.identity.apiKey\",\n    \"authorizer-principal-id\"\
+            \ : \"$context.authorizer.principalId\",\n    \"caller\" : \"$context.identity.caller\"\
+            ,\n    \"cognito-authentication-provider\" : \"$context.identity.cognitoAuthenticationProvider\"\
+            ,\n    \"cognito-authentication-type\" : \"$context.identity.cognitoAuthenticationType\"\
+            ,\n    \"cognito-identity-id\" : \"$context.identity.cognitoIdentityId\"\
+            ,\n    \"cognito-identity-pool-id\" : \"$context.identity.cognitoIdentityPoolId\"\
+            ,\n    \"http-method\" : \"$context.httpMethod\",\n    \"stage\" : \"\
+            $context.stage\",\n    \"source-ip\" : \"$context.identity.sourceIp\"\
+            ,\n    \"user\" : \"$context.identity.user\",\n    \"user-agent\" : \"\
+            $context.identity.userAgent\",\n    \"user-arn\" : \"$context.identity.userArn\"\
+            ,\n    \"request-id\" : \"$context.requestId\",\n    \"resource-id\" :\
+            \ \"$context.resourceId\",\n    \"resource-path\" : \"$context.resourcePath\"\
+            \n    }\n}\n"
+        passthroughBehavior: "when_no_templates"
+        httpMethod: "POST"
+        contentHandling: "CONVERT_TO_TEXT"
+        type: "aws"
+    post:
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        200:
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      security:
+      - UserAuthorizer: []
+      x-amazon-apigateway-integration:
+        uri: "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:478373966066:function:Ponder-Staging-UpdateUser/invocations"
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        requestParameters:
+          integration.request.header.principalId: "context.authorizer.principalId"
+        requestTemplates:
+          application/json: "##  See http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-mapping-template-reference.html\n\
+            ##  This template will pass through all parameters including path, querystring,\
+            \ header, stage variables, and context through to the integration endpoint\
+            \ via the body/payload\n#set($allParams = $input.params())\n{\n\"body-json\"\
+            \ : $input.json('$'),\n\"params\" : {\n#foreach($type in $allParams.keySet())\n\
+            \    #set($params = $allParams.get($type))\n\"$type\" : {\n    #foreach($paramName\
+            \ in $params.keySet())\n    \"$paramName\" : \"$util.escapeJavaScript($params.get($paramName))\"\
+            \n        #if($foreach.hasNext),#end\n    #end\n}\n    #if($foreach.hasNext),#end\n\
+            #end\n},\n\"stage-variables\" : {\n#foreach($key in $stageVariables.keySet())\n\
+            \"$key\" : \"$util.escapeJavaScript($stageVariables.get($key))\"\n   \
+            \ #if($foreach.hasNext),#end\n#end\n},\n\"context\" : {\n    \"account-id\"\
+            \ : \"$context.identity.accountId\",\n    \"api-id\" : \"$context.apiId\"\
+            ,\n    \"api-key\" : \"$context.identity.apiKey\",\n    \"authorizer-principal-id\"\
+            \ : \"$context.authorizer.principalId\",\n    \"caller\" : \"$context.identity.caller\"\
+            ,\n    \"cognito-authentication-provider\" : \"$context.identity.cognitoAuthenticationProvider\"\
+            ,\n    \"cognito-authentication-type\" : \"$context.identity.cognitoAuthenticationType\"\
+            ,\n    \"cognito-identity-id\" : \"$context.identity.cognitoIdentityId\"\
+            ,\n    \"cognito-identity-pool-id\" : \"$context.identity.cognitoIdentityPoolId\"\
+            ,\n    \"http-method\" : \"$context.httpMethod\",\n    \"stage\" : \"\
+            $context.stage\",\n    \"source-ip\" : \"$context.identity.sourceIp\"\
+            ,\n    \"user\" : \"$context.identity.user\",\n    \"user-agent\" : \"\
+            $context.identity.userAgent\",\n    \"user-arn\" : \"$context.identity.userArn\"\
+            ,\n    \"request-id\" : \"$context.requestId\",\n    \"resource-id\" :\
+            \ \"$context.resourceId\",\n    \"resource-path\" : \"$context.resourcePath\"\
+            \n    }\n}\n"
+        passthroughBehavior: "when_no_templates"
+        httpMethod: "POST"
+        contentHandling: "CONVERT_TO_TEXT"
+        type: "aws"
+    options:
+      responses:
+        200:
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+            Access-Control-Allow-Methods:
+              schema:
+                type: "string"
+            Access-Control-Allow-Headers:
+              schema:
+                type: "string"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: "'POST,GET,OPTIONS'"
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        requestTemplates:
+          application/json: "{\"statusCode\": 200}"
+        passthroughBehavior: "when_no_match"
+        type: "mock"
+  /users:
+    get:
+      parameters:
+      - name: "text"
+        in: "query"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        200:
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      security:
+      - UserAuthorizer: []
+      x-amazon-apigateway-request-validator: "Validate query string parameters and\
+        \ headers"
+      x-amazon-apigateway-integration:
+        uri: "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:478373966066:function:Ponder-Staging-FindUsers/invocations"
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        requestTemplates:
+          application/json: "##  See http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-mapping-template-reference.html\n\
+            ##  This template will pass through all parameters including path, querystring,\
+            \ header, stage variables, and context through to the integration endpoint\
+            \ via the body/payload\n#set($allParams = $input.params())\n{\n\"body-json\"\
+            \ : $input.json('$'),\n\"params\" : {\n#foreach($type in $allParams.keySet())\n\
+            \    #set($params = $allParams.get($type))\n\"$type\" : {\n    #foreach($paramName\
+            \ in $params.keySet())\n    \"$paramName\" : \"$util.escapeJavaScript($params.get($paramName))\"\
+            \n        #if($foreach.hasNext),#end\n    #end\n}\n    #if($foreach.hasNext),#end\n\
+            #end\n},\n\"stage-variables\" : {\n#foreach($key in $stageVariables.keySet())\n\
+            \"$key\" : \"$util.escapeJavaScript($stageVariables.get($key))\"\n   \
+            \ #if($foreach.hasNext),#end\n#end\n},\n\"context\" : {\n    \"account-id\"\
+            \ : \"$context.identity.accountId\",\n    \"api-id\" : \"$context.apiId\"\
+            ,\n    \"api-key\" : \"$context.identity.apiKey\",\n    \"authorizer-principal-id\"\
+            \ : \"$context.authorizer.principalId\",\n    \"caller\" : \"$context.identity.caller\"\
+            ,\n    \"cognito-authentication-provider\" : \"$context.identity.cognitoAuthenticationProvider\"\
+            ,\n    \"cognito-authentication-type\" : \"$context.identity.cognitoAuthenticationType\"\
+            ,\n    \"cognito-identity-id\" : \"$context.identity.cognitoIdentityId\"\
+            ,\n    \"cognito-identity-pool-id\" : \"$context.identity.cognitoIdentityPoolId\"\
+            ,\n    \"http-method\" : \"$context.httpMethod\",\n    \"stage\" : \"\
+            $context.stage\",\n    \"source-ip\" : \"$context.identity.sourceIp\"\
+            ,\n    \"user\" : \"$context.identity.user\",\n    \"user-agent\" : \"\
+            $context.identity.userAgent\",\n    \"user-arn\" : \"$context.identity.userArn\"\
+            ,\n    \"request-id\" : \"$context.requestId\",\n    \"resource-id\" :\
+            \ \"$context.resourceId\",\n    \"resource-path\" : \"$context.resourcePath\"\
+            ,\n    \"text\": \"$input.params('text')\"\n    }\n}\n"
+        passthroughBehavior: "when_no_templates"
+        httpMethod: "POST"
+        contentHandling: "CONVERT_TO_TEXT"
+        type: "aws"
+    post:
+      responses:
+        200:
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      x-amazon-apigateway-integration:
+        uri: "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:478373966066:function:Ponder-Staging-RegisterUser/invocations"
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "POST"
+        contentHandling: "CONVERT_TO_TEXT"
+        type: "aws"
+    options:
+      responses:
+        200:
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+            Access-Control-Allow-Methods:
+              schema:
+                type: "string"
+            Access-Control-Allow-Headers:
+              schema:
+                type: "string"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: "'POST,GET,OPTIONS'"
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        requestTemplates:
+          application/json: "{\"statusCode\": 200}"
+        passthroughBehavior: "when_no_match"
+        type: "mock"                         
+components:
+  schemas:
+    Empty:
+      title: "Empty Schema"
+      type: "object"
+  securitySchemes:
+    UserAuthorizer:
+      type: "apiKey"
+      name: "Authorization"
+      in: "header"
+      x-amazon-apigateway-authtype: "custom"
+      x-amazon-apigateway-authorizer:
+        authorizerUri: "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:478373966066:function:Ponder-Staging-AuthorizeUser/invocations"
+        authorizerResultTtlInSeconds: 300
+        type: "token"
+x-amazon-apigateway-request-validators:
+  Validate query string parameters and headers:
+    validateRequestParameters: true
+    validateRequestBody: false
