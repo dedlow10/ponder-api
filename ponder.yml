@@ -30,8 +30,7 @@ Resources:
       Timeout: 3
       Role: 'arn:aws:iam::478373966066:role/LambdaServiceRole'
       Environment:
-        Variables:
-          DatabaseHost: 'prodmysql.cphdeyoxcjbz.us-east-1.rds.amazonaws.com'
+        Variables: { DatabaseHost: 'prodmysql.cphdeyoxcjbz.us-east-1.rds.amazonaws.com' }
       Events:
         Schedule1:
           Type: Schedule
