@@ -3,7 +3,7 @@ var mysql = require('mysql');
 module.exports = {
     getConnection: function() {
         return mysql.createConnection({
-            host: "prodmysql.cphdeyoxcjbz.us-east-1.rds.amazonaws.com",
+            host: process.env.DatabaseHost,
             user: "dedlow",
             password: "Soccer1985",
             database: "DecisionMaker",
