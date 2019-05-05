@@ -9,9 +9,9 @@ orbs:
 
 jobs:
     build:
-    branches:
-      only:
-        - master
+      branches:
+        only:
+          - master
     docker:
       # specify the version you desire here
       - image: circleci/node:8.10
