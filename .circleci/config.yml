@@ -8,10 +8,10 @@ orbs:
   aws-s3: circleci/aws-s3@1.0.3
 
 jobs:
-    build:
-      branches:
-        only:
-          - master
+  build:
+    branches:
+      only:
+        - master
     docker:
       # specify the version you desire here
       - image: circleci/node:8.10
