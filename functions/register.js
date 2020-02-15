@@ -11,10 +11,18 @@ module.exports = {
                     callback("Email is taken");
                 }
                 else {
-                    var hash = passwordHash.generate(event.Password);
-                    usersFuncs.register(event.Email, event.FirstName, event.LastName, event.ScreenName, hash, function(id) {
-                        context.succeed(id);
+                    usersFuncs.findByScreenName(event.ScreenName, (user2) => {
+                        if (user2 != null) {
+                            callback("ScreenName is taken");
+                        }
+                        else {
+                            var hash = passwordHash.generate(event.Password);
+                            usersFuncs.register(event.Email, event.FirstName, event.LastName, event.ScreenName, hash, function(id) {
+                                context.succeed(id);
+                            });
+                        }
                     });
+
                 }
             });
         });

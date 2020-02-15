@@ -44,8 +44,17 @@ module.exports = {
     findByEmail: function(email, callback) {
         var connection = da.getConnection();
         var sql = 
-        "SELECT * FROM Users Where Email = '" + email + "' LIMIT 1";
-        connection.query(sql, function(err, result, fields) {
+        "SELECT * FROM Users Where Email=? LIMIT 1";
+        connection.query(sql, [email], function(err, result, fields) {
+            if (err) throw err;
+            connection.end(function (err) { callback(result[0]);});
+        });
+    },
+    findByScreenName: function(screenName, callback) {
+        var connection = da.getConnection();
+        var sql = 
+        "SELECT * FROM Users Where ScreenName=? LIMIT 1";
+        connection.query(sql, [screenName], function(err, result, fields) {
             if (err) throw err;
             connection.end(function (err) { callback(result[0]);});
         });
