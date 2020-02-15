@@ -21,7 +21,7 @@ Resources:
     Properties:
       FunctionName: Ponder-Staging-AcceptInvitation
       Handler: functions/acceptInvitation.handler
-      Runtime: nodejs12.16
+      Runtime: nodejs12.x
       CodeUri: 
         Bucket: !Ref BucketName
         Key: !Ref CodeKey
@@ -55,7 +55,7 @@ Resources:
     Properties:
       FunctionName: Ponder-Staging-AddFriend
       Handler: functions/addfriend.handler
-      Runtime: nodejs12.16
+      Runtime: nodejs12.x
       CodeUri: 
         Bucket: !Ref BucketName
         Key: !Ref CodeKey
@@ -89,7 +89,7 @@ Resources:
     Properties:
       FunctionName: Ponder-Staging-AuthorizeUser
       Handler: authorizers/authorizeruser.handler
-      Runtime: nodejs12.16
+      Runtime: nodejs12.x
       CodeUri: 
         Bucket: !Ref BucketName
         Key: !Ref CodeKey
@@ -112,7 +112,7 @@ Resources:
     Properties:
       FunctionName: Ponder-Staging-CountMyDecisionVotes
       Handler: functions/countmydecisionvotes.handler
-      Runtime: nodejs12.16
+      Runtime: nodejs12.x
       CodeUri: 
         Bucket: !Ref BucketName
         Key: !Ref CodeKey
@@ -141,7 +141,7 @@ Resources:
     Properties:
       FunctionName: Ponder-Staging-CountMyDecisions
       Handler: functions/countmydecisions.handler
-      Runtime: nodejs12.16
+      Runtime: nodejs12.x
       CodeUri: 
         Bucket: !Ref BucketName
         Key: !Ref CodeKey
@@ -170,7 +170,7 @@ Resources:
     Properties:
       FunctionName: Ponder-Staging-CreateComment
       Handler: functions/createcomment.handler
-      Runtime: nodejs12.16
+      Runtime: nodejs12.x
       CodeUri: 
         Bucket: !Ref BucketName
         Key: !Ref CodeKey
@@ -204,7 +204,7 @@ Resources:
     Properties:
       FunctionName: Ponder-Staging-CreateDecision
       Handler: functions/createdecision.handler
-      Runtime: nodejs12.16
+      Runtime: nodejs12.x
       CodeUri: 
         Bucket: !Ref BucketName
         Key: !Ref CodeKey
@@ -238,7 +238,7 @@ Resources:
     Properties:
       FunctionName: Ponder-Staging-DeleteComment
       Handler: functions/deletecomment.handler
-      Runtime: nodejs12.16
+      Runtime: nodejs12.x
       CodeUri: 
         Bucket: !Ref BucketName
         Key: !Ref CodeKey
@@ -267,7 +267,7 @@ Resources:
     Properties:
       FunctionName: Ponder-Staging-DeleteDecision
       Handler: functions/deletedecision.handler
-      Runtime: nodejs12.16
+      Runtime: nodejs12.x
       CodeUri: 
         Bucket: !Ref BucketName
         Key: !Ref CodeKey
@@ -296,7 +296,7 @@ Resources:
     Properties:
       FunctionName: Ponder-Staging-DeleteFriend
       Handler: functions/deletefriend.handler
-      Runtime: nodejs12.16
+      Runtime: nodejs12.x
       CodeUri: 
         Bucket: !Ref BucketName
         Key: !Ref CodeKey
@@ -325,7 +325,7 @@ Resources:
     Properties:
       FunctionName: Ponder-Staging-FindUsers
       Handler: functions/findusers.handler
-      Runtime: nodejs12.16
+      Runtime: nodejs12.x
       CodeUri: 
         Bucket: !Ref BucketName
         Key: !Ref CodeKey
@@ -359,7 +359,7 @@ Resources:
     Properties:
       FunctionName: Ponder-Staging-GetDecisionComments
       Handler: functions/getdecisioncomments.handler
-      Runtime: nodejs12.16
+      Runtime: nodejs12.x
       CodeUri: 
         Bucket: !Ref BucketName
         Key: !Ref CodeKey
@@ -388,7 +388,7 @@ Resources:
     Properties:
       FunctionName: Ponder-Staging-GetDecisionById
       Handler: functions/getdecisionbyid.handler
-      Runtime: nodejs12.16
+      Runtime: nodejs12.x
       CodeUri: 
         Bucket: !Ref BucketName
         Key: !Ref CodeKey
@@ -417,7 +417,7 @@ Resources:
     Properties:
       FunctionName: Ponder-Staging-GetFriendInvitations
       Handler: functions/getfriendinvitations.handler
-      Runtime: nodejs12.16
+      Runtime: nodejs12.x
       CodeUri: 
         Bucket: !Ref BucketName
         Key: !Ref CodeKey
@@ -451,7 +451,7 @@ Resources:
     Properties:
       FunctionName: Ponder-Staging-GetFriends
       Handler: functions/getfriends.handler
-      Runtime: nodejs12.16
+      Runtime: nodejs12.x
       CodeUri: 
         Bucket: !Ref BucketName
         Key: !Ref CodeKey
@@ -485,7 +485,7 @@ Resources:
     Properties:
       FunctionName: Ponder-Staging-GetFriendsDecisions
       Handler: functions/getfriendsdecisions.handler
-      Runtime: nodejs12.16
+      Runtime: nodejs12.x
       CodeUri: 
         Bucket: !Ref BucketName
         Key: !Ref CodeKey
@@ -519,7 +519,7 @@ Resources:
     Properties:
       FunctionName: Ponder-Staging-GetMyDecisions
       Handler: functions/getmydecisions.handler
-      Runtime: nodejs12.16
+      Runtime: nodejs12.x
       CodeUri: 
         Bucket: !Ref BucketName
         Key: !Ref CodeKey
@@ -553,7 +553,7 @@ Resources:
     Properties:
       FunctionName: Ponder-Staging-GetTopDecisions
       Handler: functions/gettopdecisions.handler
-      Runtime: nodejs12.16
+      Runtime: nodejs12.x
       CodeUri: 
         Bucket: !Ref BucketName
         Key: !Ref CodeKey
@@ -587,7 +587,7 @@ Resources:
     Properties:
       FunctionName: Ponder-Staging-GetUserById
       Handler: functions/getuserbyid.handler
-      Runtime: nodejs12.16
+      Runtime: nodejs12.x
       CodeUri: 
         Bucket: !Ref BucketName
         Key: !Ref CodeKey
@@ -620,7 +620,7 @@ Resources:
     Properties:
       FunctionName: Ponder-Staging-GetVotesForDecision
       Handler: functions/getvotesfordecision.handler
-      Runtime: nodejs12.16
+      Runtime: nodejs12.x
       CodeUri: 
         Bucket: !Ref BucketName
         Key: !Ref CodeKey
@@ -654,7 +654,7 @@ Resources:
     Properties:
       FunctionName: Ponder-Staging-LoginUser
       Handler: functions/login.handler
-      Runtime: nodejs12.16
+      Runtime: nodejs12.x
       CodeUri: 
         Bucket: !Ref BucketName
         Key: !Ref CodeKey
@@ -688,7 +688,7 @@ Resources:
     Properties:
       FunctionName: Ponder-Staging-RegisterDeviceToken
       Handler: functions/registerdevicetoken.handler
-      Runtime: nodejs12.16
+      Runtime: nodejs12.x
       CodeUri: 
         Bucket: !Ref BucketName
         Key: !Ref CodeKey
@@ -717,7 +717,7 @@ Resources:
     Properties:
       FunctionName: Ponder-Staging-RegisterUser
       Handler: functions/register.handler
-      Runtime: nodejs12.16
+      Runtime: nodejs12.x
       CodeUri: 
         Bucket: !Ref BucketName
         Key: !Ref CodeKey
@@ -751,7 +751,7 @@ Resources:
     Properties:
       FunctionName: Ponder-Staging-ResetPassword
       Handler: functions/resetpassword.handler
-      Runtime: nodejs12.16
+      Runtime: nodejs12.x
       CodeUri: 
         Bucket: !Ref BucketName
         Key: !Ref CodeKey
@@ -773,7 +773,7 @@ Resources:
     Properties:
       FunctionName: Ponder-Staging-SendEmail
       Handler: functions/sendemail.handler
-      Runtime: nodejs12.16
+      Runtime: nodejs12.x
       CodeUri: 
         Bucket: !Ref BucketName
         Key: !Ref CodeKey
@@ -787,7 +787,7 @@ Resources:
     Properties:
       FunctionName: Ponder-Staging-UpdateUser
       Handler: functions/updateuser.handler
-      Runtime: nodejs12.16
+      Runtime: nodejs12.x
       CodeUri: 
         Bucket: !Ref BucketName
         Key: !Ref CodeKey
@@ -816,7 +816,7 @@ Resources:
     Properties:
       FunctionName: Ponder-Staging-VoteDecision
       Handler: functions/votedecision.handler
-      Runtime: nodejs12.16
+      Runtime: nodejs12.x
       CodeUri: 
         Bucket: !Ref BucketName
         Key: !Ref CodeKey

@@ -21,7 +21,7 @@ Resources:
     Properties:
       FunctionName: Ponder-AcceptInvitation
       Handler: functions/acceptInvitation.handler
-      Runtime: nodejs12.16
+      Runtime: nodejs12.x
       CodeUri: 
         Bucket: !Ref BucketName
         Key: !Ref CodeKey
@@ -55,7 +55,7 @@ Resources:
     Properties:
       FunctionName: Ponder-AddFriend
       Handler: functions/addfriend.handler
-      Runtime: nodejs12.16
+      Runtime: nodejs12.x
       CodeUri: 
         Bucket: !Ref BucketName
         Key: !Ref CodeKey
@@ -89,7 +89,7 @@ Resources:
     Properties:
       FunctionName: Ponder-AuthorizeUser
       Handler: authorizers/authorizeruser.handler
-      Runtime: nodejs12.16
+      Runtime: nodejs12.x
       CodeUri: 
         Bucket: !Ref BucketName
         Key: !Ref CodeKey
@@ -112,7 +112,7 @@ Resources:
     Properties:
       FunctionName: Ponder-CountMyDecisionVotes
       Handler: functions/countmydecisionvotes.handler
-      Runtime: nodejs12.16
+      Runtime: nodejs12.x
       CodeUri: 
         Bucket: !Ref BucketName
         Key: !Ref CodeKey
@@ -141,7 +141,7 @@ Resources:
     Properties:
       FunctionName: Ponder-CountMyDecisions
       Handler: functions/countmydecisions.handler
-      Runtime: nodejs12.16
+      Runtime: nodejs12.x
       CodeUri: 
         Bucket: !Ref BucketName
         Key: !Ref CodeKey
@@ -170,7 +170,7 @@ Resources:
     Properties:
       FunctionName: Ponder-CreateComment
       Handler: functions/createcomment.handler
-      Runtime: nodejs12.16
+      Runtime: nodejs12.x
       CodeUri: 
         Bucket: !Ref BucketName
         Key: !Ref CodeKey
@@ -204,7 +204,7 @@ Resources:
     Properties:
       FunctionName: Ponder-CreateDecision
       Handler: functions/createdecision.handler
-      Runtime: nodejs12.16
+      Runtime: nodejs12.x
       CodeUri: 
         Bucket: !Ref BucketName
         Key: !Ref CodeKey
@@ -238,7 +238,7 @@ Resources:
     Properties:
       FunctionName: Ponder-DeleteComment
       Handler: functions/deletecomment.handler
-      Runtime: nodejs12.16
+      Runtime: nodejs12.x
       CodeUri: 
         Bucket: !Ref BucketName
         Key: !Ref CodeKey
@@ -267,7 +267,7 @@ Resources:
     Properties:
       FunctionName: Ponder-DeleteDecision
       Handler: functions/deletedecision.handler
-      Runtime: nodejs12.16
+      Runtime: nodejs12.x
       CodeUri: 
         Bucket: !Ref BucketName
         Key: !Ref CodeKey
@@ -296,7 +296,7 @@ Resources:
     Properties:
       FunctionName: Ponder-DeleteFriend
       Handler: functions/deletefriend.handler
-      Runtime: nodejs12.16
+      Runtime: nodejs12.x
       CodeUri: 
         Bucket: !Ref BucketName
         Key: !Ref CodeKey
@@ -325,7 +325,7 @@ Resources:
     Properties:
       FunctionName: Ponder-FindUsers
       Handler: functions/findusers.handler
-      Runtime: nodejs12.16
+      Runtime: nodejs12.x
       CodeUri: 
         Bucket: !Ref BucketName
         Key: !Ref CodeKey
@@ -359,7 +359,7 @@ Resources:
     Properties:
       FunctionName: Ponder-GetDecisionComments
       Handler: functions/getdecisioncomments.handler
-      Runtime: nodejs12.16
+      Runtime: nodejs12.x
       CodeUri: 
         Bucket: !Ref BucketName
         Key: !Ref CodeKey
@@ -388,7 +388,7 @@ Resources:
     Properties:
       FunctionName: Ponder-GetDecisionById
       Handler: functions/getdecisionbyid.handler
-      Runtime: nodejs12.16
+      Runtime: nodejs12.x
       CodeUri: 
         Bucket: !Ref BucketName
         Key: !Ref CodeKey
@@ -417,7 +417,7 @@ Resources:
     Properties:
       FunctionName: Ponder-GetFriendInvitations
       Handler: functions/getfriendinvitations.handler
-      Runtime: nodejs12.16
+      Runtime: nodejs12.x
       CodeUri: 
         Bucket: !Ref BucketName
         Key: !Ref CodeKey
@@ -451,7 +451,7 @@ Resources:
     Properties:
       FunctionName: Ponder-GetFriends
       Handler: functions/getfriends.handler
-      Runtime: nodejs12.16
+      Runtime: nodejs12.x
       CodeUri: 
         Bucket: !Ref BucketName
         Key: !Ref CodeKey
@@ -485,7 +485,7 @@ Resources:
     Properties:
       FunctionName: Ponder-GetFriendsDecisions
       Handler: functions/getfriendsdecisions.handler
-      Runtime: nodejs12.16
+      Runtime: nodejs12.x
       CodeUri: 
         Bucket: !Ref BucketName
         Key: !Ref CodeKey
@@ -519,7 +519,7 @@ Resources:
     Properties:
       FunctionName: Ponder-GetMyDecisions
       Handler: functions/getmydecisions.handler
-      Runtime: nodejs12.16
+      Runtime: nodejs12.x
       CodeUri: 
         Bucket: !Ref BucketName
         Key: !Ref CodeKey
@@ -553,7 +553,7 @@ Resources:
     Properties:
       FunctionName: Ponder-GetTopDecisions
       Handler: functions/gettopdecisions.handler
-      Runtime: nodejs12.16
+      Runtime: nodejs12.x
       CodeUri: 
         Bucket: !Ref BucketName
         Key: !Ref CodeKey
@@ -587,7 +587,7 @@ Resources:
     Properties:
       FunctionName: Ponder-GetUserById
       Handler: functions/getuserbyid.handler
-      Runtime: nodejs12.16
+      Runtime: nodejs12.x
       CodeUri: 
         Bucket: !Ref BucketName
         Key: !Ref CodeKey
@@ -620,7 +620,7 @@ Resources:
     Properties:
       FunctionName: Ponder-GetVotesForDecision
       Handler: functions/getvotesfordecision.handler
-      Runtime: nodejs12.16
+      Runtime: nodejs12.x
       CodeUri: 
         Bucket: !Ref BucketName
         Key: !Ref CodeKey
@@ -654,7 +654,7 @@ Resources:
     Properties:
       FunctionName: Ponder-LoginUser
       Handler: functions/login.handler
-      Runtime: nodejs12.16
+      Runtime: nodejs12.x
       CodeUri: 
         Bucket: !Ref BucketName
         Key: !Ref CodeKey
@@ -688,7 +688,7 @@ Resources:
     Properties:
       FunctionName: Ponder-RegisterDeviceToken
       Handler: functions/registerdevicetoken.handler
-      Runtime: nodejs12.16
+      Runtime: nodejs12.x
       CodeUri: 
         Bucket: !Ref BucketName
         Key: !Ref CodeKey
@@ -717,7 +717,7 @@ Resources:
     Properties:
       FunctionName: Ponder-RegisterUser
       Handler: functions/register.handler
-      Runtime: nodejs12.16
+      Runtime: nodejs12.x
       CodeUri: 
         Bucket: !Ref BucketName
         Key: !Ref CodeKey
@@ -751,7 +751,7 @@ Resources:
     Properties:
       FunctionName: Ponder-ResetPassword
       Handler: functions/resetpassword.handler
-      Runtime: nodejs12.16
+      Runtime: nodejs12.x
       CodeUri: 
         Bucket: !Ref BucketName
         Key: !Ref CodeKey
@@ -773,7 +773,7 @@ Resources:
     Properties:
       FunctionName: Ponder-SendEmail
       Handler: functions/sendemail.handler
-      Runtime: nodejs12.16
+      Runtime: nodejs12.x
       CodeUri: 
         Bucket: !Ref BucketName
         Key: !Ref CodeKey
@@ -787,7 +787,7 @@ Resources:
     Properties:
       FunctionName: Ponder-UpdateUser
       Handler: functions/updateuser.handler
-      Runtime: nodejs12.16
+      Runtime: nodejs12.x
       CodeUri: 
         Bucket: !Ref BucketName
         Key: !Ref CodeKey
@@ -816,7 +816,7 @@ Resources:
     Properties:
       FunctionName: Ponder-VoteDecision
       Handler: functions/votedecision.handler
-      Runtime: nodejs12.16
+      Runtime: nodejs12.x
       CodeUri: 
         Bucket: !Ref BucketName
         Key: !Ref CodeKey
