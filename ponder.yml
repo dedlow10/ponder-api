@@ -107,10 +107,10 @@ Resources:
             Path: /MyResource
             Method: ANY
 
-  AuthorizerEveryone:
+  AuthorizeEveryone:
     Type: 'AWS::Serverless::Function'
     Properties:
-      FunctionName: Ponder-AuthorizerEveryone
+      FunctionName: Ponder-AuthorizeEveryone
       Handler: authorizers/authorizereveryone.handler
       Runtime: nodejs12.x
       CodeUri: 
