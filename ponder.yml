@@ -107,6 +107,29 @@ Resources:
             Path: /MyResource
             Method: ANY
 
+  AuthorizerEveryone:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      FunctionName: Ponder-AuthorizerEveryone
+      Handler: authorizers/authorizereveryone.handler
+      Runtime: nodejs12.x
+      CodeUri: 
+        Bucket: !Ref BucketName
+        Key: !Ref CodeKey
+      Description: ''
+      MemorySize: 128
+      Timeout: 3
+      Role: 'arn:aws:iam::478373966066:role/LambdaServiceRole'
+      Environment:
+        Variables: { DatabaseHost: 'prodmysql.cphdeyoxcjbz.us-east-1.rds.amazonaws.com' , Database: 'DecisionMaker' }   
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            RestApiId: !Ref DecisionMakerAPI
+            Path: /MyResource
+            Method: ANY
+
   CountMyDecisionVotes:
     Type: 'AWS::Serverless::Function'
     Properties:
