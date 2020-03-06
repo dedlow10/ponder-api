@@ -6,7 +6,13 @@ var AWS = require('aws-sdk');
 exports.handler = async (event, context, callback) => {
     try {
         var token = event.authorizationToken.replace("Bearer ", "");
-        var decoded = jwt.verify(token, jwtSecret);
+        var decoded = {};
+        try {
+          decoded = jwt.verify(token, jwtSecret);
+        }
+        catch(Exception) {
+          decoded.userId = null;
+        }
 
         // build apiOptions for the AuthPolicy
         var apiOptions = {};
